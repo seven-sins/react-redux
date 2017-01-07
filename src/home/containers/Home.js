@@ -8,8 +8,15 @@ class Home extends Component{
     render = () =>{
         return(
             <div>
-                home
-                <Link to="/user" >user</Link>
+                <div>
+                    <ul>
+                        <li><Link to="/">Home</Link></li>
+                        <li><Link to="user">User</Link></li>
+                    </ul>
+                </div>
+                <div>
+                    {this.props.children}
+                </div>
             </div>
         )
     }
