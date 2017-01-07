@@ -7,15 +7,21 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import User from './user/containers/User';
-import user from './user/reducers';
-const store = createStore(user, applyMiddleware(thunk));
-const el = document.getElementById('app');
+import reducerList from './reducerList';
+import { Router, browserHistory } from 'react-router';
+import routes from './routes';
+
+const store = createStore(reducerList, applyMiddleware(thunk));
+store.subscribe(() => {
+    console.log(store.getState());
+});
+const history = browserHistory;
 
 export const render = () =>{
     ReactDOM.render(
         <Provider store={store}>
-            <User />
+            {routes}
         </Provider>,
-        el
+        document.getElementById('app')
     );
 };
