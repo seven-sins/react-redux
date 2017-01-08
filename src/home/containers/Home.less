@@ -1,5 +1,5 @@
 *{
-  margin:0;padding:0;
+  margin:0;padding:0;color:#333;font-size:12px;
 }
 a{
   text-decoration:none;
@@ -8,6 +8,37 @@ ul{list-style:none;}
 .center-container{
   margin:0 0 0 166px;
   .content{
-    padding:10px;
+    padding:15px;
+  }
+}
+.grid{
+  .grid-toolbar{
+    line-height:30px;
+    border-bottom:1px solid #ddd;
+    padding:0 0 13px 0;
+    margin: 0 0 13px 0;
+    .link-btn{
+      margin:0 13px 0 0;background:#e8e8e8;padding:7px 11px;
+      border-radius: 3px;cursor: pointer; outline:none;
+      box-shadow:0 0 1px rgba(66,66,66,0.6);
+      &:hover{
+        background:#bbb;
+      }
+      .fa{
+        margin:0 3px;
+      }
+    }
+  }
+  .grid-content{
+    width:100%;border-collapse: collapse;
+    th, td{
+      height:29px;line-height:29px;border:1px solid #ddd;text-align:left;text-indent: 8px;
+    }
+    th{
+      background:#e7e7e7;
+    }
+    td{
+
+    }
   }
 }

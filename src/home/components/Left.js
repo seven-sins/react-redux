@@ -10,8 +10,8 @@ class Left extends Component{
         return(
             <div className='left-container'>
                 <ul className='nav'>
-                    <li><i className='fa fa-caret-down'></i><Link to="/">Home</Link></li>
-                    <li><i className='fa fa-caret-down'></i><Link to="user">User</Link></li>
+                    <li><i className='fa fa-file-text-o'></i><Link to="/">首页</Link></li>
+                    <li><i className='fa fa-file-text-o'></i><Link to="user/list">用户管理</Link></li>
                 </ul>
             </div>
         )

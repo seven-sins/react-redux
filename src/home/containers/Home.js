@@ -6,6 +6,8 @@ import Top from '../components/Top.js';
 import css from './Home.less';
 import Left from '../components/Left.js';
 import bootstrap from '../../assets/fonts/css/font-awesome.min.css';
+import s1 from '../../assets/sevensins/seven.css';
+import s2 from '../../assets/sevensins/seven.js';
 
 class Home extends Component{
     render = () =>{

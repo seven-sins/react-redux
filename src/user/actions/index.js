@@ -13,6 +13,12 @@ const edit = (user) =>{
         user
     }
 };
+const loadData = (filter) =>{
+    return {
+        type: 'LOADDATA',
+        filter
+    }
+};
 export const insert = (user) => {
     return dispatch => {
         dispatch(add(user));
@@ -24,4 +30,9 @@ export const update = (delay = 1000) => {
             dispatch(edit());
         }, delay);
     };
+};
+export const find = (filter) => {
+    return dispatch => {
+        dispatch(loadData(filter));
+    }
 };
