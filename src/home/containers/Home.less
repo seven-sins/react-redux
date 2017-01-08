@@ -3,6 +3,7 @@
 }
 a{
   text-decoration:none;
+  cursor:pointer;
 }
 ul{list-style:none;}
 .center-container{
@@ -11,26 +12,17 @@ ul{list-style:none;}
     padding:15px;
   }
 }
+.hide{display:none;}
+/*列表*/
 .grid{
-  .grid-toolbar{
-    line-height:30px;
-    border-bottom:1px solid #ddd;
-    padding:0 0 13px 0;
-    margin: 0 0 13px 0;
-    .link-btn{
-      margin:0 13px 0 0;background:#e8e8e8;padding:7px 11px;
-      border-radius: 3px;cursor: pointer; outline:none;
-      box-shadow:0 0 1px rgba(66,66,66,0.6);
-      &:hover{
-        background:#bbb;
-      }
-      .fa{
-        margin:0 3px;
-      }
-    }
-  }
   .grid-content{
     width:100%;border-collapse: collapse;
+    tr{
+      cursor: pointer;
+      &.active{
+        background:#e7e7e7;
+      }
+    }
     th, td{
       height:29px;line-height:29px;border:1px solid #ddd;text-align:left;text-indent: 8px;
     }
@@ -42,3 +34,51 @@ ul{list-style:none;}
     }
   }
 }
+/*表单*/
+.form{
+  .item{
+    li{
+      height:39px;line-height:39px;box-sizing: border-box;
+      .label{
+        display:inline-block;width:113px;text-align:right;padding:0 7px 0 0;
+      }
+    }
+  }
+  .toolbar{
+    padding:15px 0 15px 119px;
+  }
+}
+/*input*/
+.input{
+  display:inline-block;height:27px;line-height:27px;box-sizing: border-box;
+  padding:0 7px;border:1px solid #ddd;width:199px;
+}
+/*工具栏*/
+.toolbar{
+  line-height:30px;
+  border-bottom:1px solid #ddd;
+  padding:0 0 13px 0;
+  margin: 0 0 13px 0;
+  .link-btn{
+    margin:0 13px 0 0;background:#e8e8e8;padding:7px 11px;
+    border-radius: 3px;cursor: pointer; outline:none;
+    box-shadow:0 0 1px rgba(66,66,66,0.6);
+    &.save{
+      background: #3071f9;
+      &:hover{
+        background:#0e88eb;
+      }
+      *{
+        color:#fff;
+      }
+    }
+    &:hover{
+      background:#bbb;
+      box-shadow:0 0 1px rgba(66,66,66,0.3);
+    }
+    .fa{
+      margin:0 3px;
+    }
+  }
+}
+

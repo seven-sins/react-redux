@@ -12,7 +12,7 @@ import routes from './routes';
 
 const store = createStore(reducerList, applyMiddleware(thunk));
 store.subscribe(() => {
-    console.log(store.getState());
+    //console.log(store.getState());
 });
 
 export const render = () =>{

@@ -5,32 +5,81 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as ActionCreators from '../actions';
 import { Link } from 'react-router';
+import { browserHistory, hashHistory } from 'react-router';
 
-@connect( state =>({list: state.UserList}), ActionCreators )
+@connect( state =>({ list: state.UserList }), ActionCreators )
 class List extends Component{
     constructor(props, context){
         super(props, context);
-        this.edit = this.edit.bind(this);
+        this.state = {
+            user: null
+        };
+        this.toInsert = this.toInsert.bind(this);
+        this.toUpdate = this.toUpdate.bind(this);
+        this.remove = this.remove.bind(this);
+        this.select = this.select.bind(this);
     }
-    edit = (ev) =>{
+    componentDidMount = () =>{
+        this.props.loadData();
+    };
+    select = (user, ev) =>{
         ev.preventDefault();
-        s.alert("test");
-
-        return false;
+        this.state.user = user;
+        s(".grid-content tbody tr").removeClass('active').each( (item) =>{
+            let id = s(item).find('td').eq(0).text();
+            if(id == user.id){
+                s(item).addClass('active');
+                return false;
+            }
+        })
+    };
+    toInsert = (ev) =>{
+        ev.preventDefault();
+        this.props.toInsert();
+        hashHistory.push("/user");
+    };
+    toUpdate = (ev) =>{
+        ev.preventDefault();
+        if(!this.state.user){
+            s.alert('请选择数据');
+            return false;
+        }
+        this.props.toUpdate(this.state.user);
+        hashHistory.push("/user");
+    };
+    remove = (ev) =>{
+        ev.preventDefault();
+        if(!this.state.user){
+            s.alert('请选择数据');
+            return false;
+        }
+        let _this = this;
+        let _list = this.props.list;
+        let _copy = [];
+        for(let i=0; i<_list.length; i++){
+            _copy.push(_list[i]);
+        }
+        s.confirm({
+            msg: '确定删除选中数据吗？',
+            title:'系统消息',
+            confirm:function(){
+                _this.props.remove(_this.state.user, _copy);
+            }
+        });
     };
     render = () =>{
         let { list } = this.props;
         return(
             <div className='grid'>
-                <ul className='grid-toolbar'>
-                    <Link to='user' className='link-btn' onClick={this.edit}><i className='fa fa-plus'></i><span className='add'>添加</span></Link>
-                    <Link to='user' className='link-btn'><i className='fa fa-edit'></i><span className='add'>编辑</span></Link>
-                    <Link to='user' className='link-btn'><i className='fa fa-remove'></i><span className='add'>删除</span></Link>
+                <ul className='toolbar'>
+                    <a className='link-btn' onClick={ this.toInsert }><i className='fa fa-plus'></i><span>添加</span></a>
+                    <a className='link-btn' onClick={ this.toUpdate }><i className='fa fa-edit'></i><span>编辑</span></a>
+                    <a className='link-btn' onClick={ this.remove }><i className='fa fa-remove'></i><span>删除</span></a>
                 </ul>
                 <table className='grid-content'>
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th className='hide'>ID</th>
                             <th>用户名</th>
                             <th>昵称</th>
                             <th>电话</th>
@@ -40,9 +89,10 @@ class List extends Component{
                     </thead>
                     <tbody>
                         {
-                            list.map((item, index) => {
+                            list.length > 0 && list.map((item, index) => {
+                                let id = item.id;
                                 return(
-                                    <UserItem key={index} item={item} />
+                                    <UserItem key={index} item={item} select = { this.select } />
                                 )
                             })
                         }
@@ -58,7 +108,7 @@ List.propTypes = {
 
 class UserItem extends Component {
     render = () =>{
-        let { item } = this.props;
+        let { item, select } = this.props;
         let status;
         if(item.status === 0){
             status = <span style={{color:'green'}}>正常</span>;
@@ -66,8 +116,8 @@ class UserItem extends Component {
             status = <span style={{color:'#f00'}}>禁用</span>;
         }
         return (
-            <tr>
-                <td>{ item.id }</td>
+            <tr onClick={ select.bind(this, item) }>
+                <td className='hide'>{ item.id }</td>
                 <td>{ item.userName }</td>
                 <td>{ item.nickName }</td>
                 <td>{ item.email }</td>

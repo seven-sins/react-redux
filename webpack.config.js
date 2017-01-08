@@ -43,8 +43,12 @@ module.exports = {
                 loader: "url?limit=10000"
             },
             {
-                test: /\.(ttf|eot|svg)(\?[\s\S]+)?$/,
-                loader: 'file'
+                test: /\.(eot|svg|woff2|woff)(\?[\s\S]+)?$/,
+                loader: 'file?name=font/[hash].[ext]'
+            },
+            {
+                test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+                loader: 'url?name=font/[hash].[ext]'
             },
             {
                 test: /\.(jpg|png|gif)$/,
