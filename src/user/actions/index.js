@@ -2,46 +2,35 @@
  * Created by seven sins on 1/7/2017.
  */
 import { browserHistory, hashHistory } from 'react-router';
+import { http } from '../../common/common';
 
-//const list = [
-//    {
-//        id: 1,
-//        userName: 'aaa',
-//        passWord: '123'
-//    }
-//];
-
-let headers = {
-    "Accept": "application/json",
-    "Content-Type": "application/json"
-};
 const load = (list) =>{
     return {
-        type: 'LOADDATA',
+        type: http.LOAD,
         list
     }
 };
 export const loadData = (filter) => {
     return dispatch => {
-        //dispatch(load(list));
-        fetch("/user", { headers: headers }).then( response => response.json() )
+        fetch(http.srvUrl + "/user", { headers: http.headers } )
+            .then( response =>  response.json() )
             .then(data => {
                 if(data.code == 0){
                     dispatch(load(data.data));
                 }else{
                     s.alert(data.message);
                 }
-            })
+            });
     }
 };
 export const save = (user, callback) =>{
     let method = user.id ? "PUT" : "POST";
     let url = user.id ? "/user/" + user.id : "/user";
     return (dispatch, getState) => {
-        fetch(url, { method: method, headers: headers, body: JSON.stringify(user) }).then( response => response.json() )
+        fetch(http.srvUrl + url, { headers: http.headers, body: JSON.stringify(user), method: method  } ).then( response => response.json() )
             .then(data => {
                 if(data.code == 0){
-                    dispatch({ type: 'INSERT',user });
+                    dispatch({ type: http.RESET, user });
                     callback.call();
                 }else{
                     s.alert(data.message);
@@ -52,7 +41,7 @@ export const save = (user, callback) =>{
 };
 export const remove = (user, list) => {
     return dispatch => {
-        fetch("/user/" + user.id, { headers: headers, method: "DELETE" }).then( response => response.json() )
+        fetch(http.srvUrl + "/user/" + user.id,  { headers: http.headers, method: "DELETE" } ).then( response => response.json() )
             .then(data => {
                 if(data.code == 0){
                     if(list && list.length > 0){
@@ -73,12 +62,12 @@ export const remove = (user, list) => {
 };
 export const toInsert = (user) => {
     return (dispatch, getState) => {
-        dispatch({ type: 'INSERT',user });
+        dispatch({ type: http.RESET, user });
     };
 };
 export const toUpdate = (user) => {
     return dispatch => {
-        dispatch({ type: 'UPDATE',user });
+        dispatch({ type: http.UPDATE, user });
     };
 };
 

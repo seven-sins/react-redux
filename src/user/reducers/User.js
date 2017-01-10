@@ -7,6 +7,8 @@ const initialState = {
 const User = (state = initialState, action = null) => {
     switch (action.type) {
         case 'INSERT':
+            return state;
+        case 'RESET':
             return {};
         case 'UPDATE':
             return action.user;
