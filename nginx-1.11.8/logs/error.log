@@ -1,19 +1,5 @@
-2017/01/10 22:01:22 [emerg] 11400#9136: unknown directive "//location" in E:\javascript\react-redux\nginx-1.11.8\conf\nginx.conf:43
-2017/01/10 22:01:22 [alert] 11532#984: worker process 11400 exited with code 1
-2017/01/10 22:01:22 [alert] 11532#984: could not respawn worker
-2017/01/10 22:01:35 [emerg] 2728#532: unknown directive "//location" in E:\javascript\react-redux\nginx-1.11.8\conf\nginx.conf:43
-2017/01/10 22:01:51 [emerg] 2960#11368: unknown directive "//location" in E:\javascript\react-redux\nginx-1.11.8\conf\nginx.conf:43
-2017/01/10 22:02:21 [emerg] 1096#1380: unknown directive "//location" in E:\javascript\react-redux\nginx-1.11.8\conf\nginx.conf:43
-2017/01/10 22:05:44 [error] 9612#4496: *1 "E:\javascript\react-redux\nginx-1.11.8/html/api/index.html" is not found (3: The system cannot find the path specified), client: 127.0.0.1, server: 127.0.0.1, request: "GET /api/ HTTP/1.1", host: "localhost:3000"
-2017/01/10 22:05:47 [error] 9612#4496: *1 CreateFile() "E:\javascript\react-redux\nginx-1.11.8/html/api/user" failed (3: The system cannot find the path specified), client: 127.0.0.1, server: 127.0.0.1, request: "GET /api/user HTTP/1.1", host: "localhost:3000"
-2017/01/10 22:10:16 [emerg] 2924#7000: "upstream" directive is not allowed here in E:\javascript\react-redux\nginx-1.11.8\conf\nginx.conf:56
-2017/01/10 22:10:31 [emerg] 10032#7972: "upstream" directive is not allowed here in E:\javascript\react-redux\nginx-1.11.8\conf\nginx.conf:56
-2017/01/10 22:16:10 [emerg] 11392#11448: "upstream" directive is not allowed here in E:\javascript\react-redux\nginx-1.11.8\conf\nginx.conf:56
-2017/01/10 22:16:37 [emerg] 10612#9836: "upstream" directive is not allowed here in E:\javascript\react-redux\nginx-1.11.8\conf\nginx.conf:56
-2017/01/10 22:17:09 [emerg] 3776#9628: invalid URL prefix in E:\javascript\react-redux\nginx-1.11.8\conf\nginx.conf:59
-2017/01/10 22:31:24 [emerg] 9384#3412: directive "rewrite" is not terminated by ";" in E:\javascript\react-redux\nginx-1.11.8\conf\nginx.conf:50
-2017/01/10 22:31:24 [alert] 1660#6516: worker process 9384 exited with code 1
-2017/01/10 22:31:24 [alert] 1660#6516: could not respawn worker
-2017/01/10 22:31:34 [emerg] 11908#9936: directive "rewrite" is not terminated by ";" in E:\javascript\react-redux\nginx-1.11.8\conf\nginx.conf:50
-2017/01/10 22:44:10 [emerg] 11448#3128: "proxy" directive is not allowed here in E:\javascript\react-redux\nginx-1.11.8\conf\nginx.conf:49
-2017/01/10 23:05:30 [emerg] 5524#6236: unexpected "}" in E:\javascript\react-redux\nginx-1.11.8/conf/nginx.conf:50
+2017/01/12 20:16:54 [error] 8124#9400: *1 CreateFile() "E:\javascript\react-redux\nginx-1.11.8/html/favicon.ico" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost:3001"
+2017/01/12 20:16:54 [error] 8124#9400: *1 CreateFile() "E:\javascript\react-redux\nginx-1.11.8/html/favicon.ico" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost:3001"
+2017/01/12 20:39:16 [emerg] 12164#12168: bind() to 0.0.0.0:8888 failed (10013: An attempt was made to access a socket in a way forbidden by its access permissions)
+2017/01/12 20:39:34 [emerg] 11920#11924: bind() to 0.0.0.0:8888 failed (10013: An attempt was made to access a socket in a way forbidden by its access permissions)
+2017/01/12 20:39:41 [emerg] 11956#2224: bind() to 0.0.0.0:8888 failed (10013: An attempt was made to access a socket in a way forbidden by its access permissions)
