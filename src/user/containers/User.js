@@ -23,16 +23,16 @@ class User extends Component{
         if(!user) user = {};
         return(
             <div className='form'>
-                <form ref='form' id="form">
+                <form ref='form'>
                     <ul className='item'>
                         <li className='hide'>
                             <span className='label'>Id: </span><input type='text' className='input' defaultValue={ user.id } name='id' />
                         </li>
                         <li>
-                            <span className='label'>用户名:</span><input type='text'  className='input' defaultValue={ user.userName } name='userName'  />
+                            <span className='label'>用户名:</span><input type='text'  className='input' defaultValue={ user.userName } name='userName' data-rule="require:true, max:30" />
                         </li>
                         <li>
-                            <span className='label'>昵称:</span><input type='text'  className='input' defaultValue={ user.nickName } name='nickName'  />
+                            <span className='label'>昵称:</span><input type='text'  className='input' defaultValue={ user.nickName } name='nickName' data-rule="require:true"  />
                         </li>
                         <li>
                             <input type='password' className='hide' />

@@ -861,6 +861,63 @@
 
             return self;
         },
+        validate: function(){
+            var flag = true;
+            var form = this.elements[0];
+            for (var i = 0; i < form.elements.length; i++) {
+                var dom = form.elements[i];
+                dom.validate = function(){
+                    this.oldBorderColor = this.style.borderColor;
+                    this.flag = true;
+                    // 获取验证规则
+                    var rule = this.getAttribute('data-rule');
+                    // 规则不为空
+                    if(rule){ // require: true, max: 100, type: number
+                        var arr = rule.split(',');
+                        if(arr && arr.length > 0){
+                            for(var j=0; j<arr.length; j++){
+                                if(arr[j]){
+                                    var tmp = arr[j].split(':');
+                                    var key = tmp[0];
+                                    var value = tmp[1];
+                                    if(key && value){
+                                        switch (key){
+                                            case 'require':
+                                                if(!this.value){
+                                                    this.style.borderColor = '#f00';
+                                                }else{
+                                                    this.style.borderColor = this.oldBorderColor;
+                                                }
+                                                break;
+                                            case 'max':
+                                                if(this.value.length > value){
+                                                    this.style.borderColor = '#f00';
+                                                }else{
+                                                    this.style.borderColor = this.oldBorderColor;
+                                                }
+                                                break;
+                                            case 'min':
+                                                if(this.value.length < value){
+                                                    this.style.borderColor = '#f00';
+                                                }else{
+                                                    this.style.borderColor = this.oldBorderColor;
+                                                }
+                                                break;
+                                            default:
+                                                break;
+
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+
+            return this;
+        },
         serialize: function () {
             var form = this.elements[0];
             var parts = {};
