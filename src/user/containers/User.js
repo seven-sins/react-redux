@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import * as ActionCreators from '../actions';
 import { Link } from 'react-router';
 import { browserHistory, hashHistory } from 'react-router';
-import DropDownList from '../../common/components/dropDownList';
+import DropDownList from '../../common/components/DropDownList';
 
 @connect( state =>({ user: state.User }), ActionCreators )
 class User extends Component{
