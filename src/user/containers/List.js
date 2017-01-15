@@ -93,7 +93,7 @@ class List extends Component{
                             list.length > 0 && list.map((item, index) => {
                                 let id = item.id;
                                 return(
-                                    <UserItem key={index} item={item} select = { this.select } />
+                                    <UserItem key={id} item={item} select = { this.select } />
                                 )
                             })
                         }

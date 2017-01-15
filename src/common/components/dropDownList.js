@@ -74,7 +74,7 @@ class DropDownList extends Component {
                                 this.refs.el.value = text;
                             }
                             return(
-                                <li key={index} data-id={id} onClick={this.select}>{text}</li>
+                                <li key={id} data-id={id} onClick={this.select}>{text}</li>
                             )
                         })
                     }
