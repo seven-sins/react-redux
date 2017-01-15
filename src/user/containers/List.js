@@ -8,7 +8,7 @@ import { Link } from 'react-router';
 import { browserHistory, hashHistory } from 'react-router';
 import Pager from '../../common/components/Pager';
 
-@connect( state =>({ list: state.UserList }), ActionCreators )
+@connect( state =>({ list: state.UserList.data, total: state.UserList.total }), ActionCreators )
 class List extends Component{
     constructor(props, context){
         super(props, context);
