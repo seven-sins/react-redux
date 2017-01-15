@@ -2,7 +2,7 @@
         npm start
 ###公共组件
 
-####1.DropDownList
+####1. DropDownList
         <DropDownList ref='roleId' value={ user.roleId } id='id' text='name' url='/role' />
 
     #####1. 取值
