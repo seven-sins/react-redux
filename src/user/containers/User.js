@@ -24,6 +24,7 @@ class User extends Component{
     render = () =>{
         let { user } = this.props;
         if(!user) user = {};
+        let param = { value: user.roleId, id: 'id', text: 'name', url: '/role' }; // role dropdownlist参数
         return(
             <div className='form'>
                 <form ref='form'>
@@ -32,7 +33,7 @@ class User extends Component{
                             <span className='label'>Id: </span><input type='text' className='input' defaultValue={ user.id } name='id' />
                         </li>
                         <li>
-                            <span className='label'>角色:</span><DropDownList ref='roleId' value={ user.roleId } id='id' text='name' url='/role' />
+                            <span className='label'>角色:</span><DropDownList ref='roleId' { ...param } />
                         </li>
                         <li>
                             <span className='label'>用户名:</span><input type='text'  className='input' defaultValue={ user.userName } name='userName' data-rule="require:true, max:30" />
