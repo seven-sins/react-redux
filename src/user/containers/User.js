@@ -12,19 +12,19 @@ import DropDownList from '../../common/components/DropDownList';
 class User extends Component{
     constructor(props, context){
         super(props, context);
-        this.save = this.save.bind(this);
     }
     save = (ev) =>{
         ev.preventDefault();
         let user = s(this.refs.form).serialize();
         user.roleId = this.refs.roleId.state.id;
-        console.log(user);
+        user.status = this.refs.status.state.id;
         this.props.save(user, () => { hashHistory.push("/user/list") });
     };
     render = () =>{
         let { user } = this.props;
         if(!user) user = {};
-        let param = { value: user.roleId, id: 'id', text: 'name', url: '/role' }; // role dropdownlist参数
+        let roleParams = { value: user.roleId, id: 'id', text: 'name', url: '/role' }; // role dropdownlist参数
+        let statusParams = { value: user.status, id: 'id', text: 'text', data: [{ id: 0, text: '启用'}, { id: 1, text: '禁用'}]};
         return(
             <div className='form'>
                 <form ref='form'>
@@ -33,7 +33,7 @@ class User extends Component{
                             <span className='label'>Id: </span><input type='text' className='input' defaultValue={ user.id } name='id' />
                         </li>
                         <li>
-                            <span className='label'>角色:</span><DropDownList ref='roleId' { ...param } />
+                            <span className='label'>角色:</span><DropDownList ref='roleId' { ...roleParams } />
                         </li>
                         <li>
                             <span className='label'>用户名:</span><input type='text'  className='input' defaultValue={ user.userName } name='userName' data-rule="require:true, max:30" />
@@ -52,7 +52,7 @@ class User extends Component{
                             <span className='label'>电话:</span><input type='text'  className='input' defaultValue={ user.phoneNumber } name='phoneNumber'  />
                         </li>
                         <li>
-                            <span className='label'>状态:</span><input type='text'  className='input' defaultValue={ user.status } name='status'  />
+                            <span className='label'>状态:</span><DropDownList ref='status' { ...statusParams } />
                         </li>
                     </ul>
                 </form>

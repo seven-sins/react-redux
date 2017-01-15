@@ -15,11 +15,6 @@ class List extends Component{
         this.state = {
             user: null
         };
-        this.load = this.load.bind(this);
-        this.toInsert = this.toInsert.bind(this);
-        this.toUpdate = this.toUpdate.bind(this);
-        this.remove = this.remove.bind(this);
-        this.select = this.select.bind(this);
     }
     load = (filter) => {
         this.props.loadData(filter);

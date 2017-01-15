@@ -19,8 +19,6 @@ class DropDownList extends Component {
             data: [],
             value: null
         };
-        this.select = this.select.bind(this);
-        this.load = this.load.bind(this);
     }
     load = () => {
         let { url, id, text, data, value } = this.props;
@@ -63,7 +61,6 @@ class DropDownList extends Component {
         this.refs.list.style.display = 'none';
     };
     render = () =>{
-        // 圣骑士长 —— 枢机卿 —— 圣骑士（金刚- 白金- 苍玉- 红玉- 翠玉- 水晶）—见习圣骑士— 骑士
         return (
             <div className='drop-down-list'>
                 <input type='text' className='input' ref='el' placeholder='请选择' />
@@ -73,7 +70,7 @@ class DropDownList extends Component {
                         this.state.data.length > 0 && this.state.data.map((item, index) => {
                             let id = item[this.state.idField];
                             let text = item[this.state.textField];
-                            if(this.state.value && this.state.value == id){
+                            if(this.state.value !== null && this.state.value !== '' && this.state.value == id){
                                 this.refs.el.value = text;
                             }
                             return(
