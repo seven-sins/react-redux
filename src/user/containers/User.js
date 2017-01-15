@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import * as ActionCreators from '../actions';
 import { Link } from 'react-router';
 import { browserHistory, hashHistory } from 'react-router';
+import DropDownList from '../../common/components/dropDownList';
 
 @connect( state =>({ user: state.User }), ActionCreators )
 class User extends Component{
@@ -16,6 +17,8 @@ class User extends Component{
     save = (ev) =>{
         ev.preventDefault();
         let user = s(this.refs.form).serialize();
+        user.roleId = this.refs.roleId.state.id;
+        console.log(user);
         this.props.save(user, () => { hashHistory.push("/user/list") });
     };
     render = () =>{
@@ -27,6 +30,9 @@ class User extends Component{
                     <ul className='item'>
                         <li className='hide'>
                             <span className='label'>Id: </span><input type='text' className='input' defaultValue={ user.id } name='id' />
+                        </li>
+                        <li>
+                            <span className='label'>角色:</span><DropDownList ref='roleId' value={ user.roleId } id='id' text='name' url='/role' />
                         </li>
                         <li>
                             <span className='label'>用户名:</span><input type='text'  className='input' defaultValue={ user.userName } name='userName' data-rule="require:true, max:30" />

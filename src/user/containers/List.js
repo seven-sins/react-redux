@@ -80,6 +80,7 @@ class List extends Component{
                     <thead>
                         <tr>
                             <th className='hide'>ID</th>
+                            <th>角色</th>
                             <th>用户名</th>
                             <th>昵称</th>
                             <th>电话</th>
@@ -111,13 +112,14 @@ class UserItem extends Component {
         let { item, select } = this.props;
         let status;
         if(item.status === 0){
-            status = <span style={{color:'green'}}>正常</span>;
+            status = <span style={{color:'green'}}>启用</span>;
         }else{
             status = <span style={{color:'#f00'}}>禁用</span>;
         }
         return (
             <tr onClick={ select.bind(this, item) }>
                 <td className='hide'>{ item.id }</td>
+                <td>{ item.role ? item.role.name : '' }</td>
                 <td>{ item.userName }</td>
                 <td>{ item.nickName }</td>
                 <td>{ item.email }</td>
