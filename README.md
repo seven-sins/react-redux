@@ -3,12 +3,12 @@
 ###公共组件
 
 ####1. DropDownList
-        <DropDownList ref='roleId' value={ user.roleId } id='id' text='name' url='/role' />
+    <DropDownList ref='roleId' value={ user.roleId } id='id' text='name' url='/role' />
 
-    #####1. 取值
+    1. 取值
         value: this.refs.roleId.state.id
         text:  this.refs.roleId.state.text
-    #####2. 参数
+    2. 参数
         value: 默认值
         id: id属性名称
         text: text属性名称
