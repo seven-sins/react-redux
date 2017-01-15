@@ -3,7 +3,9 @@
 ###公共组件
 
 ####1. DropDownList
-    <DropDownList ref='roleId' value={ user.roleId } id='id' text='name' url='/role' />
+    eg:
+        let param = { value: user.roleId, id: 'id', text: 'name', url: '/role' };
+        <DropDownList ref='roleId' { ...param } />
 
     1. 取值
         value: this.refs.roleId.state.id

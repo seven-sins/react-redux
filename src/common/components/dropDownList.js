@@ -4,7 +4,9 @@
 import React, { Component, PropTypes } from 'react';
 import { http } from '../common'
 
-// eg: <DropDownList ref='roleId' value={ user.roleId } id='id' text='name' url='/role' />
+// eg:
+//      let param = { value: user.roleId, id: 'id', text: 'name', url: '/role' };
+//      <DropDownList ref='roleId' { ...param } />
 class DropDownList extends Component {
     constructor(props, context) {
         super(props, context);
