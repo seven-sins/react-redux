@@ -4,7 +4,7 @@
 import { browserHistory, hashHistory } from 'react-router';
 import { http } from '../../common/common';
 
-const load = (list) =>{
+const load = (list) => {
     return {
         type: http.LOAD,
         list
@@ -12,7 +12,7 @@ const load = (list) =>{
 };
 export const loadData = (filter) => {
     return dispatch => {
-        fetch(http.srvUrl + "/user", { headers: http.headers } )
+        fetch(http.srvUrl + "/user", { headers: http.headers, method: 'GET' } )
             .then( response =>  response.json() )
             .then(data => {
                 if(data.code == 0){
@@ -23,7 +23,7 @@ export const loadData = (filter) => {
             });
     }
 };
-export const save = (user, callback) =>{
+export const save = (user, callback) => {
     let method = user.id ? "PUT" : "POST";
     let url = user.id ? "/user/" + user.id : "/user";
     return (dispatch, getState) => {

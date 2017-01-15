@@ -10,6 +10,29 @@ import s1 from '../../assets/sevensins/seven.css';
 import s2 from '../../assets/sevensins/seven.js';
 
 class Home extends Component{
+    constructor(props, context) {
+        super(props, context);
+    }
+    inner = () => {
+        if (typeof window.innerWidth != 'undefined') {
+            return {
+                width: window.innerWidth,
+                height: window.innerHeight
+            }
+        } else {
+            return {
+                width: document.documentElement.clientWidth,
+                height: document.documentElement.clientHeight
+            }
+        }
+    };
+    componentDidMount = () =>{
+        let inner = this.inner();
+        this.refs.container.style.height = (inner.height - 66) + 'px'; // 66 == top的高度
+        this.refs.content.style.height = (inner.height - 66 - 30) + 'px'; // 30 == container.padding-top + container.padding-bottom
+        this.refs.container.style.maxHeight = (inner.height - 66) + 'px';
+        this.refs.content.style.maxHeight = (inner.height - 66 - 30) + 'px';
+    };
     render = () =>{
         return(
             <div>
@@ -17,8 +40,8 @@ class Home extends Component{
                 <div>
                     <Left />
                 </div>
-                <div className='center-container'>
-                    <div className='content'>
+                <div className='center-container'  ref='container'>
+                    <div className='content' ref='content'>
                         {this.props.children}
                     </div>
                 </div>

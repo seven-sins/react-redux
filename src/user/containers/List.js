@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import * as ActionCreators from '../actions';
 import { Link } from 'react-router';
 import { browserHistory, hashHistory } from 'react-router';
+import Pager from '../../common/components/Pager';
 
 @connect( state =>({ list: state.UserList }), ActionCreators )
 class List extends Component{
@@ -14,13 +15,17 @@ class List extends Component{
         this.state = {
             user: null
         };
+        this.load = this.load.bind(this);
         this.toInsert = this.toInsert.bind(this);
         this.toUpdate = this.toUpdate.bind(this);
         this.remove = this.remove.bind(this);
         this.select = this.select.bind(this);
     }
+    load = (filter) => {
+        this.props.loadData(filter);
+    };
     componentDidMount = () =>{
-        this.props.loadData();
+        this.load();
     };
     select = (user, ev) =>{
         ev.preventDefault();
@@ -99,6 +104,7 @@ class List extends Component{
                         }
                     </tbody>
                 </table>
+                <Pager load={ this.load } total={ this.state.total } />
             </div>
         )
     }
