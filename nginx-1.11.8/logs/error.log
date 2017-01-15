@@ -1,5 +1,0 @@
-2017/01/12 20:16:54 [error] 8124#9400: *1 CreateFile() "E:\javascript\react-redux\nginx-1.11.8/html/favicon.ico" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost:3001"
-2017/01/12 20:16:54 [error] 8124#9400: *1 CreateFile() "E:\javascript\react-redux\nginx-1.11.8/html/favicon.ico" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost:3001"
-2017/01/12 20:39:16 [emerg] 12164#12168: bind() to 0.0.0.0:8888 failed (10013: An attempt was made to access a socket in a way forbidden by its access permissions)
-2017/01/12 20:39:34 [emerg] 11920#11924: bind() to 0.0.0.0:8888 failed (10013: An attempt was made to access a socket in a way forbidden by its access permissions)
-2017/01/12 20:39:41 [emerg] 11956#2224: bind() to 0.0.0.0:8888 failed (10013: An attempt was made to access a socket in a way forbidden by its access permissions)
