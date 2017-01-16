@@ -16,12 +16,23 @@ class Pager extends Component {
         }
         return (
             <div className='pager'>
-                <div className='pager-left'>
+                <span className='pager-center'>
+                    <span className='prev'>上一页</span>
+                    <span className='number active'>1</span>
+                    <span className='number'>2</span>
+                    <span className='number'>3</span>
+                    <span className='number'>4</span>
+                    <span className='number'>5</span>
+                    <span className='number'>6</span>
+                    <span className='number'>7</span>
+                    <span className='number'>8</span>
+                    <span className='number'>9</span>
+                    <span className='number'>10</span>
+                    <span className='next'>下一页</span>
+                </span>
+                <span className='pager-right'>
 
-                </div>
-                <div className='pager-right'>
-
-                </div>
+                </span>
             </div>
         )
     }

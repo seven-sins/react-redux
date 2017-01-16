@@ -13,7 +13,8 @@ class List extends Component{
     constructor(props, context){
         super(props, context);
         this.state = {
-            user: null
+            user: null,
+            total: 100
         };
     }
     load = (filter) => {
@@ -70,14 +71,15 @@ class List extends Component{
     render = () =>{
         let { list } = this.props;
         return(
-            <div className='grid'>
-                <ul className='toolbar'>
-                    <a className='link-btn' onClick={ this.toInsert }><i className='fa fa-plus'></i><span>添加</span></a>
-                    <a className='link-btn' onClick={ this.toUpdate }><i className='fa fa-edit'></i><span>编辑</span></a>
-                    <a className='link-btn' onClick={ this.remove }><i className='fa fa-remove'></i><span>删除</span></a>
-                </ul>
-                <table className='grid-content'>
-                    <thead>
+            <div>
+                <div className='grid'>
+                    <ul className='toolbar'>
+                        <a className='link-btn' onClick={ this.toInsert }><i className='fa fa-plus'></i><span>添加</span></a>
+                        <a className='link-btn' onClick={ this.toUpdate }><i className='fa fa-edit'></i><span>编辑</span></a>
+                        <a className='link-btn' onClick={ this.remove }><i className='fa fa-remove'></i><span>删除</span></a>
+                    </ul>
+                    <table className='grid-content'>
+                        <thead>
                         <tr>
                             <th className='hide'>ID</th>
                             <th>角色</th>
@@ -87,8 +89,8 @@ class List extends Component{
                             <th>邮箱</th>
                             <th>状态</th>
                         </tr>
-                    </thead>
-                    <tbody>
+                        </thead>
+                        <tbody>
                         {
                             list.length > 0 && list.map((item, index) => {
                                 let id = item.id;
@@ -97,8 +99,10 @@ class List extends Component{
                                 )
                             })
                         }
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+
+                </div>
                 <Pager load={ this.load } total={ this.state.total } />
             </div>
         )
