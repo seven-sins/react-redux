@@ -16,10 +16,15 @@ module.exports = {
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin(),
-        new webpack.optimize.UglifyJsPlugin({
+        new webpack.optimize.UglifyJsPlugin({ // 移除注释无效。。。
+        	test: /(\.css|\.js|\.less)$/,
+        	output: {
+        		comments: false,  // remove all comments
+      		},
             compress: {
                 warnings: false
-            }
+            },
+            minimize: true
         })
     ],
     module: {
