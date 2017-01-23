@@ -5,7 +5,7 @@ import React, { Component, PropTypes } from 'react';
 import Top from '../components/Top.js';
 import css from './Home.less';
 import Left from '../components/Left.js';
-import bootstrap from '../../assets/fonts/less/font-awesome.less';
+import icon from 'font-awesome-webpack';
 import s1 from '../../assets/sevensins/seven.css';
 import s2 from '../../assets/sevensins/seven.js';
 

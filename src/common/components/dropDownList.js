@@ -63,7 +63,7 @@ class DropDownList extends Component {
     render = () =>{
         return (
             <div className='drop-down-list'>
-                <input type='text' className='input' ref='el' placeholder='请选择' />
+                <span className="input" ref="el">请选择<i className="fa fa-caret-down"></i></span>
                 <ul ref='list'>
                     <li className='empty' onClick={this.select}>空</li>
                     {
