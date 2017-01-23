@@ -14,7 +14,7 @@ class List extends Component{
         super(props, context);
         this.state = {
             user: null,
-            total: 100
+            total: 600
         };
     }
     load = (filter) => {
@@ -70,6 +70,7 @@ class List extends Component{
     };
     render = () =>{
         let { list } = this.props;
+        let param = { total: 21, index: 1 };
         return(
             <div>
                 <div className='grid'>
@@ -103,7 +104,7 @@ class List extends Component{
                     </table>
 
                 </div>
-                <Pager load={ this.load } total={ this.state.total } />
+                <Pager load={ this.load } { ...param } />
             </div>
         )
     }
