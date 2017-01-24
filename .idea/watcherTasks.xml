@@ -14,6 +14,7 @@
         <array />
       </option>
       <option name="outputFromStdout" value="false" />
+      <option name="passParentEnvs" value="true" />
       <option name="program" value="$USER_HOME$/AppData/Roaming/npm/babel.cmd" />
       <option name="scopeName" value="Project Files" />
       <option name="trackOnlyRoot" value="true" />
@@ -39,6 +40,7 @@
         </array>
       </option>
       <option name="outputFromStdout" value="true" />
+      <option name="passParentEnvs" value="true" />
       <option name="program" value="D:/Program Files/nodejs/node.exe" />
       <option name="scopeName" value="Project Files" />
       <option name="trackOnlyRoot" value="false" />

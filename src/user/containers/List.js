@@ -22,39 +22,17 @@ class List extends Component{
     componentDidMount = () =>{
         this.load();
     };
-    select = (user, ev) =>{
-        ev.preventDefault();
-        this.state.user = user;
-        s(".grid-content tbody tr").removeClass('active').each( (item) =>{
-            let id = s(item).find('td').eq(0).text();
-            if(id == user.id){
-                s(item).addClass('active');
-                return false;
-            }
-        })
-    };
-    create = (ev) =>{
-        ev.preventDefault();
+    create = () =>{
         this.props.create();
         hashHistory.push("/user");
     };
-    update = (ev) =>{
-        ev.preventDefault();
-        if(!this.state.user){
-            s.alert('请选择数据');
-            return false;
-        }
-        this.props.update(this.state.user);
+    update = (model) =>{
+        this.props.update(model);
         hashHistory.push("/user");
     };
-    remove = (ev) =>{
-        ev.preventDefault();
-        if(!this.state.user){
-            s.alert('请选择数据');
-            return false;
-        }
+    remove = (model) =>{
         let _this = this;
-        let _list = this.props.list;
+        let _list = this.props.data;
         let _copy = [];
         for(let i=0; i<_list.length; i++){
             _copy.push(_list[i]);
@@ -63,7 +41,7 @@ class List extends Component{
             msg: '确定删除选中数据吗？',
             title:'系统消息',
             confirm:function(){
-                _this.props.remove(_this.state.user, _copy, _this.state.total);
+                _this.props.remove(model, _copy, _this.props.total);
             }
         });
     };
@@ -72,7 +50,8 @@ class List extends Component{
         let json = {
             toolbar: [
                 { name: 'create', option: { class: 'fa fa-plus', action: this.create } },
-                { name: 'update', option: { class: 'fa fa-edit', action: this.update } }
+                { name: 'update', option: { class: 'fa fa-edit', action: this.update } },
+                { name: 'remove', option: { class: 'fa fa-edit', action: this.remove } }
             ],
             columns: [
                 { field: "id", title: 'id', width: 100, class: 'hide' },

@@ -10,7 +10,11 @@ class Grid extends Component {
             model: null,
             create: ()=>{},
             update: ()=>{},
-            remove: ()=>{}
+            remove: ()=>{},
+            toolbarDom: null,
+            columnsDom: null,
+            dataDom: null,
+            pagerOption: {}
         }
     }
     initToolbar = (toolbar) => {
@@ -43,6 +47,13 @@ class Grid extends Component {
                         });
                         action = this.update;
                         break;
+                    case 'remove':
+                        name = '删除';
+                        this.setState({
+                            remove: action
+                        });
+                        action = this.remove;
+                        break;
                     default:
                         break;
                 }
@@ -61,7 +72,7 @@ class Grid extends Component {
         return toolbarContent;
     };
     initColumns = (columns) => {
-        let columnsDom = '';
+        let columnsDom = null;
         if(columns && columns.length > 0){
             columnsDom = columns.map( (item, index) => {
                 let className = item.class ? item.class : '';
@@ -82,9 +93,9 @@ class Grid extends Component {
     };
     initData = (columns, data) => {
         if(!data){
-            return '';
+            return null;
         }
-        let dataDom = '';
+        let dataDom = null;
         if(data.length > 0){
             dataDom = data.map( (item_i, index_i) => {
                 let td = '';
@@ -105,42 +116,72 @@ class Grid extends Component {
                     )
                 });
                 return (
-                    <tr key={ index_i }>{ td }</tr>
+                    <tr onClick={ this.select.bind(this, item_i) } key={ index_i }>{ td }</tr>
                 )
             });
         }
         return dataDom;
     };
+    select = (obj, ev) => {
+        ev.preventDefault();
+        console.log(obj);
+        this.setState({
+            model: obj
+        })
+    };
     create = () => {
         this.state.create();
     };
     update = () => {
-        this.state.update();
+        if(!this.state.model){
+            s.alert('请选择数据');
+            return false;
+        }
+        this.state.update(this.state.model);
     };
     remove = () => {
-        this.state.remove();
+        if(!this.state.model){
+            s.alert('请选择数据');
+            return false;
+        }
+        this.state.remove(this.state.model);
     };
-    render = () => {
-        let { toolbar, columns, action, data, total } = this.props;
+    componentDidMount = () => {
+        let { toolbar, columns } = this.props;
         let toolbarDom = this.initToolbar(toolbar);
         let columnsDom = this.initColumns(columns);
+        this.setState({
+            toolbarDom: toolbarDom,
+            columnsDom: columnsDom
+        }, () => {
+            // console.log("done.")
+        });
+    };
+    render = () => {
+        let { toolbarDom, columnsDom } = this.state;
+        let {  columns, data, total } = this.props;
         let dataDom = this.initData(columns, data);
-        let param = { total: total, index: 1 };
+        let pagerOption = { total: total, index: 1 };
+
+        if(!dataDom){
+            return (
+                <div></div>
+            )
+        }
         return (
             <div>
                 <div className='grid'>
                     { toolbarDom }
                     <table className='grid-content'>
                         <thead>
-                        { columnsDom }
+                            { columnsDom }
                         </thead>
                         <tbody>
-                        { dataDom }
+                            { dataDom }
                         </tbody>
                     </table>
-
                 </div>
-                <Pager { ...param } />
+                <Pager { ...pagerOption } />
             </div>
         )
     }
