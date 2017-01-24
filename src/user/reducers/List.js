@@ -10,7 +10,8 @@ const List = (state = initialState, action = null) => {
         case 'LOADDATA':
             return {
                 ...state,
-                data: action.list
+                data: action.data,
+                total: action.total
             };
         case 'REMOVE':
             return {

@@ -6,15 +6,14 @@ import { connect } from 'react-redux';
 import * as ActionCreators from '../actions';
 import { Link } from 'react-router';
 import { browserHistory, hashHistory } from 'react-router';
-import Pager from '../../common/components/Pager';
+import Grid from '../../common/components/Grid.js';
 
-@connect( state =>({ list: state.UserList.data, total: state.UserList.total }), ActionCreators )
+@connect( state =>({ data: state.UserList.data, total: state.UserList.total }), ActionCreators )
 class List extends Component{
     constructor(props, context){
         super(props, context);
         this.state = {
-            user: null,
-            total: 600
+            user: null
         };
     }
     load = (filter) => {
@@ -64,74 +63,37 @@ class List extends Component{
             msg: '确定删除选中数据吗？',
             title:'系统消息',
             confirm:function(){
-                _this.props.remove(_this.state.user, _copy);
+                _this.props.remove(_this.state.user, _copy, _this.state.total);
             }
         });
     };
     render = () =>{
-        let { list } = this.props;
-        let param = { total: 21, index: 1 };
+        let { data, total } = this.props;
+        let json = {
+            toolbar: [
+                { name: '添加', option: { class: 'fa fa-plus', action: this.toInsert } },
+                { name: '编辑', option: { class: 'fa fa-edit', action: this.toUpdate } }
+            ],
+            columns: [
+                { field: "id", title: 'id', width: 100, class: 'hide' },
+                { field: "roleName", title: '角色', width: 200 },
+                { field: "userName", title: '用户名', width: 200 },
+                { field: "nickName", title: '昵称', width: 200 },
+                { field: "phoneNumber", title: '电话', width: 200 },
+                { field: "email", title: '邮箱', width: 200 },
+                { field: "status", title: '状态', width: 200, template: (row) => {
+                    if(row.status === 0){
+                        return <span style={{ color: 'green' }}>启用</span>;
+                    }else{
+                        return <span style={{ color:'#f00' }}>禁用</span>;
+                    }
+                } }
+            ],
+            data: data,
+            total: total
+        };
         return(
-            <div>
-                <div className='grid'>
-                    <ul className='toolbar'>
-                        <a className='link-btn' onClick={ this.toInsert }><i className='fa fa-plus'></i><span>添加</span></a>
-                        <a className='link-btn' onClick={ this.toUpdate }><i className='fa fa-edit'></i><span>编辑</span></a>
-                        <a className='link-btn' onClick={ this.remove }><i className='fa fa-remove'></i><span>删除</span></a>
-                    </ul>
-                    <table className='grid-content'>
-                        <thead>
-                        <tr>
-                            <th className='hide'>ID</th>
-                            <th>角色</th>
-                            <th>用户名</th>
-                            <th>昵称</th>
-                            <th>电话</th>
-                            <th>邮箱</th>
-                            <th>状态</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {
-                            list.length > 0 && list.map((item, index) => {
-                                let id = item.id;
-                                return(
-                                    <UserItem key={id} item={item} select = { this.select } />
-                                )
-                            })
-                        }
-                        </tbody>
-                    </table>
-
-                </div>
-                <Pager load={ this.load } { ...param } />
-            </div>
-        )
-    }
-}
-List.propTypes = {
-    //
-};
-
-class UserItem extends Component {
-    render = () =>{
-        let { item, select } = this.props;
-        let status;
-        if(item.status === 0){
-            status = <span style={{color:'green'}}>启用</span>;
-        }else{
-            status = <span style={{color:'#f00'}}>禁用</span>;
-        }
-        return (
-            <tr onClick={ select.bind(this, item) }>
-                <td className='hide'>{ item.id }</td>
-                <td>{ item.role ? item.role.name : '' }</td>
-                <td>{ item.userName }</td>
-                <td>{ item.nickName }</td>
-                <td>{ item.email }</td>
-                <td>{ item.phoneNumber }</td>
-                <td>{ status }</td>
-            </tr>
+            <Grid { ... json } />
         )
     }
 }

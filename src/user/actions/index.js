@@ -4,10 +4,10 @@
 import { browserHistory, hashHistory } from 'react-router';
 import { http } from '../../common/common';
 
-const load = (list) => {
+const load = (obj) => {
     return {
         type: http.LOAD,
-        list
+        data: obj.data
     }
 };
 export const loadData = (filter) => {
@@ -15,12 +15,33 @@ export const loadData = (filter) => {
         fetch(http.srvUrl + "/user", { headers: http.headers, method: 'GET' } )
             .then( response =>  response.json() )
             .then(data => {
-                if(data.code == 0){
-                    dispatch(load(data.data));
+                if(data.code == 0){ // 请求成功, 接口未返回total属性，待处理
+                    dispatch(load({ data: data.data, total: 8 }));
                 }else{
                     s.alert(data.message);
                 }
             });
+    }
+};
+export const remove = (user, list, total) => {
+    return dispatch => {
+        fetch(http.srvUrl + "/user/" + user.id,  { headers: http.headers, method: "DELETE" } ).then( response => response.json() )
+            .then(data => {
+                if(data.code == 0){
+                    if(list && list.length > 0){
+                        for(let i=0; i<list.length; i++){
+                            if(list[i].id === user.id){
+                                list.splice(i, 1);
+                                break;
+                            }
+                        }
+                    }
+                    dispatch(load({ data: list, total: total - 1 }));
+                }else{
+                    s.alert(data.message);
+                }
+            })
+            .catch(e => { });
     }
 };
 export const save = (user, callback) => {
@@ -38,27 +59,6 @@ export const save = (user, callback) => {
             })
             .catch(e => { });
     };
-};
-export const remove = (user, list) => {
-    return dispatch => {
-        fetch(http.srvUrl + "/user/" + user.id,  { headers: http.headers, method: "DELETE" } ).then( response => response.json() )
-            .then(data => {
-                if(data.code == 0){
-                    if(list && list.length > 0){
-                        for(let i=0; i<list.length; i++){
-                            if(list[i].id === user.id){
-                                list.splice(i, 1);
-                                break;
-                            }
-                        }
-                    }
-                    dispatch(load(list));
-                }else{
-                    s.alert(data.message);
-                }
-            })
-            .catch(e => { });
-    }
 };
 export const toInsert = (user) => {
     return (dispatch, getState) => {

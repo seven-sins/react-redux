@@ -1,0 +1,24 @@
+@import '../base';
+
+/*列表*/
+.grid{
+  padding-bottom:66px;
+  .grid-content{
+    width:100%;border-collapse: collapse;
+    tr{
+      cursor: pointer;
+      &.active{
+        background:#e8e8e8;
+      }
+    }
+    th, td{
+      height:26px;line-height:26px;border:1px solid @borderColor;text-align:left;text-indent: 8px;
+    }
+    th{
+      background:url(../../assets/images/header.png) repeat-x 0 0;
+    }
+    td{
+
+    }
+  }
+}
