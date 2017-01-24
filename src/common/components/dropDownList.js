@@ -17,7 +17,7 @@ class DropDownList extends Component {
             text: null,
             idField: null,
             textField: null,
-            data: [],
+            dataSource: [],
             value: null
         };
     }
@@ -30,7 +30,7 @@ class DropDownList extends Component {
         });
         if(data){
             this.setState({
-                data: data
+                dataSource: data
             });
             return false;
         }
@@ -38,13 +38,14 @@ class DropDownList extends Component {
             .then(res => {
                 if(res.code == 0){
                     this.setState({
-                            data: res.data
+                        dataSource: res.data
+                    }, () => {
+                        // console.log("done");
                     });
                 }else{
                     s.alert(res.message);
                 }
             })
-            .catch(e => { });
     };
     componentDidMount = () =>{
         this.refs.el.onclick = (ev) => {
@@ -80,20 +81,29 @@ class DropDownList extends Component {
         })
     };
     render = () =>{
+        let showText = '请选择';
+        if(this.state.dataSource.length > 0){
+            for(let i=0; i<this.state.dataSource.length; i++){
+                let item = this.state.dataSource[i];
+                let id = item[this.state.idField];
+                let text = item[this.state.textField];
+                if(this.state.value !== null && this.state.value !== '' && this.state.value == id){
+                    showText = text;
+                    break;
+                }
+            }
+        }
         return (
             <div className='drop-down-list'>
-                <span className="input" ref="el"><span ref="text" className="show-text">请选择</span><i className="icon fa fa-caret-down"></i></span>
+                <span className="input" ref="el"><span ref="text" className="show-text">{ showText }</span><i className="icon fa fa-caret-down"></i></span>
                 <ul ref='list'>
-                    <li className='empty' onClick={this.select}>空</li>
+                    <li className='empty' onClick={ this.select }>空</li>
                     {
-                        this.state.data.length > 0 && this.state.data.map((item, index) => {
+                        this.state.dataSource.length > 0 && this.state.dataSource.map((item, index) => {
                             let id = item[this.state.idField];
                             let text = item[this.state.textField];
-                            if(this.state.value !== null && this.state.value !== '' && this.state.value == id){
-                                this.refs.text.innerText = text;
-                            }
                             return(
-                                <li key={id} data-id={id} onClick={this.select}>{text}</li>
+                                <li key={id} data-id={id} onClick={ this.select }>{text}</li>
                             )
                         })
                     }
