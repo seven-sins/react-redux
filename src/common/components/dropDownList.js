@@ -3,6 +3,7 @@
  */
 import React, { Component, PropTypes } from 'react';
 import { http } from '../common'
+import css from './DropDownList.less'
 
 // eg:
 //      let param = { value: user.roleId, id: 'id', text: 'name', url: '/role' };
@@ -46,24 +47,42 @@ class DropDownList extends Component {
             .catch(e => { });
     };
     componentDidMount = () =>{
-        this.refs.el.onkeydown = () => { return false; }; //禁止输入
-        this.refs.el.onfocus = () => { this.refs.list.style.display = 'block'; };
-        this.refs.el.onblur = () => { this.state.timer = setTimeout(() => { this.refs.list.style.display = 'none'; }, 300); };
+        this.refs.el.onclick = (ev) => {
+            ev.preventDefault();
+            if(this.refs.list.style.display === 'block'){
+                this.refs.list.style.display = 'none';
+            }else{
+                this.refs.list.style.display = 'block';
+            }
+        };
+        this.refs.el.onmouseout = this.refs.list.onmouseout = (ev) => {
+            ev.preventDefault();
+            this.state.timer = setTimeout( () => { this.refs.list.style.display = 'none'; }, 300 );
+        };
+        this.refs.list.onmousemove = (ev) => {
+            clearTimeout(this.state.timer);
+        };
         this.load();
     };
     select = (ev) => {
         ev.preventDefault();
         clearTimeout(this.state.timer);
         let dom = ev.target;
-        this.state.id = dom.getAttribute('data-id');
-        this.state.text = dom.innerText === '空' ? '' : dom.innerText;
-        this.refs.el.value = this.state.text;
+        let id = dom.getAttribute('data-id');
+        let text = dom.innerText === '空' ?  '请选择' : dom.innerText;
+        this.refs.text.innerText = text;
         this.refs.list.style.display = 'none';
+        this.setState({
+            id: id,
+            text: text
+        }, () => {
+            // console.log("done")
+        })
     };
     render = () =>{
         return (
             <div className='drop-down-list'>
-                <span className="input" ref="el">请选择<i className="fa fa-caret-down"></i></span>
+                <span className="input" ref="el"><span ref="text" className="show-text">请选择</span><i className="icon fa fa-caret-down"></i></span>
                 <ul ref='list'>
                     <li className='empty' onClick={this.select}>空</li>
                     {
@@ -71,7 +90,7 @@ class DropDownList extends Component {
                             let id = item[this.state.idField];
                             let text = item[this.state.textField];
                             if(this.state.value !== null && this.state.value !== '' && this.state.value == id){
-                                this.refs.el.value = text;
+                                this.refs.text.innerText = text;
                             }
                             return(
                                 <li key={id} data-id={id} onClick={this.select}>{text}</li>

@@ -36,12 +36,13 @@ ul{list-style:none;}
   }
 }
 /*表单*/
+@labelWidth: 113px;
 .form{
   .item{
     &>li{
       height:39px;line-height:39px;box-sizing: border-box;
       .label{
-        display:inline-block;width:113px;text-align:right;padding:0 7px 0 0;
+        display:inline-block;width:@labelWidth;text-align:right;padding:0 7px 0 0;float:left;
       }
     }
   }
@@ -82,26 +83,4 @@ ul{list-style:none;}
     }
   }
 }
-/*公共组件*/
-.drop-down-list{
-  display:inline-block;width:@inputWidth;height:@inputHeight;line-height:@inputHeight;position:relative;
-  &>input{
 
-  }
-  ul{
-    position:absolute;left:0;top:@inputHeight;width:@inputWidth;background:#e8e8e8;border:1px solid @inputBorderColor;box-sizing: border-box;
-    overflow:hidden;overflow-y:auto;display:none;box-shadow:2px 2px 2px rgba(66,66,66,0.3);max-height: 400px;border-top:none;
-    li{
-      height:@inputHeight;line-height:@inputHeight;padding:0 7px;border-bottom:1px solid #eee;cursor:pointer;
-      &:nth-last-child(1){
-        border:none;
-      }
-      &.empty{
-        color:#aaa;
-      }
-      &:hover{
-        background:#61a1e9;color:@withe;
-      }
-    }
-  }
-}
