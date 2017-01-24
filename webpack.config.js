@@ -16,7 +16,7 @@ module.exports = {
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin(),
-        new webpack.optimize.UglifyJsPlugin({ // 移除注释无效。。。
+        new webpack.optimize.UglifyJsPlugin({
         	output: {
 				comments: false  // remove all comments
 			},
