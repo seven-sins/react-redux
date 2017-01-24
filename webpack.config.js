@@ -2,29 +2,27 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-    devtool: 'cheap-module-eval-source-map',
+    //devtool: 'cheap-module-eval-source-map',
     entry: [
        // 'webpack-hot-middleware/client',
         './index.js'
     ],
     output: {
         path: path.join(__dirname, 'dist'),
-        filename: 'bundle.js',
-        publicPath: '/dist/'
+		publicPath: '/dist/',
+        filename: 'bundle.js'
     },
     plugins: [
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin(),
         new webpack.optimize.UglifyJsPlugin({ // 移除注释无效。。。
-        	test: /(\.css|\.js|\.less)$/,
         	output: {
-        		comments: false,  // remove all comments
-      		},
-            compress: {
-                warnings: false
-            },
-            minimize: true
+				comments: false  // remove all comments
+			},
+			compress: {
+				warnings: false
+			}
         })
     ],
     module: {
