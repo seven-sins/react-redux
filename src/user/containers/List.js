@@ -33,18 +33,18 @@ class List extends Component{
             }
         })
     };
-    toInsert = (ev) =>{
+    create = (ev) =>{
         ev.preventDefault();
-        this.props.toInsert();
+        this.props.create();
         hashHistory.push("/user");
     };
-    toUpdate = (ev) =>{
+    update = (ev) =>{
         ev.preventDefault();
         if(!this.state.user){
             s.alert('请选择数据');
             return false;
         }
-        this.props.toUpdate(this.state.user);
+        this.props.update(this.state.user);
         hashHistory.push("/user");
     };
     remove = (ev) =>{
@@ -71,8 +71,8 @@ class List extends Component{
         let { data, total } = this.props;
         let json = {
             toolbar: [
-                { name: '添加', option: { class: 'fa fa-plus', action: this.toInsert } },
-                { name: '编辑', option: { class: 'fa fa-edit', action: this.toUpdate } }
+                { name: 'create', option: { class: 'fa fa-plus', action: this.create } },
+                { name: 'update', option: { class: 'fa fa-edit', action: this.update } }
             ],
             columns: [
                 { field: "id", title: 'id', width: 100, class: 'hide' },

@@ -60,12 +60,12 @@ export const save = (user, callback) => {
             .catch(e => { });
     };
 };
-export const toInsert = (user) => {
+export const create = (user) => {
     return (dispatch, getState) => {
         dispatch({ type: http.RESET, user });
     };
 };
-export const toUpdate = (user) => {
+export const update = (user) => {
     return dispatch => {
         dispatch({ type: http.UPDATE, user });
     };

@@ -6,6 +6,12 @@ import Pager from './Pager';
 class Grid extends Component {
     constructor(props, context) {
         super(props, context);
+        this.state = {
+            model: null,
+            create: ()=>{},
+            update: ()=>{},
+            remove: ()=>{}
+        }
     }
     initToolbar = (toolbar) => {
         let toolbarContent = '';
@@ -21,6 +27,24 @@ class Grid extends Component {
                     if(item.option.action){
                         action = item.option.action;
                     }
+                }
+                switch(name){
+                    case 'create':
+                        name = '添加';
+                        this.setState({
+                            create: action
+                        });
+                        action = this.create;
+                        break;
+                    case 'update':
+                        name = '编辑';
+                        this.setState({
+                            update: action
+                        });
+                        action = this.update;
+                        break;
+                    default:
+                        break;
                 }
                 return (
                     <a key={ index } className='link-btn' onClick={ action }><i className={ className }></i><span>{ name }</span></a>
@@ -86,6 +110,15 @@ class Grid extends Component {
             });
         }
         return dataDom;
+    };
+    create = () => {
+        this.state.create();
+    };
+    update = () => {
+        this.state.update();
+    };
+    remove = () => {
+        this.state.remove();
     };
     render = () => {
         let { toolbar, columns, action, data, total } = this.props;

@@ -22,3 +22,31 @@
     }
   }
 }
+/*工具栏*/
+.toolbar{
+  line-height:30px;
+  border-bottom:1px solid @borderColor;
+  padding:0 0 13px 0;
+  margin: 0 0 13px 0;
+  .link-btn{
+    margin:0 13px 0 0;background:url(../../assets/images/button.png) repeat-x 0 0;padding:7px 11px;
+    border-radius: 3px;cursor: pointer; outline:none;
+    box-shadow:0 0 1px rgba(66,66,66,0.5);
+    &.save{
+      background: #3071f9;
+      &:hover{
+        background:#0e88eb;
+      }
+      *{
+        color:@withe;
+      }
+    }
+    &:hover{
+      background:url(../../assets/images/button.png) repeat-x 0 0;
+      box-shadow:0 0 1px rgba(33,33,33,0.9);
+    }
+    .fa{
+      margin:0 3px;
+    }
+  }
+}
