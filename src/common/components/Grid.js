@@ -123,11 +123,13 @@ class Grid extends Component {
         return dataDom;
     };
     select = (obj, ev) => {
+        ev = ev || window.event;
         ev.preventDefault();
-        console.log(obj);
         this.setState({
             model: obj
-        })
+        });
+        s(ev.currentTarget).siblings().removeClass('active');
+        s(ev.currentTarget).addClass('active');
     };
     create = () => {
         this.state.create();
@@ -162,7 +164,6 @@ class Grid extends Component {
         let {  columns, data, total } = this.props;
         let dataDom = this.initData(columns, data);
         let pagerOption = { total: total, index: 1 };
-
         if(!dataDom){
             return (
                 <div></div>
