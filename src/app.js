@@ -7,10 +7,10 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import User from './user/containers/User';
-import reducerList from './reducerList';
+import reducer from './reducer';
 import routes from './routes';
 
-const store = createStore(reducerList, applyMiddleware(thunk));
+const store = createStore(reducer, applyMiddleware(thunk));
 store.subscribe(() => {
     //console.log(store.getState());
 });

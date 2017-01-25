@@ -6,13 +6,13 @@ import { routerReducer } from 'react-router-redux'
 import User from '../user/reducers/User';
 import Home from '../home/reducers/Home';
 
-const reducer = {
+const obj = {
     User: User,
     Home: Home
 };
 
-const reducerList = combineReducers({
-    ...reducer
+const reducer = combineReducers({
+    ...obj
 });
 
-export default reducerList;
+export default reducer;
