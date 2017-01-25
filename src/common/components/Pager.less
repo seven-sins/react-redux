@@ -1,10 +1,11 @@
 @import '../base';
 
 .pager{
-  position:absolute;left:0;bottom:0;width:100%;height:66px;line-height:66px;text-align:center;
+  position:absolute;left:1px;bottom:0;width:100%;height:66px;line-height:66px;box-sizing:border-box;text-align:left;text-indent:14px;background:#eee;
+  border-top:1px solid @borderColor;
   .pager-center{
     .prev,.next{
-      padding:6px 13px;border:1px solid @borderColor;margin:0 5px;cursor:pointer;
+      padding:5px 11px;border:1px solid @borderColor;margin:0 5px;cursor:pointer;
       &:hover{
         background:#61a1e9;color:@white;border:1px solid #61a1e9;
       }
@@ -21,7 +22,7 @@
 
     }
     .number{
-      padding:6px 13px;border:1px solid @borderColor;cursor:pointer;margin-left:-1px;
+      padding:5px 11px;border:1px solid @borderColor;cursor:pointer;margin-left:-1px;
       &:hover, &.active{
         background:#61a1e9;color:@white;border:1px solid #61a1e9;
       }

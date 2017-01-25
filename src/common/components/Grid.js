@@ -163,6 +163,10 @@ class Grid extends Component {
             // console.log("done.")
         });
     };
+    componentDidUpdate = () => {
+        let containerHeight = document.getElementById("content").clientHeight;
+        this.refs.grid.style.height = (containerHeight - 163) + "px";
+    };
     render = () => {
         let { toolbarDom, columnsDom } = this.state;
         let {  columns, data, total } = this.props;
@@ -170,12 +174,12 @@ class Grid extends Component {
         let pagerOption = { total: total, index: 1 };
         if(!dataDom){
             return (
-                <div></div>
+                <div className='grid' ref="grid"></div>
             )
         }
         return (
             <div>
-                <div className='grid'>
+                <div className='grid' ref="grid">
                     { toolbarDom }
                     <table className='grid-content'>
                         <thead>

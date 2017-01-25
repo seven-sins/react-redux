@@ -20,26 +20,34 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Index.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/user/containers/Index.js">
+      <file leaf-file-name="Grid.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/common/components/Grid.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="18" column="6" lean-forward="true" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
+            <state relative-caret-position="-22">
+              <caret line="161" column="18" lean-forward="true" selection-start-line="161" selection-start-column="18" selection-end-line="161" selection-end-column="18" />
               <folding>
-                <element signature="e#46#87#0" expanded="true" />
+                <element signature="e#0#41#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/user/actions/index.js">
+      <file leaf-file-name="Grid.less" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/common/components/Grid.less">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="399">
-              <caret line="23" column="2" lean-forward="true" selection-start-line="23" selection-start-column="2" selection-end-line="23" selection-end-column="2" />
-              <folding>
-                <element signature="e#46#105#0" expanded="true" />
-              </folding>
+              <caret line="21" column="5" lean-forward="true" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Pager.less" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/common/components/Pager.less">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="171">
+              <caret line="9" column="65" lean-forward="true" selection-start-line="9" selection-start-column="65" selection-end-line="9" selection-end-column="65" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -95,11 +103,7 @@
         <option value="$PROJECT_DIR$/src/common/components/Pager.js" />
         <option value="$PROJECT_DIR$/src/common/components/DropDownList.js" />
         <option value="$PROJECT_DIR$/src/common/components/DropDownList.less" />
-        <option value="$PROJECT_DIR$/src/common/components/Grid.less" />
-        <option value="$PROJECT_DIR$/src/common/components/Pager.less" />
-        <option value="$PROJECT_DIR$/src/home/containers/Home.less" />
         <option value="$PROJECT_DIR$/src/common/base.less" />
-        <option value="$PROJECT_DIR$/src/home/containers/Home.js" />
         <option value="$PROJECT_DIR$/src/common/components/Dialog.js" />
         <option value="$PROJECT_DIR$/src/user/reducers/List.js" />
         <option value="$PROJECT_DIR$/src/user/containers/List.js" />
@@ -110,9 +114,13 @@
         <option value="$PROJECT_DIR$/src/user/containers/User.js" />
         <option value="$PROJECT_DIR$/src/common/common.js" />
         <option value="$PROJECT_DIR$/src/common/components/Dialog.less" />
-        <option value="$PROJECT_DIR$/src/common/components/Grid.js" />
         <option value="$PROJECT_DIR$/src/user/actions/index.js" />
         <option value="$PROJECT_DIR$/src/user/containers/Index.js" />
+        <option value="$PROJECT_DIR$/src/home/containers/Home.less" />
+        <option value="$PROJECT_DIR$/src/common/components/Grid.less" />
+        <option value="$PROJECT_DIR$/src/home/containers/Home.js" />
+        <option value="$PROJECT_DIR$/src/common/components/Grid.js" />
+        <option value="$PROJECT_DIR$/src/common/components/Pager.less" />
       </list>
     </option>
   </component>
@@ -128,9 +136,9 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
+    <option name="x" value="348" />
+    <option name="y" value="1" />
+    <option name="width" value="1924" />
     <option name="height" value="1066" />
   </component>
   <component name="ProjectView">
@@ -189,7 +197,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="user" />
+              <option name="myItemId" value="home" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -207,33 +215,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="user" />
+              <option name="myItemId" value="home" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="containers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="react-redux" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="react-redux" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="user" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="actions" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -388,18 +374,18 @@
       <updated>1483529502888</updated>
       <workItem from="1485157063527" duration="6353000" />
       <workItem from="1485223644071" duration="23822000" />
-      <workItem from="1485306428754" duration="17190000" />
+      <workItem from="1485306428754" duration="21683000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="47365000" />
+    <option name="totallyTimeSpent" value="51858000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <frame x="348" y="1" width="1924" height="1066" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1671875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.168239" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15794979" sideWeight="0.50208336" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32845187" sideWeight="0.49791667" order="1" side_tool="false" content_ui="tabs" />
@@ -702,45 +688,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/components/Pager.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="5" lean-forward="true" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/home/containers/Home.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/common/base.less">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
           <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/components/Grid.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/home/containers/Home.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="14" column="5" lean-forward="true" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
-          <folding>
-            <element signature="e#46#98#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -838,12 +790,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/components/Grid.js">
+    <entry file="file://$PROJECT_DIR$/src/user/containers/Index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1707">
-          <caret line="143" column="20" lean-forward="true" selection-start-line="143" selection-start-column="20" selection-end-line="143" selection-end-column="20" />
+        <state relative-caret-position="133">
+          <caret line="15" column="5" lean-forward="true" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
           <folding>
-            <element signature="e#0#41#0" expanded="true" />
+            <element signature="e#46#87#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -858,13 +810,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/user/containers/Index.js">
+    <entry file="file://$PROJECT_DIR$/src/common/components/Grid.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="18" column="6" lean-forward="true" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
+        <state relative-caret-position="-22">
+          <caret line="161" column="18" lean-forward="true" selection-start-line="161" selection-start-column="18" selection-end-line="161" selection-end-column="18" />
           <folding>
-            <element signature="e#46#87#0" expanded="true" />
+            <element signature="e#0#41#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/home/containers/Home.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="26" column="9" lean-forward="true" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/home/containers/Home.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="1" lean-forward="true" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/components/Grid.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="21" column="5" lean-forward="true" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/components/Pager.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="65" lean-forward="true" selection-start-line="9" selection-start-column="65" selection-end-line="9" selection-end-column="65" />
+          <folding />
         </state>
       </provider>
     </entry>

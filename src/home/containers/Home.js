@@ -41,7 +41,7 @@ class Home extends Component{
                     <Left />
                 </div>
                 <div className='center-container'  ref='container'>
-                    <div className='content' ref='content'>
+                    <div className='content' ref='content' id="content">
                         {this.props.children}
                     </div>
                 </div>
