@@ -14,11 +14,8 @@ class Index extends Base{
     constructor(props, context){
         super(props, context);
     }
-    load = (filter) => {
-        this.props.loadData(filter);
-    };
     componentDidMount = () =>{
-        this.load();
+        this.props.load();
     };
     create = () =>{
         let dialogParams = { width: 600, height: 430, title: "新建", dialog: this.dialog };
@@ -45,7 +42,7 @@ class Index extends Base{
     };
     render = () =>{
         let { data, total } = this.props;
-        let json = {
+        let grid = {
             toolbar: [
                 { name: 'create', option: { class: 'fa fa-plus', action: this.create } },
                 { name: 'update', option: { class: 'fa fa-edit', action: this.update } },
@@ -71,7 +68,7 @@ class Index extends Base{
         };
         return(
             <div>
-                <Grid { ... json } />
+                <Grid { ... grid } />
                 { this.state.dialog }
             </div>
         )

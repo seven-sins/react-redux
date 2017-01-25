@@ -4,7 +4,7 @@
 import { browserHistory, hashHistory } from 'react-router';
 import { http } from '../../common/common';
 
-const load = (response) => {
+const loadData = (response) => {
     return {
         type: http.LOAD,
         data: response.data,
@@ -16,13 +16,13 @@ const get = (dispatch, filter) => {
         .then( response =>  response.json() )
         .then(data => {
             if(data.code == 0){ // 请求成功，接口未返回total属性，待处理
-                dispatch(load({ data: data.data, total: 188 }));
+                dispatch(loadData({ data: data.data, total: 188 }));
             }else{
                 s.alert(data.message);
             }
         });
 };
-export const loadData = (filter) => {
+export const load = (filter) => {
     return dispatch => {
         get(dispatch, filter);
     }
