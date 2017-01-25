@@ -25,7 +25,7 @@ class Index extends Base{
     };
     update = (model) =>{
         let dialogParams = { width: 600, height: 430, title: "编辑", dialog: this.dialog };
-        let userParams = Object.assign({ user: model }, { ...this.method() } );
+        let userParams = Object.assign( { user: model }, { ...this.method() } );
         this.dialog(   <Dialog { ...dialogParams }>
                             <User { ...userParams } />
                         </Dialog>)

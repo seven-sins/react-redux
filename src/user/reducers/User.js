@@ -13,10 +13,6 @@ const User = (state = initialState, action = null) => {
                 data: action.data,
                 total: action.total
             };
-        case 'REMOVE':
-            return {
-                ...state
-            };
         default:
             return {
                 ...state

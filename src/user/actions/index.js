@@ -14,8 +14,8 @@ const get = (dispatch, filter) => {
     fetch(http.srvUrl + "/user", { headers: http.headers, method: 'GET' } )
         .then( response =>  response.json() )
         .then(data => {
-            if(data.code == 0){ // 请求成功，接口未返回total属性，待处理
-                dispatch(loadData({ data: data.data, total: 188 }));
+            if(data.code == 0){
+                dispatch(loadData({ data: data.data, total: data.total }));
             }else{
                 s.alert(data.message);
             }

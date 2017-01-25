@@ -162,9 +162,9 @@ class Grid extends Component {
             // console.log("done.")
         });
     };
-    componentDidUpdate = () => {
+    componentWillReceiveProps = () => {
         let containerHeight = document.getElementById("content").clientHeight;
-        this.refs.grid.style.height = (containerHeight - 163) + "px";
+        this.refs.grid.style.height = (containerHeight - 130) + "px";
     };
     render = () => {
         let { toolbarDom, columnsDom } = this.state;

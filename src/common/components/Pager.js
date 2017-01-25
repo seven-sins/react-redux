@@ -15,15 +15,18 @@ class Pager extends Component {
             data: []
         }
     }
-    countPage = () =>{
+    countPage = (nextProps) =>{
         let { total, index } = this.props;
+        if(nextProps){
+            total = nextProps.total;
+            index = nextProps.index;
+        }
         if(!total) total = 1;
         if(!index) index = 1;
         let pageSize = 20;
-        let recordCount = total;
 
         // 计算总页码
-        let pageCount = Math.floor((recordCount + pageSize - 1 ) / pageSize);
+        let pageCount = Math.floor((total + pageSize - 1 ) / pageSize);
         let beginPageIndex = 1;
         let endPageIndex = 1;
 
@@ -32,9 +35,8 @@ class Pager extends Component {
         if (pageCount <= 10) {
             beginPageIndex = 1;
             endPageIndex = pageCount;
-        }
-        // 总页数多于10页，则显示当前页附近的共10个页码
-        else {
+        } else {
+            // 总页数多于10页，则显示当前页附近的共10个页码
             // (前4个+当前页+后5个)
             beginPageIndex = index - 4;
             endPageIndex = index + 5;
@@ -50,7 +52,7 @@ class Pager extends Component {
             }
         }
         let data = [];
-        if(pageCount > 1){
+        if(pageCount > 0){
             for(let i = beginPageIndex; i<= endPageIndex; i++){
                 data.push(i);
             }
@@ -61,10 +63,20 @@ class Pager extends Component {
             beginPageIndex: beginPageIndex,
             endPageIndex: endPageIndex,
             data: data
+        }, () => {
+            this.forceUpdate();
         })
     };
     componentDidMount = () => {
         this.countPage();
+    };
+    shouldComponentUpdate = (nextProps, nextState) => {
+        if( nextProps.total !== this.state.total || nextProps.index !== this.state.index ){
+            this.countPage(nextProps);
+            return true;
+        }else{
+            return false;
+        }
     };
     render = () => {
         let prev = 'prev';
