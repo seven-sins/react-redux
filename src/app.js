@@ -16,9 +16,8 @@ store.subscribe(() => {
 });
 
 export const render = () =>{
-    let params = { test: 1 };
     ReactDOM.render(
-        <Provider store={store} { ...params }>
+        <Provider store={store}>
             {routes}
         </Provider>,
         document.getElementById('app')

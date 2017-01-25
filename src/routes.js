@@ -9,7 +9,7 @@ import Home from './home/containers/Home'
 const routes = (
     <Router history={hashHistory}>
         <Route path="/" component={Home}>
-            <Route path="/user/list" component={User}/>
+            <Route path="/user" component={User}/>
         </Route>
     </Router>
 );

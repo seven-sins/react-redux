@@ -147,6 +147,10 @@ class Grid extends Component {
             return false;
         }
         this.state.remove(this.state.model);
+        this.setState({
+            model: null
+        });
+        s(".grid-content tr").removeClass("active");
     };
     componentDidMount = () => {
         let { toolbar, columns } = this.props;

@@ -21,13 +21,13 @@ class Index extends Base{
         this.load();
     };
     create = () =>{
-        let dialogParams = { width: 600, height: 450, title: "新建", dialog: this.dialog };
+        let dialogParams = { width: 600, height: 430, title: "新建", dialog: this.dialog };
         this.dialog(   <Dialog { ...dialogParams }>
                             <User { ...this.method() } />
                         </Dialog>)
     };
     update = (model) =>{
-        let dialogParams = { width: 600, height: 450, title: "编辑", dialog: this.dialog };
+        let dialogParams = { width: 600, height: 430, title: "编辑", dialog: this.dialog };
         let userParams = Object.assign({ user: model }, { ...this.method() } );
         this.dialog(   <Dialog { ...dialogParams }>
                             <User { ...userParams } />

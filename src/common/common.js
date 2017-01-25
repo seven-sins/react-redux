@@ -23,6 +23,7 @@ export class Base extends Component {
         };
     }
     dialog = (view) => {
+        view = view ? view : "";
         this.setState({
             dialog: view
         })

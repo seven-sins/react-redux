@@ -22,6 +22,9 @@ class User extends Component{
             this.props.load();
         });
     };
+    cancel = () => {
+        this.props.dialog();
+    };
     render = () =>{
         let { user } = this.props;
         if(!user) user = {};
@@ -59,8 +62,8 @@ class User extends Component{
                     </ul>
                 </form>
                 <ul className='toolbar'>
-                    <span onClick={ this.save } className='link-btn save'><i className='fa fa-plus'></i><span>保存</span></span>
-                    <Link to='user/list' className='link-btn'><i className='fa fa-remove'></i><span>取消</span></Link>
+                    <span onClick={ this.save } className='link-btn save'><i className='fa fa-plus'> </i><span>保存</span></span>
+                    <span onClick={ this.cancel } className='link-btn'><i className='fa fa-remove'> </i><span>取消</span></span>
                 </ul>
             </div>
         )
