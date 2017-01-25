@@ -1,7 +1,6 @@
 /**
  * Created by seven sins on 1/7/2017.
  */
-import { browserHistory, hashHistory } from 'react-router';
 import { http } from '../../common/common';
 
 const loadData = (response) => {

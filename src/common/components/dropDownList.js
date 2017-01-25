@@ -3,7 +3,7 @@
  */
 import React, { Component, PropTypes } from 'react';
 import { http } from '../common'
-import css from './DropDownList.less'
+import './DropDownList.less'
 
 // eg:
 //      let param = { value: user.roleId, id: 'id', text: 'name', url: '/role' };

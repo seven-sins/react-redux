@@ -2,10 +2,6 @@
  * Created by seven sins on 1/7/2017.
  */
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
-import * as ActionCreators from '../actions';
-import { Link } from 'react-router';
-import { browserHistory, hashHistory } from 'react-router';
 import DropDownList from '../../common/components/DropDownList';
 
 class User extends Component{

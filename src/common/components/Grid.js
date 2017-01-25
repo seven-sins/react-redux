@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { http } from '../common';
-import css from './Grid.less';
+import './Grid.less';
 import Pager from './Pager';
 
 class Grid extends Component {

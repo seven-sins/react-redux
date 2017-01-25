@@ -2,7 +2,7 @@
  * Created by seven sins on 1/15/2017.
  */
 import React, { Component, PropTypes } from 'react';
-import css from './Pager.less';
+import './Pager.less';
 
 class Pager extends Component {
     constructor(props, context) {

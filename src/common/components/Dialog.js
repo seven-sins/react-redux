@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { http } from '../common';
-import css from './Dialog.less';
+import './Dialog.less';
 
 class Dialog extends Component {
     constructor(props, context) {

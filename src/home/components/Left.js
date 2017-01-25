@@ -3,7 +3,7 @@
  */
 import React, { Component, PropTypes } from 'react';
 import { Link, IndexLink } from 'react-router';
-import css from './Left.less';
+import './Left.less';
 
 class Left extends Component{
     render = () =>{
