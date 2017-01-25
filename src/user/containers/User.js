@@ -8,7 +8,6 @@ import { Link } from 'react-router';
 import { browserHistory, hashHistory } from 'react-router';
 import DropDownList from '../../common/components/DropDownList';
 
-@connect( state =>({ user: state.User }), ActionCreators )
 class User extends Component{
     constructor(props, context){
         super(props, context);
@@ -18,7 +17,10 @@ class User extends Component{
         let user = s(this.refs.form).serialize();
         user.roleId = this.refs.roleId.state.id;
         user.status = this.refs.status.state.id;
-        this.props.save(user, () => { hashHistory.push("/user/list") });
+        this.props.save(user, () => {
+            this.props.dialog();
+            this.props.load();
+        });
     };
     render = () =>{
         let { user } = this.props;

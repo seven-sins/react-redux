@@ -4,44 +4,39 @@
 import { browserHistory, hashHistory } from 'react-router';
 import { http } from '../../common/common';
 
-const load = (obj) => {
+const load = (response) => {
     return {
         type: http.LOAD,
-        data: obj.data
+        data: response.data,
+        total: response.total
     }
+};
+const get = (dispatch, filter) => {
+    fetch(http.srvUrl + "/user", { headers: http.headers, method: 'GET' } )
+        .then( response =>  response.json() )
+        .then(data => {
+            if(data.code == 0){ // 请求成功，接口未返回total属性，待处理
+                dispatch(load({ data: data.data, total: 8 }));
+            }else{
+                s.alert(data.message);
+            }
+        });
 };
 export const loadData = (filter) => {
     return dispatch => {
-        fetch(http.srvUrl + "/user", { headers: http.headers, method: 'GET' } )
-            .then( response =>  response.json() )
-            .then(data => {
-                if(data.code == 0){ // 请求成功, 接口未返回total属性，待处理
-                    dispatch(load({ data: data.data, total: 8 }));
-                }else{
-                    s.alert(data.message);
-                }
-            });
+        get(dispatch, filter);
     }
 };
-export const remove = (user, list, total) => {
+export const remove = (user) => {
     return dispatch => {
         fetch(http.srvUrl + "/user/" + user.id,  { headers: http.headers, method: "DELETE" } ).then( response => response.json() )
             .then(data => {
                 if(data.code == 0){
-                    if(list && list.length > 0){
-                        for(let i=0; i<list.length; i++){
-                            if(list[i].id === user.id){
-                                list.splice(i, 1);
-                                break;
-                            }
-                        }
-                    }
-                    dispatch(load({ data: list, total: total - 1 }));
+                    get(dispatch);
                 }else{
                     s.alert(data.message);
                 }
             })
-            .catch(e => { });
     }
 };
 export const save = (user, callback) => {
@@ -51,26 +46,10 @@ export const save = (user, callback) => {
         fetch(http.srvUrl + url, { headers: http.headers, body: JSON.stringify(user), method: method  } ).then( response => response.json() )
             .then(data => {
                 if(data.code == 0){
-                    dispatch({ type: http.RESET, user });
                     callback.call();
                 }else{
                     s.alert(data.message);
                 }
             })
-            .catch(e => { });
     };
 };
-export const create = (user) => {
-    return (dispatch, getState) => {
-        dispatch({ type: http.RESET, user });
-    };
-};
-export const update = (user) => {
-    return dispatch => {
-        dispatch({ type: http.UPDATE, user });
-    };
-};
-
-
-
-

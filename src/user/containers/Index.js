@@ -1,20 +1,18 @@
 /**
  * Created by seven sins on 1/7/2017.
  */
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as ActionCreators from '../actions';
-import { Link } from 'react-router';
-import { browserHistory, hashHistory } from 'react-router';
-import Grid from '../../common/components/Grid.js';
+import Grid from '../../common/components/Grid';
+import Dialog from '../../common/components/Dialog';
+import User from './User';
+import { Base } from '../../common/common';
 
-@connect( state =>({ data: state.UserList.data, total: state.UserList.total }), ActionCreators )
-class List extends Component{
+@connect( state =>({ data: state.User.data, total: state.User.total }), ActionCreators )
+class Index extends Base{
     constructor(props, context){
         super(props, context);
-        this.state = {
-            user: null
-        };
     }
     load = (filter) => {
         this.props.loadData(filter);
@@ -23,25 +21,25 @@ class List extends Component{
         this.load();
     };
     create = () =>{
-        this.props.create();
-        hashHistory.push("/user");
+        let dialogParams = { width: 600, height: 450, title: "新建", dialog: this.dialog };
+        this.dialog(   <Dialog { ...dialogParams }>
+                            <User { ...this.method() } />
+                        </Dialog>)
     };
     update = (model) =>{
-        this.props.update(model);
-        hashHistory.push("/user");
+        let dialogParams = { width: 600, height: 450, title: "编辑", dialog: this.dialog };
+        let userParams = Object.assign({ user: model }, { ...this.method() } );
+        this.dialog(   <Dialog { ...dialogParams }>
+                            <User { ...userParams } />
+                        </Dialog>)
     };
     remove = (model) =>{
         let _this = this;
-        let _list = this.props.data;
-        let _copy = [];
-        for(let i=0; i<_list.length; i++){
-            _copy.push(_list[i]);
-        }
         s.confirm({
             msg: '确定删除选中数据吗？',
             title:'系统消息',
             confirm:function(){
-                _this.props.remove(model, _copy, _this.props.total);
+                _this.props.remove(model);
             }
         });
     };
@@ -72,9 +70,12 @@ class List extends Component{
             total: total
         };
         return(
-            <Grid { ... json } />
+            <div>
+                <Grid { ... json } />
+                { this.state.dialog }
+            </div>
         )
     }
 }
 
-export default List;
+export default Index;

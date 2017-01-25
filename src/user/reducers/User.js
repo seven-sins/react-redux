@@ -2,19 +2,25 @@
  * Created by seven sins on 1/7/2017.
  */
 const initialState = {
-
+    total: 0,
+    data: []
 };
 const User = (state = initialState, action = null) => {
     switch (action.type) {
-        case 'INSERT':
-            return state;
-        case 'RESET':
-            return {};
-        case 'UPDATE':
-            return action.user;
+        case 'LOADDATA':
+            return {
+                ...state,
+                data: action.data,
+                total: action.total
+            };
+        case 'REMOVE':
+            return {
+                ...state
+            };
         default:
-            return state
+            return {
+                ...state
+            };
     }
 };
 export default User;
-
