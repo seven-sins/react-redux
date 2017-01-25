@@ -17,7 +17,7 @@ class Dialog extends Component {
         if(!height){
             height = 333;
         }
-        s(this.refs.container).width(width).height(height).center().drag();
+        s(this.refs.container).width(width).height(height).center().drag({ dom: this.refs.title }); // 拖拽事件仅点击title才触发
     };
     remove = () => {
         this.props.dialog('');
@@ -28,9 +28,9 @@ class Dialog extends Component {
         return (
             <div>
                 <div className="dialog" ref="container">
-                    <div className="dialog-title">
+                    <div className="dialog-title" ref="title">
                         { title }
-                        <i className="fa fa-close dialog-close" onClick={ this.remove.bind(this) }></i>
+                        <i className="fa fa-close dialog-close" onClick={ this.remove.bind(this) }> </i>
                     </div>
                     <div className="dialog-content">
                         {this.props.children}

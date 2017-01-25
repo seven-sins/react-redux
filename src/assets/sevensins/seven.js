@@ -1090,13 +1090,21 @@
 
             return self;
         },
-        drag: function () {
+        drag: function (args) {
             var self = this;
+            var settings = {
+                dom: null // 仅点击当前dom才触发
+            };
+            self.initialize(settings, args);
             for (var i = 0; i < this.elements.length; i++) {
-                this.elements[i].onmousedown = function (e) {
-                    self.preDef(e);
-                    var _this = this;
+                var obj = this.elements[i];
+                var _this = this.elements[i];
+                if(settings.dom){
+                    obj = settings.dom;
+                }
+                obj.onmousedown = function (e) {
                     var e = e || window.event;
+                    self.preDef(e);
                     var disX = e.clientX - _this.offsetLeft;
                     var disY = e.clientY - _this.offsetTop;
                     if (typeof _this.setCapture != 'undefined') {

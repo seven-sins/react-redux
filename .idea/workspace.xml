@@ -20,34 +20,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Grid.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/common/components/Grid.js">
+      <file leaf-file-name="seven.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/assets/sevensins/seven.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-22">
-              <caret line="161" column="18" lean-forward="true" selection-start-line="161" selection-start-column="18" selection-end-line="161" selection-end-column="18" />
+            <state relative-caret-position="266">
+              <caret line="1103" column="17" lean-forward="true" selection-start-line="1103" selection-start-column="17" selection-end-line="1103" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Dialog.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/common/components/Dialog.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="206">
+              <caret line="19" column="118" lean-forward="false" selection-start-line="19" selection-start-column="118" selection-end-line="19" selection-end-column="118" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Grid.less" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/common/components/Grid.less">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="21" column="5" lean-forward="true" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Pager.less" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/common/components/Pager.less">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="9" column="65" lean-forward="true" selection-start-line="9" selection-start-column="65" selection-end-line="9" selection-end-column="65" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -65,6 +55,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>mouse</find>
+      <find>drag:</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -91,7 +82,6 @@
         <option value="$PROJECT_DIR$/src/common/fetch.js" />
         <option value="$PROJECT_DIR$/node_modules/webpack-dev-server/bin/webpack-dev-server.js" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/src/assets/sevensins/seven.js" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/user/reducers/User.js" />
         <option value="$PROJECT_DIR$/src/home/components/Top.less" />
@@ -103,8 +93,6 @@
         <option value="$PROJECT_DIR$/src/common/components/Pager.js" />
         <option value="$PROJECT_DIR$/src/common/components/DropDownList.js" />
         <option value="$PROJECT_DIR$/src/common/components/DropDownList.less" />
-        <option value="$PROJECT_DIR$/src/common/base.less" />
-        <option value="$PROJECT_DIR$/src/common/components/Dialog.js" />
         <option value="$PROJECT_DIR$/src/user/reducers/List.js" />
         <option value="$PROJECT_DIR$/src/user/containers/List.js" />
         <option value="$PROJECT_DIR$/src/reducerList/index.js" />
@@ -121,6 +109,9 @@
         <option value="$PROJECT_DIR$/src/home/containers/Home.js" />
         <option value="$PROJECT_DIR$/src/common/components/Grid.js" />
         <option value="$PROJECT_DIR$/src/common/components/Pager.less" />
+        <option value="$PROJECT_DIR$/src/common/base.less" />
+        <option value="$PROJECT_DIR$/src/assets/sevensins/seven.js" />
+        <option value="$PROJECT_DIR$/src/common/components/Dialog.js" />
       </list>
     </option>
   </component>
@@ -136,8 +127,8 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="348" />
-    <option name="y" value="1" />
+    <option name="x" value="3" />
+    <option name="y" value="2" />
     <option name="width" value="1924" />
     <option name="height" value="1066" />
   </component>
@@ -263,6 +254,46 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="react-redux" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="react-redux" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sevensins" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="react-redux" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="react-redux" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -374,15 +405,15 @@
       <updated>1483529502888</updated>
       <workItem from="1485157063527" duration="6353000" />
       <workItem from="1485223644071" duration="23822000" />
-      <workItem from="1485306428754" duration="21683000" />
+      <workItem from="1485306428754" duration="23847000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="51858000" />
+    <option name="totallyTimeSpent" value="54022000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="348" y="1" width="1924" height="1066" extended-state="0" />
+    <frame x="3" y="2" width="1924" height="1066" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.168239" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -654,14 +685,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/assets/sevensins/seven.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="1170" column="24" lean-forward="false" selection-start-line="1170" selection-start-column="24" selection-end-line="1170" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/common/components/DropDownList.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
@@ -688,14 +711,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/base.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/user/reducers/User.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="380">
@@ -709,7 +724,7 @@
         <state relative-caret-position="190">
           <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding>
-            <element signature="e#46#86#0" expanded="true" />
+            <element signature="e#46#86#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -719,7 +734,7 @@
         <state relative-caret-position="304">
           <caret line="18" column="1" lean-forward="true" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
           <folding>
-            <element signature="e#46#98#0" expanded="true" />
+            <element signature="e#46#98#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -729,7 +744,7 @@
         <state relative-caret-position="247">
           <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
           <folding>
-            <element signature="e#46#86#0" expanded="true" />
+            <element signature="e#46#86#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -767,17 +782,7 @@
         <state relative-caret-position="-323">
           <caret line="23" column="6" lean-forward="true" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
           <folding>
-            <element signature="e#46#98#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/components/Dialog.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="15" column="9" lean-forward="true" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
+            <element signature="e#46#98#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -810,16 +815,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/components/Grid.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-22">
-          <caret line="161" column="18" lean-forward="true" selection-start-line="161" selection-start-column="18" selection-end-line="161" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/home/containers/Home.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="206">
@@ -828,10 +823,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/home/containers/Home.less">
+    <entry file="file://$PROJECT_DIR$/src/common/components/Pager.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="1" lean-forward="true" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
+        <state relative-caret-position="190">
+          <caret line="10" column="7" lean-forward="true" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
           <folding />
         </state>
       </provider>
@@ -844,11 +839,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/components/Pager.less">
+    <entry file="file://$PROJECT_DIR$/src/home/containers/Home.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="65" lean-forward="true" selection-start-line="9" selection-start-column="65" selection-end-line="9" selection-end-column="65" />
+        <state relative-caret-position="95">
+          <caret line="5" column="1" lean-forward="true" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/components/Grid.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="168" column="6" lean-forward="true" selection-start-line="168" selection-start-column="6" selection-end-line="168" selection-end-column="6" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/base.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/assets/sevensins/seven.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="1103" column="17" lean-forward="true" selection-start-line="1103" selection-start-column="17" selection-end-line="1103" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/components/Dialog.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="19" column="118" lean-forward="false" selection-start-line="19" selection-start-column="118" selection-end-line="19" selection-end-column="118" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
