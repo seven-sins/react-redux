@@ -32,13 +32,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Grid.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Grid.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/common/components/Grid.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="152" column="52" lean-forward="false" selection-start-line="152" selection-start-column="52" selection-end-line="152" selection-end-column="52" />
+            <state relative-caret-position="301">
+              <caret line="147" column="9" lean-forward="true" selection-start-line="147" selection-start-column="9" selection-end-line="147" selection-end-column="9" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/user/actions/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="342">
+              <caret line="23" column="2" lean-forward="true" selection-start-line="23" selection-start-column="2" selection-end-line="23" selection-end-column="2" />
+              <folding>
+                <element signature="e#46#105#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -101,7 +113,6 @@
         <option value="$PROJECT_DIR$/src/common/base.less" />
         <option value="$PROJECT_DIR$/src/home/containers/Home.js" />
         <option value="$PROJECT_DIR$/src/common/components/Dialog.js" />
-        <option value="$PROJECT_DIR$/src/user/actions/index.js" />
         <option value="$PROJECT_DIR$/src/user/reducers/List.js" />
         <option value="$PROJECT_DIR$/src/user/containers/List.js" />
         <option value="$PROJECT_DIR$/src/reducerList/index.js" />
@@ -113,6 +124,7 @@
         <option value="$PROJECT_DIR$/src/user/containers/Index.js" />
         <option value="$PROJECT_DIR$/src/common/components/Dialog.less" />
         <option value="$PROJECT_DIR$/src/common/components/Grid.js" />
+        <option value="$PROJECT_DIR$/src/user/actions/index.js" />
       </list>
     </option>
   </component>
@@ -388,12 +400,12 @@
       <updated>1483529502888</updated>
       <workItem from="1485157063527" duration="6353000" />
       <workItem from="1485223644071" duration="23822000" />
-      <workItem from="1485306428754" duration="16258000" />
+      <workItem from="1485306428754" duration="16500000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46433000" />
+    <option name="totallyTimeSpent" value="46675000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -800,16 +812,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/user/actions/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="40" column="2" lean-forward="true" selection-start-line="40" selection-start-column="2" selection-end-line="40" selection-end-column="2" />
-          <folding>
-            <element signature="e#46#105#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/common/common.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
@@ -860,10 +862,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/common/components/Grid.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="152" column="52" lean-forward="false" selection-start-line="152" selection-start-column="52" selection-end-line="152" selection-end-column="52" />
+        <state relative-caret-position="301">
+          <caret line="147" column="9" lean-forward="true" selection-start-line="147" selection-start-column="9" selection-end-line="147" selection-end-column="9" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/user/actions/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="23" column="2" lean-forward="true" selection-start-line="23" selection-start-column="2" selection-end-line="23" selection-end-column="2" />
+          <folding>
+            <element signature="e#46#105#0" expanded="true" />
           </folding>
         </state>
       </provider>

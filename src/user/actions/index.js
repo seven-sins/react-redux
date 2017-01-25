@@ -16,7 +16,7 @@ const get = (dispatch, filter) => {
         .then( response =>  response.json() )
         .then(data => {
             if(data.code == 0){ // 请求成功，接口未返回total属性，待处理
-                dispatch(load({ data: data.data, total: 8 }));
+                dispatch(load({ data: data.data, total: 188 }));
             }else{
                 s.alert(data.message);
             }
