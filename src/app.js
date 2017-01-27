@@ -16,8 +16,8 @@ store.subscribe(() => {
 
 export const render = () =>{
     ReactDOM.render(
-        <Provider store={store}>
-            {routes}
+        <Provider store={ store }>
+            { routes }
         </Provider>,
         document.getElementById('app')
     );
