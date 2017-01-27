@@ -2,35 +2,58 @@
 
 /*列表*/
 .grid{
-  padding-bottom:66px;overflow:auto;
+  padding-bottom:66px;
+  .grid-container{
+    overflow:auto;
+  }
+  .grid-head, .grid-content{
+    &>ul{
+      height:26px;line-height:26px;white-space:nowrap;width:auto;
+
+      &>li{
+        display:inline-block;text-indent: 8px;border:1px solid @borderColor;text-align:left;border-right:none;
+        overflow:hidden; text-overflow:ellipsis;border-top:none;
+        &:nth-last-child(1){
+          border-right:1px solid @borderColor;
+        }
+        &.hide{
+          display:none;
+        }
+      }
+    }
+  }
+  .grid-head{
+    &>ul{
+      &>li{
+        background:url(../../assets/images/header.png) repeat-x 0 0;border-top:1px solid @borderColor;
+      }
+    }
+  }
   .grid-content{
-    width:100%;border-collapse: collapse;
-    tr{
-      cursor: pointer;
+    &>ul{
       &.active{
-        background:#ffe48d;
+        li{
+          background:#ffe48d;
+        }
       }
       &:hover{
-        background:#eaf2ff;
+        li{
+          background:#eaf2ee;
+        }
       }
-    }
-    th, td{
-      height:26px;line-height:26px;border:1px solid @borderColor;text-align:left;text-indent: 8px;
-    }
-    th{
-      background:url(../../assets/images/header.png) repeat-x 0 0;
-    }
-    td{
-
     }
   }
 }
 /*工具栏*/
 .toolbar{
   line-height:30px;
-  border-bottom:1px solid @borderColor;
-  padding:0 0 13px 0;
   margin: 0 0 13px 0;
+  .fa-plus, .fa-edit{
+    color:green;
+  }
+  .fa-remove{
+    color:red;
+  }
   .link-btn{
     margin:0 13px 0 0;background:url(../../assets/images/button.png) repeat-x 0 0;padding:7px 11px;
     border-radius: 3px;cursor: pointer; outline:none;

@@ -57,7 +57,7 @@ class Grid extends Component {
                         break;
                 }
                 return (
-                    <a key={ index } className='link-btn' onClick={ action }><i className={ className }></i><span>{ name }</span></a>
+                    <a key={ index } className='link-btn' onClick={ action }><i className={ className }> </i><span>{ name }</span></a>
                 )
             });
             if(toolbarContent){
@@ -75,17 +75,17 @@ class Grid extends Component {
         if(columns && columns.length > 0){
             columnsDom = columns.map( (item, index) => {
                 let className = item.class ? item.class : '';
-                let width = item.width ? item.width + 'px' : '';
+                let width = item.width ? item.width + 'px' : 'auto';
                 return (
-                    <th key={ index } className={ className } width={ width } >{ item.title }</th>
+                    <li key={ index } className={ className } style={{ width: width }} >{ item.title }</li>
                 )
             })
         }
         if(columnsDom){
             columnsDom = (
-                <tr>
+                <ul>
                     { columnsDom }
-                </tr>
+                </ul>
             )
         }
         return columnsDom;
@@ -101,21 +101,19 @@ class Grid extends Component {
                 td = columns.map( (item_j, index_j) => {
                     let field = item_j["field"];
                     let value = item_i[field];
-                    let className = '';
-                    if(item_j.class){
-                        className=item_j.class;
-                    }
+                    let width = item_j.width ? item_j.width + "px" : "auto";
+                    let className = item_j.class ? item_j.class : '';
                     if(typeof item_j.template === 'function'){
                         return (
-                            <td className={ className } key={ index_j }>{ item_j.template(item_i) }</td>
+                            <li className={ className } style={{ width: width }} key={ index_j }>{ item_j.template(item_i) }</li>
                         )
                     }
                     return (
-                        <td className={ className } key={ index_j }>{ value }</td>
+                        <li className={ className } style={{ width: width }} key={ index_j }>{ value }</li>
                     )
                 });
                 return (
-                    <tr onClick={ this.select.bind(this, item_i) } key={ index_i }>{ td }</tr>
+                    <ul onClick={ this.select.bind(this, item_i) } key={ index_i }>{ td }</ul>
                 )
             });
         }
@@ -164,7 +162,8 @@ class Grid extends Component {
     };
     componentDidUpdate = () => {
         let containerHeight = document.getElementById("content").clientHeight;
-        this.refs.grid.style.height = (containerHeight - 130) + "px";
+        this.refs.container.style.height = (containerHeight - 96) + "px";
+        this.refs.content.style.height = (this.refs.container.style.height - this.refs.head.style.height) + "px";
     };
     render = () => {
         let { toolbarDom, columnsDom } = this.state;
@@ -173,21 +172,24 @@ class Grid extends Component {
         let pagerOption = { total: total, index: 1 };
         if(!dataDom){
             return (
-                <div className='grid' ref="grid"></div>
+                <div className='grid' ref="container">
+                    <div className='grid-head' ref="head"></div>
+                    <div className='grid-content' ref="content"></div>
+                </div>
             )
         }
         return (
             <div>
-                <div className='grid' ref="grid">
+                <div className='grid'>
                     { toolbarDom }
-                    <table className='grid-content'>
-                        <thead>
+                    <div className="grid-container" ref="container">
+                        <div className='grid-head' ref="head">
                             { columnsDom }
-                        </thead>
-                        <tbody>
+                        </div>
+                        <div className='grid-content' ref="content">
                             { dataDom }
-                        </tbody>
-                    </table>
+                        </div>
+                    </div>
                 </div>
                 <Pager { ...pagerOption } />
             </div>

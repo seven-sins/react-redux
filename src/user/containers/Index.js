@@ -46,10 +46,10 @@ class Index extends Base{
             toolbar: [
                 { name: 'create', option: { class: 'fa fa-plus', action: this.create } },
                 { name: 'update', option: { class: 'fa fa-edit', action: this.update } },
-                { name: 'remove', option: { class: 'fa fa-edit', action: this.remove } }
+                { name: 'remove', option: { class: 'fa fa-remove', action: this.remove } }
             ],
             columns: [
-                { field: "id", title: 'id', width: 100, class: 'hide' },
+                { field: "id", title: 'id', width: 200, class: 'hide' },
                 { field: "roleName", title: '角色', width: 200 },
                 { field: "userName", title: '用户名', width: 200 },
                 { field: "nickName", title: '昵称', width: 200 },
