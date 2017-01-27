@@ -2,19 +2,28 @@
  * Created by seven sins on 1/10/2017.
  */
 import React, { Component } from 'react';
-
+/**
+ * http
+ */
 export const http = {
     srvUrl: "http://localhost:3001",
     headers: {
         "Accept": "application/json",
         "Content-Type": "application/json; charset=UTF-8"
     },
-    LOAD: "LOADDATA",
-    INSERT: "INSERT",
-    UPDATE: "UPDATE",
-    RESET: "RESET"
+    LOAD: "LOADDATA"
 };
-
+/**
+ * 左侧导航菜单
+ * @type {[*]}
+ */
+export const menu = [
+    { name: "首页", url: "/" },
+    { name: "用户管理", url: "/user" }
+];
+/**
+ * 模块index基类
+ */
 export class Base extends Component {
     constructor(props, context){
         super(props, context);
