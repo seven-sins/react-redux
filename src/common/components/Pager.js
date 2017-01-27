@@ -3,6 +3,7 @@
  */
 import React, { Component, PropTypes } from 'react';
 import './Pager.less';
+import DropDownList from './DropDownList';
 
 class Pager extends Component {
     constructor(props, context) {
@@ -91,18 +92,31 @@ class Pager extends Component {
             prev = 'hide';
             next = 'hide';
         }
+
+        let data = [ { id: 10, text: "10"}, { id: 20, text: "20"}, { id: 50, text: "50"}, { id: 100, text: "100"} ];
+        let page = { id: "id", text: "text", data: data, value: 20, empty: false, manual: true };
+
         return (
             <div className='pager'>
                 <span className='pager-center'>
-                    <span className={ prev }>上一页</span>
-                    {
-                        this.state.data && this.state.data.length > 0 && this.state.data.map( (item, index) => {
-                            return (
-                                <span key={ index } className={ this.state.index === item ? 'number active' : 'number' }>{ item }</span>
-                            )
-                        })
-                    }
-                    <span className={ next }>下一页</span>
+                    {/*<span className={ prev }>上一页</span>*/}
+                    {/*{*/}
+                        {/*this.state.data && this.state.data.length > 0 && this.state.data.map( (item, index) => {*/}
+                            {/*return (*/}
+                                {/*<span key={ index } className={ this.state.index === item ? 'number active' : 'number' }>{ item }</span>*/}
+                            {/*)*/}
+                        {/*})*/}
+                    {/*}*/}
+                    {/*<span className={ next }>下一页</span>*/}
+                    <DropDownList { ...page } />
+                    <span className="separator"> </span>
+                    <span className="t-pager t-first"><a className="t-pager-icon first"> </a></span>
+                    <span className="t-pager t-prev"><a className="t-pager-icon prev"> </a></span>
+                    <span className="t-pager t-index"><input type="text" className="index" defaultValue={ this.state.index } /></span>
+                    <span className="t-pager t-next"><a className="t-pager-icon next"> </a></span>
+                    <span className="t-pager t-last"><a className="t-pager-icon last"> </a></span>
+                    <span className="separator separator2"> </span>
+                    <span className="t-pager t-reload"><a className="t-pager-icon reload"> </a></span>
                 </span>
                 <span className='pager-right'>
 

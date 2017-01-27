@@ -1,31 +1,91 @@
 @import '../base';
 
 .pager{
-  position:absolute;left:1px;bottom:0;width:100%;height:37px;line-height:37px;box-sizing:border-box;text-align:left;text-indent:14px;background:#eee;
-  border-top:1px solid @borderColor;
+  position:absolute;left:1px;bottom:0;width:100%;height:39px;line-height:31px;
+  box-sizing:border-box;
+  border-top:1px solid @borderColor;background:url(../../assets/images/footer.png);
+  font-size:0;
   .pager-center{
-    .prev,.next{
-      padding:5px 11px;border:1px solid @borderColor;margin:0 5px;cursor:pointer;
-      &:hover{
-        background:#61a1e9;color:@white;border:1px solid #61a1e9;
+    display:inline-block;text-indent:14px;height:29px;line-height:29px;
+    position:relative;
+    .drop-down-list{
+      width:58px;display:inline-block;position:absolute;top:1px;left:0;
+      .input{
+        background:@white;padding:0;
+        line-height:25px;width:58px;
+        .show-text{
+          width:66px;
+        }
+        .icon{
+          top:9px;right:0;
+        }
       }
-    }
-    .prev, .next{
-      &.disabled{
-        background: @disabled;
-        &:hover{
-          background: @disabled; color: @fontColor; border-color: @disabled;
+      &>ul{
+        margin-top:-138px;left:14px;background:#fff;width:58px;box-shadow:none;
+        li{
+          &:nth-of-type(1){
+            border-top:1px solid @borderColor;
+          }
+          &:nth-last-child(1){
+            border-bottom:none;
+          }
         }
       }
     }
-    .next{
-
+    .separator{
+      display:inline-block;height:29px;border-left:1px solid @borderColor;position:absolute;top:0;left:81px;
     }
-    .number{
-      padding:5px 11px;border:1px solid @borderColor;cursor:pointer;margin-left:-1px;
-      &:hover, &.active{
-        background:#61a1e9;color:@white;border:1px solid #61a1e9;
+    .separator2{
+      left:261px;
+    }
+    .t-pager{
+      display:inline-block;width:18px;height:29px;line-height:29px;
+      position:absolute;top:0;text-indent:0;
+      .t-pager-icon{
+        width:18px;height:18px;display:inline-block;position:relative;top:7px;
+        &:hover{
+          opacity:0.9;
+        }
+        &.first{
+          background:url(../../assets/images/first.gif) no-repeat;
+        }
+        &.prev{
+          background:url(../../assets/images/prev.gif) no-repeat;
+        }
+        &.next{
+          background:url(../../assets/images/next.gif) no-repeat;
+        }
+        &.last{
+          background:url(../../assets/images/last.gif) no-repeat;
+        }
+        &.reload{
+          background:url(../../assets/images/reload.png) no-repeat;
+        }
+      }
+      &.t-first{
+        left:96px;
+      }
+      &.t-prev{
+        left:126px;
+      }
+      &.t-index{
+        left:156px;
+        .index{
+          width:31px;height:22px;line-height:22px;display:inline-block;box-sizing: border-box;border:1px solid @borderColor;
+          padding:1px 3px;outline: none;position:relative;top:1px;text-align:center;
+        }
+      }
+      &.t-next{
+        left:201px;
+      }
+      &.t-last{
+        left:231px;
+      }
+      &.t-reload{
+        left:276px;
       }
     }
+
+
   }
 }

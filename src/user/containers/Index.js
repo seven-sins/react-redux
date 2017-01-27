@@ -50,8 +50,8 @@ class Index extends Base{
             ],
             columns: [
                 { field: "id", title: 'id', width: 200, class: 'hide' },
-                { field: "roleName", title: '角色', width: 200 },
-                { field: "userName", title: '用户名', width: 200 },
+                { field: "roleName", title: '角色', width: 150 },
+                { field: "userName", title: '用户名', width: 150 },
                 { field: "nickName", title: '昵称', width: 200 },
                 { field: "phoneNumber", title: '电话', width: 200 },
                 { field: "email", title: '邮箱', width: 200 },
