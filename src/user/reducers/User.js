@@ -1,6 +1,7 @@
 /**
  * Created by seven sins on 1/7/2017.
  */
+
 const initialState = {
     total: 0,
     data: []
