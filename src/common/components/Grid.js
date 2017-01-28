@@ -197,7 +197,7 @@ class Grid extends Component {
     };
     render = () => {
         let { toolbarDom, columnsDom } = this.state;
-        let {  columns, data, total, load } = this.props;
+        let {  columns, data, total } = this.props;
         let dataDom = this.initData(columns, data);
         let pagerOption = { total: total, load: this.load, index: this.state.index, changeIndex: this.changeIndex };
         if(!dataDom){

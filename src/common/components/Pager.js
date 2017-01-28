@@ -54,6 +54,7 @@ class Pager extends Component {
             this.refs.index.value = index;
         }
         if(index < 1 || index > this.state.pageCount){
+            this.countPage();
             return;
         }
         this.setState({
@@ -84,14 +85,14 @@ class Pager extends Component {
     indexEnter = (ev) => {
         ev = ev || window.event;
         if(ev.keyCode == 13){
-            this.handler( ev.currentTarget.value );
+            ev.currentTarget.blur();
         }
     };
     reload = () => {
         let value = this.refs.index.value;
-        try{
-            value = parseInt(value);
-        }catch(e){ value = 1; }
+        if(isNaN(value)){
+            value = 1;
+        }
         this.handler(value);
     };
     render = () => {
