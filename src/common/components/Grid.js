@@ -7,6 +7,8 @@ class Grid extends Component {
         super(props, context);
         this.state = {
             model: null,
+            total: 1,
+            index: 1,
             create: ()=>{},
             update: ()=>{},
             remove: ()=>{},
@@ -32,6 +34,9 @@ class Grid extends Component {
                     }
                 }
                 switch(name){
+                    case 'load':
+                        this.reload = action;// load 不添加按钮
+                        return "";
                     case 'create':
                         name = '添加';
                         this.setState({
@@ -128,15 +133,18 @@ class Grid extends Component {
         s(ev.currentTarget).siblings().removeClass('active');
         s(ev.currentTarget).addClass('active');
     };
+    reload = () => {
+        // 初始化参数传入load替换此方法
+    };
     create = () => {
-        this.state.create();
+        this.state.create()
     };
     update = () => {
         if(!this.state.model){
             s.alert('请选择数据');
             return false;
         }
-        this.state.update(this.state.model);
+        this.state.update(this.state.model)
     };
     remove = () => {
         if(!this.state.model){
@@ -144,10 +152,24 @@ class Grid extends Component {
             return false;
         }
         this.state.remove(this.state.model);
+        // s(".grid-content ul").removeClass("active");
+    };
+    load = (filter) => {
+        let { index } = filter;
+        index = index ? index : 1;
         this.setState({
+            index: index,
             model: null
+        }, () => {
+            this.reload(filter);
+            s(".grid-content ul").removeClass("active");
         });
-        s(".grid-content tr").removeClass("active");
+    };
+    changeIndex = (index) => {
+        this.setState({
+            index: index,
+            model: null
+        })
     };
     componentDidMount = () => {
         let { toolbar, columns } = this.props;
@@ -156,8 +178,6 @@ class Grid extends Component {
         this.setState({
             toolbarDom: toolbarDom,
             columnsDom: columnsDom
-        }, () => {
-            // console.log("done.")
         });
     };
     componentDidUpdate = () => {
@@ -165,11 +185,22 @@ class Grid extends Component {
         this.refs.container.style.height = (containerHeight - 96) + "px";
         this.refs.content.style.height = (this.refs.container.style.height - this.refs.head.style.height) + "px";
     };
+    componentWillReceiveProps = (nextProps) => {
+        if(nextProps.total !== this.state.total){
+            this.setState({
+                total: nextProps.total,
+                model: null,
+                index: 1
+            }, () => {
+                s(".grid-content ul").removeClass("active");
+            })
+        }
+    };
     render = () => {
         let { toolbarDom, columnsDom } = this.state;
-        let {  columns, data, total } = this.props;
+        let {  columns, data, total, load } = this.props;
         let dataDom = this.initData(columns, data);
-        let pagerOption = { total: total, index: 1 };
+        let pagerOption = { total: total, load: this.load, index: this.state.index, changeIndex: this.changeIndex };
         if(!dataDom){
             return (
                 <div className='grid' ref="container">

@@ -41,11 +41,14 @@
     .t-pager{
       display:inline-block;width:18px;height:29px;line-height:29px;
       position:absolute;top:0;text-indent:0;
+      &:hover{
+        opacity:0.8;
+      }
+      &.disabled{
+        opacity:0.5;
+      }
       .t-pager-icon{
         width:18px;height:18px;display:inline-block;position:relative;top:7px;
-        &:hover{
-          opacity:0.9;
-        }
         &.first{
           background:url(../../assets/images/first.gif) no-repeat;
         }
@@ -72,7 +75,7 @@
         left:156px;
         .index{
           width:31px;height:22px;line-height:22px;display:inline-block;box-sizing: border-box;border:1px solid @borderColor;
-          padding:1px 3px;outline: none;position:relative;top:1px;text-align:center;
+          padding:1px 3px;outline: none;position:relative;top:2px;text-align:center;
         }
       }
       &.t-next{
@@ -83,6 +86,12 @@
       }
       &.t-reload{
         left:276px;
+      }
+      &.total{
+        width:266px;left:306px;
+        .place{
+          padding:0 3px;
+        }
       }
     }
 

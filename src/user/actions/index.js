@@ -11,7 +11,16 @@ const loadData = (response) => {
     }
 };
 const get = (dispatch, filter) => {
-    fetch(http.srvUrl + "/user", { headers: http.headers, method: 'GET' } )
+    let data = [], params = "";
+    for (let key in filter) {
+        data[data.length] = encodeURI(key) + "=" + encodeURIComponent(filter[key]);
+    }
+    if(data.length > 0){
+        params = data.join('&');
+        params = '?' + params;
+    }
+
+    fetch(http.srvUrl + "/user" + params, { headers: http.headers, method: 'GET' } )
         .then( response =>  response.json() )
         .then(data => {
             if(data.code == 0){

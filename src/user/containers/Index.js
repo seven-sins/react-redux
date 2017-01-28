@@ -44,6 +44,7 @@ class Index extends Base{
         let { data, total } = this.props;
         let grid = {
             toolbar: [
+                { name: 'load', option: { class: 'fa fa-plus', action: this.props.load } },
                 { name: 'create', option: { class: 'fa fa-plus', action: this.create } },
                 { name: 'update', option: { class: 'fa fa-edit', action: this.update } },
                 { name: 'remove', option: { class: 'fa fa-remove', action: this.remove } }

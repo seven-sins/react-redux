@@ -11,9 +11,8 @@ class Pager extends Component {
         this.state = {
             total: 0, // 总数目
             index: 1, // 当前页
-            beginPageIndex: 1, // 开始页
-            endPageIndex: 1, // 结束页
-            data: []
+            size: 20,
+            pageCount: 1
         }
     }
     countPage = (nextProps) =>{
@@ -24,47 +23,17 @@ class Pager extends Component {
         }
         if(!total) total = 1;
         if(!index) index = 1;
-        let pageSize = 20;
+        let pageSize = this.state.size;
 
         // 计算总页码
         let pageCount = Math.floor((total + pageSize - 1 ) / pageSize);
-        let beginPageIndex = 1;
-        let endPageIndex = 1;
 
-        // 计算页码列表的开始索引和结束索引
-        // 总页数不多于10页，则全部显示
-        if (pageCount <= 10) {
-            beginPageIndex = 1;
-            endPageIndex = pageCount;
-        } else {
-            // 总页数多于10页，则显示当前页附近的共10个页码
-            // (前4个+当前页+后5个)
-            beginPageIndex = index - 4;
-            endPageIndex = index + 5;
-            // 当前面的页码不足4个时，则显示前10个页码
-            if (beginPageIndex < 1) {
-                beginPageIndex = 1;
-                endPageIndex = 10;
-            }
-            // 当后面的页码不足5个时，则显示后10个页码
-            if (endPageIndex > pageCount) {
-                endPageIndex = pageCount;
-                beginPageIndex = pageCount - 10 + 1;
-            }
-        }
-        let data = [];
-        if(pageCount > 0){
-            for(let i = beginPageIndex; i<= endPageIndex; i++){
-                data.push(i);
-            }
-        }
         this.setState({
             total: total,
             index: index,
-            beginPageIndex: beginPageIndex,
-            endPageIndex: endPageIndex,
-            data: data
+            pageCount: pageCount
         }, () => {
+            this.refs.index.value = index;
             this.forceUpdate();
         })
     };
@@ -79,44 +48,89 @@ class Pager extends Component {
             return false;
         }
     };
+    handler = (index) => {
+        if(index < 1 || index > this.state.pageCount){
+            return false;
+        }
+        this.setState({
+            index: index
+        }, () => {
+            this.props.changeIndex(index);
+            this.forceUpdate();
+            this.refs.index.value = index;
+            this.props.load({ index: this.state.index, size: this.state.size });
+        })
+    };
+    first = () => {
+        this.handler(1);
+    };
+    prev = () => {
+        this.handler( this.state.index -1 );
+    };
+    next = () => {
+        this.handler( this.state.index + 1 );
+    };
+    last = () => {
+        this.handler( this.state.pageCount );
+    };
+    index = (ev) => {
+        ev = ev || window.event;
+        ev.preventDefault();
+        let value = ev.currentTarget.value;
+        try{
+            value = parseInt(value);
+        }catch(e){ value = 1; }
+        this.handler( value );
+    };
+    indexEnter = (ev) => {
+        ev = ev || window.event;
+        if(ev.keyCode == 13){
+            let value = ev.currentTarget.value;
+            try{
+                value = parseInt(value);
+            }catch(e){ value = 1; }
+            this.handler( value );
+        }
+    };
+    reload = () => {
+        let value = this.refs.index.value;
+        try{
+            value = parseInt(value);
+        }catch(e){ value = 1; }
+        this.handler(value);
+    };
     render = () => {
-        let prev = 'prev';
-        let next = 'next';
+        let first = "t-pager t-first ";
+        let prev = 't-pager t-prev ';
+        let next = 't-pager t-next ';
+        let last = 't-pager t-last ';
         if(this.state.index === 1){
-            prev = 'prev disabled';
+            first += ' disabled';
+            prev += ' disabled';
         }
-        if(this.state.index === this.state.endPageIndex){
-            next = 'next disabled';
-        }
-        if(this.state.endPageIndex === 1){
-            prev = 'hide';
-            next = 'hide';
+        if(this.state.index === this.state.pageCount){
+            next += ' disabled';
+            last += ' disabled';
         }
 
         let data = [ { id: 10, text: "10"}, { id: 20, text: "20"}, { id: 50, text: "50"}, { id: 100, text: "100"} ];
-        let page = { id: "id", text: "text", data: data, value: 20, empty: false, manual: true };
+        let page = { id: "id", text: "text", data: data, value: this.state.size, empty: false, manual: true };
 
         return (
             <div className='pager'>
                 <span className='pager-center'>
-                    {/*<span className={ prev }>上一页</span>*/}
-                    {/*{*/}
-                        {/*this.state.data && this.state.data.length > 0 && this.state.data.map( (item, index) => {*/}
-                            {/*return (*/}
-                                {/*<span key={ index } className={ this.state.index === item ? 'number active' : 'number' }>{ item }</span>*/}
-                            {/*)*/}
-                        {/*})*/}
-                    {/*}*/}
-                    {/*<span className={ next }>下一页</span>*/}
-                    <DropDownList { ...page } />
+                    <DropDownList { ...page } ref="size" />
                     <span className="separator"> </span>
-                    <span className="t-pager t-first"><a className="t-pager-icon first"> </a></span>
-                    <span className="t-pager t-prev"><a className="t-pager-icon prev"> </a></span>
-                    <span className="t-pager t-index"><input type="text" className="index" defaultValue={ this.state.index } /></span>
-                    <span className="t-pager t-next"><a className="t-pager-icon next"> </a></span>
-                    <span className="t-pager t-last"><a className="t-pager-icon last"> </a></span>
+                    <span className={ first }><a className="t-pager-icon first" onClick={ this.first }> </a></span>
+                    <span className={ prev }><a className="t-pager-icon prev" onClick={ this.prev }> </a></span>
+                    <span className="t-pager t-index">
+                        <input type="text" className="index" defaultValue={ this.state.index } onBlur={ this.index } onKeyDown={ this.indexEnter } ref="index" />
+                    </span>
+                    <span className={ next }><a className="t-pager-icon next" onClick={ this.next }> </a></span>
+                    <span className={ last }><a className="t-pager-icon last" onClick={ this.last }> </a></span>
                     <span className="separator separator2"> </span>
-                    <span className="t-pager t-reload"><a className="t-pager-icon reload"> </a></span>
+                    <span className="t-pager t-reload"><a className="t-pager-icon reload" onClick={ this.reload }> </a></span>
+                    <span className="t-pager total">共 { this.state.pageCount } 页,<i className="place"> </i> { this.state.total } 条记录</span>
                 </span>
                 <span className='pager-right'>
 
