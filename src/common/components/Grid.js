@@ -8,7 +8,6 @@ class Grid extends Component {
         this.state = {
             model: null,
             total: 1,
-            data: [],
             index: 1,
             create: ()=>{},
             update: ()=>{},
@@ -194,14 +193,6 @@ class Grid extends Component {
             }, () => {
                 s(".grid-content ul").removeClass("active");
             });
-        }else if(nextProps.data !== this.state.data){
-            this.setState({
-                data: nextProps.data,
-                model: null,
-                index: 1
-            }, () => {
-                s(".grid-content ul").removeClass("active");
-            })
         }
     };
     render = () => {
