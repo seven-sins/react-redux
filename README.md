@@ -1,9 +1,9 @@
         npm install
         npm start
-###公共组件
-
 ###待处理问题
     1. Grid组件编辑数据成功， Grid数据重置， Pager组件index显示错误
+    
+###公共组件
 
 ####1. DropDownList
     eg:
