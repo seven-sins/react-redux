@@ -144,7 +144,7 @@ class Grid extends Component {
             s.alert('请选择数据');
             return false;
         }
-        this.state.update(this.state.model)
+        this.state.update(this.state.model);
     };
     remove = () => {
         if(!this.state.model){
@@ -152,7 +152,6 @@ class Grid extends Component {
             return false;
         }
         this.state.remove(this.state.model);
-        // s(".grid-content ul").removeClass("active");
     };
     load = (filter) => {
         let { index } = filter;
@@ -180,12 +179,12 @@ class Grid extends Component {
             columnsDom: columnsDom
         });
     };
-    componentDidUpdate = () => {
+    componentDidUpdate = () => { // 设置容器高度
         let containerHeight = document.getElementById("content").clientHeight;
         this.refs.container.style.height = (containerHeight - 96) + "px";
         this.refs.content.style.height = (this.refs.container.style.height - this.refs.head.style.height) + "px";
     };
-    componentWillReceiveProps = (nextProps) => {
+    componentWillReceiveProps = (nextProps) => { // 新增、删除等操作加载数据后 页面重置
         if(nextProps.total !== this.state.total){
             this.setState({
                 total: nextProps.total,
@@ -193,7 +192,7 @@ class Grid extends Component {
                 index: 1
             }, () => {
                 s(".grid-content ul").removeClass("active");
-            })
+            });
         }
     };
     render = () => {
