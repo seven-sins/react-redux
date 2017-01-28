@@ -11,7 +11,7 @@ class Pager extends Component {
         this.state = {
             total: 0, // 总数目
             index: 1, // 当前页
-            size: 20,
+            size: 20, // 默认显示20
             pageCount: 1
         }
     }
@@ -49,8 +49,12 @@ class Pager extends Component {
         }
     };
     handler = (index) => {
+        if(isNaN(index)){
+            index = 1;
+            this.refs.index.value = index;
+        }
         if(index < 1 || index > this.state.pageCount){
-            return false;
+            return;
         }
         this.setState({
             index: index
@@ -75,21 +79,12 @@ class Pager extends Component {
     };
     index = (ev) => {
         ev = ev || window.event;
-        ev.preventDefault();
-        let value = ev.currentTarget.value;
-        try{
-            value = parseInt(value);
-        }catch(e){ value = 1; }
-        this.handler( value );
+        this.handler( ev.currentTarget.value );
     };
     indexEnter = (ev) => {
         ev = ev || window.event;
         if(ev.keyCode == 13){
-            let value = ev.currentTarget.value;
-            try{
-                value = parseInt(value);
-            }catch(e){ value = 1; }
-            this.handler( value );
+            this.handler( ev.currentTarget.value );
         }
     };
     reload = () => {
