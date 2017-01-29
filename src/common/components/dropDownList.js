@@ -86,7 +86,18 @@ class DropDownList extends Component {
             text: text
         }, () => {
             // console.log("done")
-        })
+        });
+        if(text === '请选择'){
+            let elements = this.refs.DropDownList.parentNode.getElementsByClassName('error-msg');
+            if(elements.length > 0){
+                elements[0].innerHTML = '选项不能为空';
+            }
+        }else{
+            let elements = this.refs.DropDownList.parentNode.getElementsByClassName('error-msg');
+            if(elements.length > 0){
+                elements[0].innerHTML = '';
+            }
+        }
     };
     render = () =>{
         let showText = '请选择';
@@ -104,7 +115,7 @@ class DropDownList extends Component {
         let { empty, rule } = this.props;
         empty = empty === false ? "" : <li className='empty' onClick={ this.select }>空</li>;
         return (
-            <div className='drop-down-list' data-rule={ rule }>
+            <div className='drop-down-list' ref="DropDownList" data-rule={ rule }>
                 <span className="input" ref="el"><span ref="text" className="show-text">{ showText }</span><i className="icon fa fa-caret-down"> </i></span>
                 <ul ref='list'>
                     { empty }

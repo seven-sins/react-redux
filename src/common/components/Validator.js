@@ -92,10 +92,10 @@ class Validator{
                             if(dom.tagName.toUpperCase() == 'INPUT'){
                                 this.bind(dom, "blur", function(){
                                     if(!this.value || (this.value.replace(/\s+/, '').length == 0)){
-                                        this.style.borderColor = '#d00';
-                                        messageObj.innerHTML = '输入不能为空';
+                                        // this.style.borderColor = '#d00';
+                                        messageObj.innerHTML = '选项不能为空';
                                     }else{
-                                        this.style.borderColor = this.borderColor;
+                                        // this.style.borderColor = this.borderColor;
                                         messageObj.innerHTML = '';
                                     }
                                 });
@@ -183,7 +183,7 @@ class Validator{
                                             }
                                         }
                                     }else{ // 输入为空
-                                        if(!messageObj.innerHTML.match("输入不能为空")){
+                                        if(!messageObj.innerHTML.match("选项不能为空")){
                                             messageObj.innerHTML = '';
                                         }
                                     }
