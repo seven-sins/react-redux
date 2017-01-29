@@ -41,7 +41,7 @@ class Pager extends Component {
         this.countPage();
     };
     shouldComponentUpdate = (nextProps, nextState) => {
-        if( nextProps.total !== this.state.total || nextProps.index !== this.state.index ){
+        if( nextProps.total != this.state.total || nextProps.index != this.state.index ){
             this.countPage(nextProps);
             return true;
         }else{
@@ -49,10 +49,6 @@ class Pager extends Component {
         }
     };
     handler = (index) => {
-        if(isNaN(index)){
-            index = 1;
-            this.refs.index.value = index;
-        }
         if(index < 1 || index > this.state.pageCount){
             this.countPage();
             return;
@@ -78,9 +74,18 @@ class Pager extends Component {
     last = () => {
         this.handler( this.state.pageCount );
     };
+    getIndex = () => {
+        let value = this.refs.index.value;
+        if(isNaN(value)){
+            value = 1;
+            this.refs.index.value = value;
+        }else{
+            value = parseInt(value);
+        }
+        return value;
+    };
     index = (ev) => {
-        ev = ev || window.event;
-        this.handler( ev.currentTarget.value );
+        this.handler( this.getIndex() );
     };
     indexEnter = (ev) => {
         ev = ev || window.event;
@@ -89,29 +94,23 @@ class Pager extends Component {
         }
     };
     reload = () => {
-        let value = this.refs.index.value;
-        if(isNaN(value)){
-            value = 1;
-        }
-        this.handler(value);
+        this.handler( this.getIndex() );
     };
     render = () => {
         let first = "t-pager t-first ";
         let prev = 't-pager t-prev ';
         let next = 't-pager t-next ';
         let last = 't-pager t-last ';
-        if(this.state.index === 1){
+        if(this.state.index == 1){
             first += ' disabled';
             prev += ' disabled';
         }
-        if(this.state.index === this.state.pageCount){
+        if(this.state.index == this.state.pageCount){
             next += ' disabled';
             last += ' disabled';
         }
-
         let data = [ { id: 10, text: "10"}, { id: 20, text: "20"}, { id: 50, text: "50"}, { id: 100, text: "100"} ];
         let page = { id: "id", text: "text", data: data, value: this.state.size, empty: false, manual: true };
-
         return (
             <div className='pager'>
                 <span className='pager-center'>
