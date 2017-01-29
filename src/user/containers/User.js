@@ -10,6 +10,10 @@ class User extends Component{
         super(props, context);
     }
     save = (ev) =>{
+        if(!validate.validate(this.refs.form)){
+            // 数据验证失败，不提交
+            return;
+        }
         ev.preventDefault();
         let user = s(this.refs.form).serialize();
         user.roleId = this.refs.roleId.state.id;
@@ -20,7 +24,7 @@ class User extends Component{
         });
     };
     componentDidMount = () => {
-      //s(this.refs.form).validate();
+        // 初始化验证规则
         validate.init(this.refs.form);
     };
     cancel = () => {
@@ -55,7 +59,7 @@ class User extends Component{
                             <span className='label'>邮箱:</span><input type='text'  className='input' defaultValue={ user.email } name='email' data-rule="type: email" />
                         </li>
                         <li>
-                            <span className='label'>电话:</span><input type='text'  className='input' defaultValue={ user.phoneNumber } name='phoneNumber'  />
+                            <span className='label'>电话:</span><input type='text'  className='input' defaultValue={ user.phoneNumber } name='phoneNumber' data-rule="type:number" />
                         </li>
                         <li>
                             <span className='label'>状态:</span><DropDownList ref='status' { ...statusParams } rule="require:true" />

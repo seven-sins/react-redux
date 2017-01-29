@@ -7,10 +7,11 @@ import './DropDownList.less'
 
 /**
  * eg:
- *      let param = { value: user.roleId, id: 'id', text: 'name', url: '/role', data: [], empty: false, manual: true };
+ *      let param = { value: user.roleId, id: 'id', text: 'name', url: '/role', data: [], empty: false, manual: true, rule:"require: true" };
  *      data: 渲染数据， 此属性与url冲突， 传data属性将忽略url
  *      empty: false 不显示空, 默认显示
  *      manual: true  鼠标移出时不隐藏，需要手动点击选项时才隐藏列表框
+ *      rule: "require: true" 验证规则
  *      <DropDownList ref='roleId' { ...param } />
  */
 class DropDownList extends Component {

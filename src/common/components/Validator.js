@@ -13,7 +13,8 @@ class Validator{
     container = document;
     elements = []; // 声明存储包含子节点、孙节点的变量
     regex = {
-      email: /^\w+(\.|\-){0,1}\w+@\w+(\.\w+){1,2}$/
+        email: /^\w+(\.|\-){0,1}\w+@\w+(\.\w+){1,2}$/,
+        number: /^\d+(\.\d+)*$/
     };
     constructor = () =>{
 
@@ -141,31 +142,15 @@ class Validator{
                                 }
                             }
                             break;
-                        case 'format':
-                            let fmtValue = json[key];
-                            if(dom.tagName.toUpperCase() == 'INPUT'){
-                                this.bind(dom, "blur", function(){
-                                    if(this.value){
-                                        let regex = new RegExp(fmtValue);
-                                        if(!(regex.test(this.value))){
-                                            if(!messageObj.innerHTML){
-                                                messageObj.innerHTML = '输入格式错误 ' + (json["type"] ? json["type"] : fmtValue);
-                                            }
-                                        }else{
-                                            if(messageObj.innerHTML.match("输入格式错误")){
-                                                messageObj.innerHTML = '';
-                                            }
-                                        }
-                                    }
-                                });
-                            }
-                            break;
                         case 'type':
                             let typeValue = json[key];
                             let regex;
                             switch(typeValue){
                                 case 'email':
                                     regex = this.regex.email;
+                                    break;
+                                case 'number':
+                                    regex = this.regex.number;
                                     break;
                                 default:
                                     break;
@@ -198,12 +183,104 @@ class Validator{
         }
     };
     validate = (el) => {
-
+        this.getChildren(el); // 结果存储在this.elements
+        if(this.elements.length == 0){
+            return true;
+        }
+        let valid = true;
+        for (let i = 0; i < this.elements.length; i++){
+            let dom = this.elements[i];
+            let rule = dom.getAttribute('data-rule');
+            if(rule){
+                let json = this.getRule(rule);
+                for(let key in json){
+                    switch(key){
+                        case 'require':
+                            if(dom.tagName.toUpperCase() == 'INPUT'){
+                                dom.focus();
+                                dom.blur();
+                                if(!dom.value || dom.value.replace(/\s+/,'').length == 0){
+                                    valid = false;
+                                }
+                            }else if(dom.tagName.toUpperCase() == 'DIV'){
+                                let showText = dom.getElementsByClassName('show-text');
+                                if(showText.length > 0){
+                                    let text = showText[0].innerText.trim();
+                                    if(text === '请选择'){
+                                        let elements = dom.parentNode.getElementsByClassName('error-msg');
+                                        if(elements.length > 0){
+                                            valid = false;
+                                            elements[0].innerHTML = '选项不能为空';
+                                        }
+                                    }
+                                }
+                            }
+                            break;
+                        case 'max':
+                            let maxValue = json[key];
+                            if(!isNaN(maxValue)){
+                                maxValue = parseInt(maxValue);
+                                if(dom.tagName.toUpperCase() == 'INPUT'){
+                                    dom.focus();
+                                    dom.blur();
+                                    if(dom.value.replace(/\s+/, '').length > maxValue){
+                                        valid = false;
+                                    }
+                                }
+                            }
+                            break;
+                        case 'min':
+                            let minValue = json[key];
+                            if(!isNaN(minValue)){
+                                minValue = parseInt(minValue);
+                                if(dom.tagName.toUpperCase() == 'INPUT'){
+                                    dom.focus();
+                                    dom.blur();
+                                    if(dom.value && (dom.value.replace(/\s+/, '').length < minValue)){
+                                        valid = false;
+                                    }
+                                }
+                            }
+                            break;
+                        case 'type':
+                            let typeValue = json[key];
+                            let regex;
+                            switch(typeValue){
+                                case 'email':
+                                    regex = this.regex.email;
+                                    break;
+                                case 'number':
+                                    regex = this.regex.number;
+                                    break;
+                                default:
+                                    break;
+                            }
+                            if(dom.tagName.toUpperCase() == 'INPUT'){
+                                dom.focus();
+                                dom.blur();
+                                if(dom.value){
+                                    if(!(regex.test(dom.value))){
+                                        valid = false;
+                                    }
+                                }
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
+        return valid;
     }
 }
 export const validate = {
     init: (el) => {
         let v = new Validator();
         v.init(el);
+    },
+    validate: (el) => {
+        let v = new Validator();
+        return v.validate(el);
     }
 };

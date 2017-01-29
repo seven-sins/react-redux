@@ -8,7 +8,7 @@
 
 ####1. DropDownList
     eg:
-        let param = { value: user.roleId, id: 'id', text: 'name', url: '/role', data: [], empty: false, manual: true };
+        let param = { value: user.roleId, id: 'id', text: 'name', url: '/role', data: [], empty: false, manual: true, rule: "require: true"  };
         value: 默认值
         id: id属性名称
         text: text属性名称
@@ -16,6 +16,7 @@
         data: 渲染列表的数组(传了data属性则会忽略url属性)
         empty: false 不显示空, 默认显示
         manual: true  鼠标移出时不隐藏，需要手动点击选项时才隐藏列表框
+        rule: "require: true" 验证规则
         <DropDownList ref='roleId' { ...param } />
 
     1. 取值
@@ -50,9 +51,17 @@
             total: total
        };
        <Grid { ...grid } />
-####2. Dialog       
        
+####3. Dialog       
         let dialogParams = { width: 600, height: 430, title: "新建", dialog: this.dialog };
         <Dialog { ...dialogParams }>
             <div>content</div>
         </Dialog>
+
+####4. Validator
+        eg:
+            <input type="text" data-rule="require:true, max:20, min:5, type:number" />
+            require: 必填
+            max: 最大输入长度
+            min: 最小输入长度
+            type: number 输入类型必须是number
