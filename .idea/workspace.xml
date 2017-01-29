@@ -20,21 +20,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="seven.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/assets/sevensins/seven.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="313">
-              <caret line="104" column="20" lean-forward="true" selection-start-line="104" selection-start-column="20" selection-end-line="104" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Validator.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/common/components/Validator.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-133">
-              <caret line="10" column="3" lean-forward="true" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
+            <state relative-caret-position="304">
+              <caret line="33" column="9" lean-forward="true" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -79,8 +69,8 @@
       <find>text-overflow</find>
       <find>ajax:</find>
       <find>total</find>
-      <find>validate</find>
       <find>bindEvent:</find>
+      <find>validate</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -132,11 +122,11 @@
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/common/components/Grid.js" />
         <option value="$PROJECT_DIR$/src/common/components/DropDownList.js" />
-        <option value="$PROJECT_DIR$/src/assets/sevensins/seven.js" />
         <option value="$PROJECT_DIR$/src/common/base.less" />
         <option value="$PROJECT_DIR$/src/common/components/Validator.less" />
         <option value="$PROJECT_DIR$/src/user/containers/User.js" />
         <option value="$PROJECT_DIR$/src/common/components/Validator.js" />
+        <option value="$PROJECT_DIR$/src/assets/sevensins/seven.js" />
       </list>
     </option>
   </component>
@@ -435,12 +425,12 @@
       <workItem from="1485581109101" duration="12415000" />
       <workItem from="1485594653516" duration="545000" />
       <workItem from="1485602662094" duration="6991000" />
-      <workItem from="1485681878384" duration="16842000" />
+      <workItem from="1485681878384" duration="17005000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="120447000" />
+    <option name="totallyTimeSpent" value="120610000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -865,14 +855,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/assets/sevensins/seven.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="104" column="20" lean-forward="true" selection-start-line="104" selection-start-column="20" selection-end-line="104" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/user/containers/User.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="380">
@@ -883,10 +865,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/assets/sevensins/seven.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="862" column="10" lean-forward="false" selection-start-line="862" selection-start-column="10" selection-end-line="862" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/common/components/Validator.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-133">
-          <caret line="10" column="3" lean-forward="true" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
+        <state relative-caret-position="304">
+          <caret line="33" column="9" lean-forward="true" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
           <folding />
         </state>
       </provider>
