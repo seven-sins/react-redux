@@ -862,58 +862,78 @@
             return self;
         },
         validate: function(){
+            var self = this;
             var flag = true;
             var form = this.elements[0];
-            for (var i = 0; i < form.elements.length; i++) {
-                var dom = form.elements[i];
-                dom.validate = function(){
-                    this.oldBorderColor = this.style.borderColor;
-                    this.flag = true;
-                    // 获取验证规则
-                    var rule = this.getAttribute('data-rule');
-                    // 规则不为空
-                    if(rule){ // require: true, max: 100, type: number
-                        var arr = rule.split(',');
-                        if(arr && arr.length > 0){
-                            for(var j=0; j<arr.length; j++){
-                                if(arr[j]){
-                                    var tmp = arr[j].split(':');
-                                    var key = tmp[0];
-                                    var value = tmp[1];
-                                    if(key && value){
-                                        switch (key){
-                                            case 'require':
-                                                if(!this.value){
-                                                    this.style.borderColor = '#f00';
-                                                }else{
-                                                    this.style.borderColor = this.oldBorderColor;
-                                                }
-                                                break;
-                                            case 'max':
-                                                if(this.value.length > value){
-                                                    this.style.borderColor = '#f00';
-                                                }else{
-                                                    this.style.borderColor = this.oldBorderColor;
-                                                }
-                                                break;
-                                            case 'min':
-                                                if(this.value.length < value){
-                                                    this.style.borderColor = '#f00';
-                                                }else{
-                                                    this.style.borderColor = this.oldBorderColor;
-                                                }
-                                                break;
-                                            default:
-                                                break;
-
-                                        }
-                                    }
-                                }
-                            }
+            var elements = []; // 声明存储包含子节点、孙节点的变量
+            function getChildren(el){
+                var children = el.children;
+                if(children.length > 0){
+                    for(var i=0;i<children.length;i++){
+                        if(children[i].getAttribute('data-rule')){
+                            elements.push(children[i]);
+                        }else{
+                            getChildren(children[i]);
                         }
                     }
                 }
-
+            }
+            getChildren(form); // 获取所有包含data-rule属性的子节点、孙节点
+            if(elements.length == 0){
+                return self;
+            }
+            function getRule(rule){
+                var json = {};
+                var arr = rule.split(',');
+                if(arr.length == 0){
+                    return null;
+                }
+                for(var i=0; i<arr.length; i++){
+                    var map = arr[i].split(':');
+                    if(map[0] && map[1]){
+                        var key = map[0].replace(/\s+/g, '');
+                        var value = map[1].replace(/\s+/g, '');
+                        json[key] = value;
+                    }
+                }
+                return json;
+            }
+            function insertAfter(newEl, targetEl){
+                var parent = targetEl.parentNode;
+                if( parent.lastChild == targetEl ){ //
+                    parent.appendChild( newEl, targetEl );
+                }else{
+                    parent.insertBefore( newEl, targetEl.nextSibling );
+                }
+            }
+            for (var i = 0; i < elements.length; i++) {
+                var dom = elements[i];
+                var rule = dom.getAttribute('data-rule');
+                if(rule){
+                    var json = getRule(rule);
+                    for(var key in json){
+                        switch(key){
+                            case 'require':
+                                var requireObj = document.createElement('i');
+                                requireObj.innerHTML = '*';
+                                requireObj.className = 'require';
+                                insertAfter(requireObj, dom);
+                                if(dom.tagName.toUpperCase() == 'INPUT'){
+                                    dom.borderColor = dom.style.borderColor;
+                                    seven(dom).bind("change", function(){
+                                        if(!this.value || !(this.value.trim())){
+                                            this.style.borderColor = 'red';
+                                        }else{
+                                            this.style.borderColor = this.borderColor;
+                                        }
+                                    });
+                                }
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
             }
 
             return this;

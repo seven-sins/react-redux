@@ -3,6 +3,7 @@
  */
 import React, { Component, PropTypes } from 'react';
 import DropDownList from '../../common/components/DropDownList';
+import { validate } from '../../common/components/Validator';
 
 class User extends Component{
     constructor(props, context){
@@ -17,6 +18,10 @@ class User extends Component{
             this.props.dialog();
             this.props.load();
         });
+    };
+    componentDidMount = () => {
+      //s(this.refs.form).validate();
+        validate.init(this.refs.form);
     };
     cancel = () => {
         this.props.dialog();
@@ -34,10 +39,10 @@ class User extends Component{
                             <span className='label'>Id: </span><input type='text' className='input' defaultValue={ user.id } name='id' />
                         </li>
                         <li>
-                            <span className='label'>角色:</span><DropDownList ref='roleId' { ...roleParams } />
+                            <span className='label'>角色:</span><DropDownList ref='roleId' { ...roleParams } rule="require:true"  />
                         </li>
                         <li>
-                            <span className='label'>用户名:</span><input type='text'  className='input' defaultValue={ user.userName } name='userName' data-rule="require:true, max:30" />
+                            <span className='label'>用户名:</span><input type='text'  className='input' defaultValue={ user.userName } name='userName' data-rule="require:true, max:20" />
                         </li>
                         <li>
                             <span className='label'>昵称:</span><input type='text'  className='input' defaultValue={ user.nickName } name='nickName' data-rule="require:true"  />
@@ -47,13 +52,13 @@ class User extends Component{
                             <span className='label'>密码:</span><input type='password' className='input'  defaultValue={ user.passWord } name='passWord'  />
                         </li>
                         <li>
-                            <span className='label'>邮箱:</span><input type='text'  className='input' defaultValue={ user.email } name='email'  />
+                            <span className='label'>邮箱:</span><input type='text'  className='input' defaultValue={ user.email } name='email' data-rule="type: email" />
                         </li>
                         <li>
                             <span className='label'>电话:</span><input type='text'  className='input' defaultValue={ user.phoneNumber } name='phoneNumber'  />
                         </li>
                         <li>
-                            <span className='label'>状态:</span><DropDownList ref='status' { ...statusParams } />
+                            <span className='label'>状态:</span><DropDownList ref='status' { ...statusParams } rule="require:true" />
                         </li>
                     </ul>
                 </form>

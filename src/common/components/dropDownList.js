@@ -101,10 +101,10 @@ class DropDownList extends Component {
                 }
             }
         }
-        let { empty } = this.props;
+        let { empty, rule } = this.props;
         empty = empty === false ? "" : <li className='empty' onClick={ this.select }>空</li>;
         return (
-            <div className='drop-down-list'>
+            <div className='drop-down-list' data-rule={ rule }>
                 <span className="input" ref="el"><span ref="text" className="show-text">{ showText }</span><i className="icon fa fa-caret-down"> </i></span>
                 <ul ref='list'>
                     { empty }
