@@ -33,7 +33,7 @@ class User extends Component{
     render = () =>{
         let { user } = this.props;
         if(!user) user = {};
-        let roleParams = { value: user.roleId, id: 'id', text: 'name', url: '/role' }; // role dropdownlist参数
+        let roleParams = { value: user.roleId, id: 'id', text: 'name', url: '/role?status=0' }; // role dropdownlist参数
         let statusParams = { value: user.status, id: 'id', text: 'text', data: [{ id: 0, text: '启用'}, { id: 1, text: '禁用'}]};
         return(
             <div className='form'>

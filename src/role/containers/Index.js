@@ -6,10 +6,10 @@ import { connect } from 'react-redux';
 import * as ActionCreators from '../actions';
 import Grid from '../../common/components/Grid';
 import Dialog from '../../common/components/Dialog';
-import User from './User';
+import Role from './Role';
 import { Base } from '../../common/common';
 
-@connect( state =>({ data: state.User.data, total: state.User.total }), ActionCreators )
+@connect( state =>({ data: state.Role.data, total: state.Role.total }), ActionCreators )
 class Index extends Base{
     constructor(props, context){
         super(props, context);
@@ -18,16 +18,16 @@ class Index extends Base{
         this.props.load();
     };
     create = () =>{
-        let dialogParams = { width: 600, height: 430, title: "新建", dialog: this.dialog };
+        let dialogParams = { width: 500, height: 366, title: "新建", dialog: this.dialog };
         this.dialog(   <Dialog { ...dialogParams }>
-                            <User { ...this.method() } />
+                            <Role { ...this.method() } />
                         </Dialog>)
     };
     update = (model) =>{
-        let dialogParams = { width: 600, height: 430, title: "编辑", dialog: this.dialog };
-        let userParams = Object.assign( { user: model }, { ...this.method() } );
+        let dialogParams = { width: 500, height: 366, title: "编辑", dialog: this.dialog };
+        let roleParams = Object.assign( { role: model }, { ...this.method() } );
         this.dialog(   <Dialog { ...dialogParams }>
-                            <User { ...userParams } />
+                            <Role { ...roleParams } />
                         </Dialog>)
     };
     remove = (model) =>{
@@ -51,12 +51,8 @@ class Index extends Base{
             ],
             columns: [
                 { field: "id", title: 'id', width: 200, class: 'hide' },
-                { field: "roleName", title: '角色', width: '18%' },
-                { field: "userName", title: '用户名', width: '18%' },
-                { field: "nickName", title: '昵称', width: '18%' },
-                { field: "phoneNumber", title: '电话', width: '18%' },
-                { field: "email", title: '邮箱', width: '17%' },
-                { field: "status", title: '状态', width: '10%', template: (row) => {
+                { field: "name", title: '名称', width: '50%' },
+                { field: "status", title: '状态', width: '49%', template: (row) => {
                     if(row.status === 0){
                         return <span style={{ color: 'green' }}>启用</span>;
                     }else{
