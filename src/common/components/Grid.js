@@ -80,7 +80,7 @@ class Grid extends Component {
         if(columns && columns.length > 0){
             columnsDom = columns.map( (item, index) => {
                 let className = item.class ? item.class : '';
-                let width = item.width ? item.width + 'px' : 'auto';
+                let width = item.width ? ( (item.width + "").match(/%/g) ? item.width : item.width + 'px' ) : 'auto';
                 return (
                     <li key={ index } className={ className } style={{ width: width }} >{ item.title }</li>
                 )
@@ -106,7 +106,7 @@ class Grid extends Component {
                 td = columns.map( (item_j, index_j) => {
                     let field = item_j["field"];
                     let value = item_i[field];
-                    let width = item_j.width ? item_j.width + "px" : "auto";
+                    let width = item_j.width ? ( (item_j.width + "").match(/%/g) ? item_j.width : item_j.width + 'px' ) : "auto";
                     let className = item_j.class ? item_j.class : '';
                     if(typeof item_j.template === 'function'){
                         return (
