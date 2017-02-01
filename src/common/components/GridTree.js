@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Grid.less';
 import Pager from './Pager';
 
-class Grid extends Component {
+class GridTree extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
@@ -95,34 +95,40 @@ class Grid extends Component {
         }
         return columnsDom;
     };
+    refactorData = (columns, data, key) => {
+        key = key ? key * 13 : 100;
+        let dom = [];
+        for(let i=0; i<data.length; i++){
+            let item_i = data[i], index_i = i;
+            key = key + (index_i + 1) * 13;
+            let td = '';
+            td = columns.map( (item_j, index_j) => {
+                let field = item_j["field"];
+                let value = item_i[field];
+                let width = item_j.width ? ( (item_j.width + "").match(/%/g) ? item_j.width : item_j.width + 'px' ) : "auto";
+                let className = item_j.class ? item_j.class : '';
+                if(typeof item_j.template === 'function'){
+                    return (
+                        <li className={ className } style={{ width: width }} key={ index_j }>{ item_j.template(item_i) }</li>
+                    )
+                }
+                return (
+                    <li className={ className } style={{ width: width }} key={ index_j }>{ value }</li>
+                )
+            });
+            dom.push(<ul onClick={ this.select.bind(this, item_i) } key={ key }>{ td }</ul>);
+            if(item_i['children']){
+                let children = this.refactorData(columns, item_i['children'], key);
+                dom = dom.concat(children);
+            }
+        }
+        return dom;
+    };
     initData = (columns, data) => {
         if(!data){
             return null;
         }
-        let dataDom = null;
-        if(data.length > 0){
-            dataDom = data.map( (item_i, index_i) => {
-                let td = '';
-                td = columns.map( (item_j, index_j) => {
-                    let field = item_j["field"];
-                    let value = item_i[field];
-                    let width = item_j.width ? ( (item_j.width + "").match(/%/g) ? item_j.width : item_j.width + 'px' ) : "auto";
-                    let className = item_j.class ? item_j.class : '';
-                    if(typeof item_j.template === 'function'){
-                        return (
-                            <li className={ className } style={{ width: width }} key={ index_j }>{ item_j.template(item_i) }</li>
-                        )
-                    }
-                    return (
-                        <li className={ className } style={{ width: width }} key={ index_j }>{ value }</li>
-                    )
-                });
-                return (
-                    <ul onClick={ this.select.bind(this, item_i) } key={ index_i }>{ td }</ul>
-                )
-            });
-        }
-        return dataDom;
+        return this.refactorData(columns, data);
     };
     select = (obj, ev) => {
         ev = ev || window.event;
@@ -226,4 +232,4 @@ class Grid extends Component {
         )
     }
 }
-export default Grid;
+export default GridTree;

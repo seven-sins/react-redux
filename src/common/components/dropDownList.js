@@ -28,7 +28,7 @@ class DropDownList extends Component {
         };
     }
     load = () => {
-        let { url, id, text, data, value } = this.props;
+        let { url, id, text, data, value, init } = this.props;
         this.setState({
             idField: id,
             textField: text,
@@ -43,8 +43,10 @@ class DropDownList extends Component {
         fetch(http.srvUrl + url, { headers: http.headers, method: 'GET'  } ).then( response => response.json() )
             .then(res => {
                 if(res.code == 0){
+                    let dataSource = res.data;
+                    dataSource = init ? init.concat(dataSource) : dataSource;
                     this.setState({
-                        dataSource: res.data
+                        dataSource: dataSource
                     }, () => {
                         // console.log("done");
                     });
@@ -53,11 +55,18 @@ class DropDownList extends Component {
                 }
             })
     };
+    enable = (flag) => {
+        if(flag === true){
+            s(this.refs.shadow).removeClass('i-disabled');
+        }else{
+            s(this.refs.shadow).addClass('i-disabled');
+        }
+    };
     componentDidMount = () =>{
         let { manual } = this.props;
         this.refs.el.onclick = (ev) => {
             ev.preventDefault();
-            if(this.refs.list.style.display === 'block'){
+            if(this.refs.list.style.display == 'block'){
                 this.refs.list.style.display = 'none';
             }else{
                 this.refs.list.style.display = 'block';
@@ -70,6 +79,7 @@ class DropDownList extends Component {
             }
         };
         this.refs.list.onmousemove = (ev) => {
+            ev.preventDefault();
             clearTimeout(this.state.timer);
         };
         this.load();
@@ -117,6 +127,7 @@ class DropDownList extends Component {
         empty = empty === false ? "" : <li className='empty' onClick={ this.select }>空</li>;
         return (
             <div className='drop-down-list' ref="DropDownList" data-rule={ rule }>
+                <span className="input i-shadow i-disabled" ref="shadow"> </span>
                 <span className="input" ref="el"><span ref="text" className="show-text">{ showText }</span><i className="icon fa fa-caret-down"> </i></span>
                 <ul ref='list'>
                     { empty }

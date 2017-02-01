@@ -50,7 +50,8 @@ export const http = {
 export const menu = [
     { name: "首页", url: "/" },
     { name: "角色管理", url: "/role" },
-    { name: "用户管理", url: "/user" }
+    { name: "用户管理", url: "/user" },
+    { name: "权限管理", url: "/privilege" }
 ];
 /**
  * 模块index基类

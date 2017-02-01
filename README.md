@@ -9,7 +9,7 @@
 
 ####1. DropDownList
     eg:
-        let param = { value: user.roleId, id: 'id', text: 'name', url: '/role', data: [], empty: false, manual: true, rule: "require: true"  };
+        let param = { value: user.roleId, id: 'id', text: 'name', url: '/role', data: [], empty: false, manual: true, rule: "require: true", init: [{id: 0, text: '无'}]  };
         value: 默认值
         id: id属性名称
         text: text属性名称
@@ -18,6 +18,8 @@
         empty: false 不显示空, 默认显示
         manual: true  鼠标移出时不隐藏，需要手动点击选项时才隐藏列表框
         rule: "require: true" 验证规则
+        init: init中的数据将与url获取的数据使用concat合并
+        
         <DropDownList ref='roleId' { ...param } />
 
     1. 取值
