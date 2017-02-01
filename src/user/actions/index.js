@@ -11,23 +11,9 @@ const loadData = (response) => {
     }
 };
 const get = (dispatch, filter) => {
-    let data = [], params = "";
-    for (let key in filter) {
-        data[data.length] = encodeURI(key) + "=" + encodeURIComponent(filter[key]);
-    }
-    if(data.length > 0){
-        params = data.join('&');
-        params = '?' + params;
-    }
-
-    fetch(http.srvUrl + "/user" + params, { headers: http.headers, method: 'GET' } )
-        .then( response =>  response.json() )
-        .then(data => {
-            if(data.code == 0){
-                dispatch(loadData({ data: data.data, total: data.total }));
-            }else{
-                s.alert(data.message);
-            }
+    http.request("/user" + http.convert(filter), { method: 'GET' },
+        data => {
+            dispatch(loadData({ data: data.data, total: data.total }));
         });
 };
 export const load = (filter) => {
@@ -37,27 +23,20 @@ export const load = (filter) => {
 };
 export const remove = (user) => {
     return dispatch => {
-        fetch(http.srvUrl + "/user/" + user.id,  { headers: http.headers, method: "DELETE" } ).then( response => response.json() )
-            .then(data => {
-                if(data.code == 0){
-                    get(dispatch);
-                }else{
-                    s.alert(data.message);
-                }
-            })
+        http.request("/user/" + user.id, { method: 'DELETE' },
+            data => {
+                get(dispatch);
+            });
     }
 };
 export const save = (user, callback) => {
     let method = user.id ? "PUT" : "POST";
     let url = user.id ? "/user/" + user.id : "/user";
+
     return (dispatch, getState) => {
-        fetch(http.srvUrl + url, { headers: http.headers, body: JSON.stringify(user), method: method  } ).then( response => response.json() )
-            .then(data => {
-                if(data.code == 0){
-                    callback.call();
-                }else{
-                    s.alert(data.message);
-                }
-            })
+        http.request(url, { body: JSON.stringify(user), method: method },
+            data => {
+                callback.call();
+            });
     };
 };

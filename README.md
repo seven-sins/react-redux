@@ -1,5 +1,6 @@
-        npm install
-        npm start
+####
+        该项目不能独立运行
+        因调用接口来自于同仓库下的springboot
 ###待处理问题
     1. Grid组件编辑数据成功， Grid数据重置， Pager组件index显示错误
     2. 分页组件显示每页记录下拉列表事件未处理
