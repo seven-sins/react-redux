@@ -194,7 +194,7 @@ class Grid extends Component {
         this.refs.container.style.height = (containerHeight - 96) + "px";
         this.refs.content.style.height = (this.refs.container.style.height - this.refs.head.style.height) + "px";
     };
-    componentWillReceiveProps = (nextProps) => { // 新增、删除等操作加载数据后 页面重置
+    componentWillReceiveProps = (nextProps) => { // 新增、删除等操作加载数据后 页面状态重置
         if(nextProps.total !== this.state.total){
             this.setState({
                 total: nextProps.total,

@@ -57,20 +57,17 @@ class DropDownList extends Component {
             });
             return false;
         }
-        fetch(http.srvUrl + url, { headers: http.headers, method: 'GET'  } ).then( response => response.json() )
-            .then(res => {
-                if(res.code == 0){
-                    let dataSource = res.data;
-                    dataSource = init ? init.concat(dataSource) : dataSource;
-                    this.setState({
-                        dataSource: dataSource
-                    }, () => {
-                        // console.log("done");
-                    });
-                }else{
-                    s.alert(res.message);
-                }
-            })
+        let _this = this;
+        http.request( url, { method: 'GET'  },
+            res => {
+                let dataSource = res.data;
+                dataSource = init ? init.concat(dataSource) : dataSource;
+                _this.setState({
+                    dataSource: dataSource
+                }, () => {
+                    // console.log("done");
+                });
+            });
     };
     enable = (flag) => {
         if(flag === true){

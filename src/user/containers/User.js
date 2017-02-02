@@ -10,7 +10,7 @@ class User extends Component{
         super(props, context);
     }
     save = (ev) =>{
-        if(!validate.validate(this.refs.form)){
+        if(!validate.validate(this.refs.form)){ // 验证容器下所有含data-rule属性的dom
             // 数据验证失败，不提交
             return;
         }
