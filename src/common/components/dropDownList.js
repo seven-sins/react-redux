@@ -27,12 +27,29 @@ class DropDownList extends Component {
             value: null
         };
     }
+    value = (value) => {
+        if(value){
+            let text = this.getTextByValue(this.state.dataSource, value);
+            this.setState({
+                id: value,
+                text: text
+            }, () => {
+                this.refs.text.innerText = text;
+            })
+        }else{
+            return this.state.id;
+        }
+    };
+    text = () => {
+        return this.state.text;
+    };
     load = () => {
         let { url, id, text, data, value, init } = this.props;
         this.setState({
             idField: id,
             textField: text,
-            value: value
+            value: value, // 默认值
+            id: value // 选中值
         });
         if(data){
             this.setState({
@@ -97,6 +114,12 @@ class DropDownList extends Component {
             text: text
         }, () => {
             // console.log("done")
+            if(typeof this.props.change === 'function'){
+                this.props.change.call(this, {
+                    id: id,
+                    text: text
+                })
+            }
         });
         if(text === '请选择'){
             let elements = this.refs.DropDownList.parentNode.getElementsByClassName('error-msg');
@@ -110,19 +133,23 @@ class DropDownList extends Component {
             }
         }
     };
-    render = () =>{
+    getTextByValue = (data, value) => {
         let showText = '请选择';
-        if(this.state.dataSource.length > 0){
-            for(let i=0; i<this.state.dataSource.length; i++){
-                let item = this.state.dataSource[i];
+        if(data.length > 0){
+            for(let i=0; i<data.length; i++){
+                let item = data[i];
                 let id = item[this.state.idField];
                 let text = item[this.state.textField];
-                if(this.state.value !== null && this.state.value !== '' && this.state.value == id){
+                if(value !== null && value !== '' && value == id){
                     showText = text;
                     break;
                 }
             }
         }
+        return showText;
+    };
+    render = () =>{
+        let showText = this.getTextByValue(this.state.dataSource, this.state.value);
         let { empty, rule } = this.props;
         empty = empty === false ? "" : <li className='empty' onClick={ this.select }>空</li>;
         return (

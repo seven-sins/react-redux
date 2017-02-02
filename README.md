@@ -23,8 +23,8 @@
         <DropDownList ref='roleId' { ...param } />
 
     1. 取值
-        value: this.refs.roleId.state.id
-        text:  this.refs.roleId.state.text
+        value: this.refs.roleId.value()
+        text:  this.refs.roleId.text()
 
 ####2. Grid
     eg:

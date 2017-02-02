@@ -16,8 +16,8 @@ class User extends Component{
         }
         ev.preventDefault();
         let user = s(this.refs.form).serialize();
-        user.roleId = this.refs.roleId.state.id;
-        user.status = this.refs.status.state.id;
+        user.roleId = this.refs.roleId.value();
+        user.status = this.refs.status.value();
         this.props.save(user, () => {
             this.props.dialog();
             this.props.load();

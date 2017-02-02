@@ -16,7 +16,7 @@ class Role extends Component{
         }
         ev.preventDefault();
         let role = s(this.refs.form).serialize();
-        role.status = this.refs.status.state.id;
+        role.status = this.refs.status.value();
         this.props.save(role, () => {
             this.props.dialog();
             this.props.load();

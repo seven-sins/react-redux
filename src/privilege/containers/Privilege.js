@@ -16,11 +16,10 @@ class Role extends Component{
         }
         ev.preventDefault();
         let privilege = s(this.refs.form).serialize();
-        privilege.status = this.refs.status.state.id;
-        privilege.method = this.refs.method.state.id;
-        privilege.type = this.refs.type.state.id;
-        privilege.parentId = this.refs.parentId.state.id;
-        console.log(privilege);
+        privilege.status = this.refs.status.value();
+        privilege.method = this.refs.method.value();
+        privilege.type = this.refs.type.value();
+        privilege.parentId = this.refs.parentId.value();
         this.props.save(privilege, () => {
             this.props.dialog();
             this.props.load();
@@ -60,7 +59,7 @@ class Role extends Component{
                             <span className='label'>类型:</span><DropDownList ref='type' { ...typeParams } rule="require:true" />
                         </li>
                         <li>
-                            <span className='label'>所属模块:</span><DropDownList ref='parentId' { ...moduleParams } rule="require:true" />
+                            <span className='label'>所属模块:</span><DropDownList ref='parentId' { ...moduleParams } />
                         </li>
                         <li>
                             <span className='label'>状态:</span><DropDownList ref='status' { ...statusParams } rule="require:true" />
