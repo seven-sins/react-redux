@@ -39,6 +39,7 @@ class GridTree extends Component {
                         return "";
                     case 'create':
                         name = '添加';
+                        className += ' fa fa-plus ';
                         this.setState({
                             create: action
                         });
@@ -46,6 +47,7 @@ class GridTree extends Component {
                         break;
                     case 'update':
                         name = '编辑';
+                        className += ' fa fa-edit ';
                         this.setState({
                             update: action
                         });
@@ -53,6 +55,7 @@ class GridTree extends Component {
                         break;
                     case 'remove':
                         name = '删除';
+                        className += ' fa fa-remove ';
                         this.setState({
                             remove: action
                         });
@@ -157,7 +160,14 @@ class GridTree extends Component {
             s.alert('请选择数据');
             return false;
         }
-        this.state.remove(this.state.model);
+        let _this = this;
+        s.confirm({
+            msg: '确定删除选中数据吗？',
+            title:'系统消息',
+            confirm:function(){
+                _this.state.remove(_this.state.model);
+            }
+        });
     };
     load = (filter) => {
         let { index } = filter;

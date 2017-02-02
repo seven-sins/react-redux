@@ -31,23 +31,16 @@ class Index extends Base{
                         </Dialog>)
     };
     remove = (model) =>{
-        let _this = this;
-        s.confirm({
-            msg: '确定删除选中数据吗？',
-            title:'系统消息',
-            confirm:function(){
-                _this.props.remove(model);
-            }
-        });
+        this.props.remove(model);
     };
     render = () =>{
         let { data, total } = this.props;
         let grid = {
             toolbar: [
-                { name: 'load', option: { class: 'fa fa-plus', action: this.props.load } },
-                { name: 'create', option: { class: 'fa fa-plus', action: this.create } },
-                { name: 'update', option: { class: 'fa fa-edit', action: this.update } },
-                { name: 'remove', option: { class: 'fa fa-remove', action: this.remove } }
+                { name: 'load', option: { action: this.props.load } },
+                { name: 'create', option: { action: this.create } },
+                { name: 'update', option: { action: this.update } },
+                { name: 'remove', option: { action: this.remove } }
             ],
             columns: [
                 { field: "id", title: 'id', width: 200, class: 'hide' },
