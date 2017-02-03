@@ -2,9 +2,13 @@
         该项目不能独立运行
         因调用接口来自于同仓库下的springboot
 ####UI预览
+Grid 1.
 ![image](https://github.com/seven-sins/react-redux/blob/master/tmp/grid.png)
+Grid 2.
 ![image](https://github.com/seven-sins/react-redux/blob/master/tmp/grid1.png)
+DatePicker.
 ![image](https://github.com/seven-sins/react-redux/blob/master/tmp/date.png)
+Validator.
 ![image](https://github.com/seven-sins/react-redux/blob/master/tmp/validate.png)
 ###待处理问题
     1. Grid组件编辑数据成功， Grid数据重置， Pager组件index显示错误
