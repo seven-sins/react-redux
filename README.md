@@ -1,6 +1,11 @@
 ####
         该项目不能独立运行
         因调用接口来自于同仓库下的springboot
+####UI预览
+    ![image](https://github.com/seven-sins/react-redux/master/tmp/grid.png)
+    ![image](https://github.com/seven-sins/react-redux/master/tmp/grid1.png)
+    ![image](https://github.com/seven-sins/react-redux/master/tmp/date.png)
+    ![image](https://github.com/seven-sins/react-redux/master/tmp/validate.png)
 ###待处理问题
     1. Grid组件编辑数据成功， Grid数据重置， Pager组件index显示错误
     2. 分页组件显示每页记录下拉列表事件未处理
@@ -68,3 +73,8 @@
             max: 最大输入长度
             min: 最小输入长度
             type: number 输入类型必须是number
+            
+####5. DatePicker
+        eg:
+            let params = { value: new Date() }
+            <DatePicker { ...params } />
