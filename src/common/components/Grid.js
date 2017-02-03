@@ -18,6 +18,28 @@ class Grid extends Component {
             pagerOption: {}
         }
     }
+    convertDate = num => {
+        return parseInt(num) > 9 ? num : '0' + num;
+    };
+    formatDate = (format, value) => {
+        let date = new Date(value);
+        if (format.match(/yyyy/i)) {
+            format = format.replace(/yyyy/i, date.getFullYear());
+        }
+        if (format.match(/MM/)) {
+            format = format.replace(/MM/, this.convertDate(date.getMonth() + 1));
+        }
+        if (format.match(/dd/i)) {
+            format = format.replace(/dd/i, date.getDate() > 9 ? date.getDate() : '0' + date.getDate());
+        }
+        if (format.match(/hh/i)) {
+            format = format.replace(/hh/i, this.convertDate(date.getHours()));
+        }
+        if (format.match(/mm/)) {
+            format = format.replace(/mm/, this.convertDate(date.getMinutes()));
+        }
+        return format;
+    };
     initToolbar = (toolbar) => {
         let toolbarContent = '';
         if(toolbar){
@@ -111,6 +133,9 @@ class Grid extends Component {
                     let value = item_i[field];
                     let width = item_j.width ? ( (item_j.width + "").match(/%/g) ? item_j.width : item_j.width + 'px' ) : "auto";
                     let className = item_j.class ? item_j.class : '';
+                    if(item_j.type == 'date' && item_j.format && value){
+                        value = this.formatDate(item_j.format, value);
+                    }
                     if(typeof item_j.template === 'function'){
                         return (
                             <li className={ className } style={{ width: width }} key={ index_j }>{ item_j.template(item_i) }</li>

@@ -44,11 +44,12 @@ class Index extends Base{
             ],
             columns: [
                 { field: "id", title: 'id', width: 200, class: 'hide' },
-                { field: "roleName", title: '角色', width: '18%' },
-                { field: "userName", title: '用户名', width: '18%' },
-                { field: "nickName", title: '昵称', width: '18%' },
-                { field: "phoneNumber", title: '电话', width: '18%' },
-                { field: "email", title: '邮箱', width: '17%' },
+                { field: "roleName", title: '角色', width: '16%' },
+                { field: "userName", title: '用户名', width: '16%' },
+                { field: "nickName", title: '昵称', width: '16%' },
+                { field: "phoneNumber", title: '电话', width: '16%' },
+                { field: "email", title: '邮箱', width: '15%' },
+                { field: "birthday", title: '出生日期', width: '10%', type: 'date', format: 'yyyy-MM-dd' },
                 { field: "status", title: '状态', width: '10%', template: (row) => {
                     if(row.status === 0){
                         return <span style={{ color: 'green' }}>启用</span>;

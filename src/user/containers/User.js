@@ -4,6 +4,7 @@
 import React, { Component, PropTypes } from 'react';
 import DropDownList from '../../common/components/DropDownList';
 import { validate } from '../../common/components/Validator';
+import DatePicker from '../../common/components/DatePicker';
 
 class User extends Component{
     constructor(props, context){
@@ -18,6 +19,7 @@ class User extends Component{
         let user = s(this.refs.form).serialize();
         user.roleId = this.refs.roleId.value();
         user.status = this.refs.status.value();
+        user.birthday = this.refs.birthday.value();
         this.props.save(user, () => {
             this.props.dialog();
             this.props.load();
@@ -35,6 +37,7 @@ class User extends Component{
         if(!user) user = {};
         let roleParams = { value: user.roleId, id: 'id', text: 'name', url: '/role?status=0' }; // role dropdownlist参数
         let statusParams = { value: user.status, id: 'id', text: 'text', data: [{ id: 0, text: '启用'}, { id: 1, text: '禁用'}]};
+        let birthdayParams = { value: user.birthday };
         return(
             <div className='form'>
                 <form ref='form'>
@@ -60,6 +63,9 @@ class User extends Component{
                         </li>
                         <li>
                             <span className='label'>电话:</span><input type='text'  className='input' defaultValue={ user.phoneNumber } name='phoneNumber' data-rule="type:number" />
+                        </li>
+                        <li>
+                            <span className='label'>出生日期:</span><DatePicker ref='birthday' { ...birthdayParams } rule="require:true" />
                         </li>
                         <li>
                             <span className='label'>状态:</span><DropDownList ref='status' { ...statusParams } rule="require:true" />
