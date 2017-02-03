@@ -3,6 +3,7 @@
  */
 import React, { Component, PropTypes } from 'react';
 import DropDownList from '../../common/components/DropDownList';
+import DatePicker from '../../common/components/DatePicker';
 import { validate } from '../../common/components/Validator';
 
 class Role extends Component{
@@ -45,6 +46,9 @@ class Role extends Component{
                         </li>
                         <li>
                             <span className='label'>状态:</span><DropDownList ref='status' { ...statusParams } rule="require:true" />
+                        </li>
+                        <li>
+                            <span className='label'>TEST:</span><DatePicker ref='date' rule="require:true" />
                         </li>
                     </ul>
                 </form>
