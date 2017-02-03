@@ -40,7 +40,7 @@ class DatePicker extends Component {
         for(let i=1; i<firstDayOfWeek; i++){
             all.push(0);
         }
-        for(let i=1; i<total; i++){
+        for(let i=1; i<=total; i++){
             all.push(i);
         }
         return all;
@@ -132,7 +132,7 @@ class DatePicker extends Component {
             if(this.refs.date.style.display == 'block'){
                 this.refs.date.style.display = 'none';
             }else{
-                this.setDate(this.refs.text.value);
+                this.setDate(this.refs.text.value ? this.refs.text.value : this.value());
                 this.refs.date.style.display = 'block';
             }
         };
