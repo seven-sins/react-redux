@@ -80,7 +80,8 @@ class DropDownList extends Component {
         let { manual } = this.props;
         this.refs.el.onclick = (ev) => {
             ev.preventDefault();
-            if(this.refs.list.style.display == 'block'){
+            // console.log(ev.currentTarget);
+            if(this.refs.list.style.display === 'block'){
                 this.refs.list.style.display = 'none';
             }else{
                 this.refs.list.style.display = 'block';
