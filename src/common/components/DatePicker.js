@@ -124,7 +124,7 @@ class DatePicker extends Component {
             newDate.setTime(date);
             this.updateDate(new Date(newDate), callback);
         }else{
-            this.updateDate(new Date(), callback);
+            this.showMessage('日期格式错误');
         }
     };
     componentDidMount = () => {
@@ -138,7 +138,6 @@ class DatePicker extends Component {
         };
         // 初始化year month day
         let { value, format } = this.props;
-        value = value ? value : new Date();
         this.initFormat(format);
         if(value){
             this.setDate(value, () => {
@@ -164,12 +163,9 @@ class DatePicker extends Component {
             if(!this.isDate(ev.currentTarget.value)){
                 this.setDate(new Date());
             }
-            this.removeErrorMsg();
+            this.showMessage();
         }else{
-            let elements = this.refs.datePicker.parentNode.getElementsByClassName('error-msg');
-            if(elements.length > 0){
-                elements[0].innerHTML = '选项不能为空';
-            }
+            this.showMessage('选项不能为空');
         }
     };
     prev = ev => {
@@ -181,12 +177,13 @@ class DatePicker extends Component {
     handlerClick = (day, ev) => {
         this.setText(day);
         this.refs.date.style.display = 'none';
-        this.removeErrorMsg();
+        this.showMessage();
     };
-    removeErrorMsg = () => {
+    showMessage = msg => {
+        msg = msg ? msg : '';
         let elements = this.refs.datePicker.parentNode.getElementsByClassName('error-msg');
         if(elements.length > 0){
-            elements[0].innerHTML = '';
+            elements[0].innerHTML = msg;
         }
     };
     enable = (flag) => {
