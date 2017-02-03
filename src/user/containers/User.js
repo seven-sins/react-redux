@@ -65,7 +65,7 @@ class User extends Component{
                             <span className='label'>电话:</span><input type='text'  className='input' defaultValue={ user.phoneNumber } name='phoneNumber' data-rule="type:number" />
                         </li>
                         <li>
-                            <span className='label'>出生日期:</span><DatePicker ref='birthday' { ...birthdayParams } rule="require:true" />
+                            <span className='label'>出生日期:</span><DatePicker ref='birthday' { ...birthdayParams } />
                         </li>
                         <li>
                             <span className='label'>状态:</span><DropDownList ref='status' { ...statusParams } rule="require:true" />

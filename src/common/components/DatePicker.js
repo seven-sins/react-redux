@@ -19,7 +19,8 @@ class DatePicker extends Component {
             firstDayOfWeek: this.getFirstDayOfWeek(date), // 当月的第一天是星期几
             today: date.getDate(), // 当前日期
             all: this.getDays(date), // 当前月的所有天
-            value: null // 默认值
+            value: null, // 默认值
+            timer: null
         };
     }
     convertNum = num => {
@@ -135,6 +136,12 @@ class DatePicker extends Component {
                 this.setDate(this.refs.text.value ? this.refs.text.value : this.value());
                 this.refs.date.style.display = 'block';
             }
+        };
+        this.refs.icon.onmouseout = this.refs.date.onmouseout = ev => {
+            this.state.timer = setTimeout( () => { this.refs.date.style.display = 'none'; }, 500 );
+        };
+        this.refs.date.onmousemove = ev => {
+            clearTimeout(this.state.timer);
         };
         // 初始化year month day
         let { value, format } = this.props;
