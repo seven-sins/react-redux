@@ -8,6 +8,7 @@ class DatePicker extends Component {
     constructor(props, context) {
         super(props, context);
         let date = new Date();
+        let { value } = this.props;
         this.state = {
             format: 'yyyy-MM-dd', // 格式， 默认yyyy-MM-dd
             year: date.getFullYear(), // 年
@@ -19,7 +20,7 @@ class DatePicker extends Component {
             firstDayOfWeek: this.getFirstDayOfWeek(date), // 当月的第一天是星期几
             today: date.getDate(), // 当前日期
             all: this.getDays(date), // 当前月的所有天
-            value: null // 默认值
+            value: value // 默认值
         };
     }
     convertNum = num => {
