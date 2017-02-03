@@ -8,7 +8,6 @@ class DatePicker extends Component {
     constructor(props, context) {
         super(props, context);
         let date = new Date();
-        let { value } = this.props;
         this.state = {
             format: 'yyyy-MM-dd', // 格式， 默认yyyy-MM-dd
             year: date.getFullYear(), // 年
@@ -20,7 +19,7 @@ class DatePicker extends Component {
             firstDayOfWeek: this.getFirstDayOfWeek(date), // 当月的第一天是星期几
             today: date.getDate(), // 当前日期
             all: this.getDays(date), // 当前月的所有天
-            value: value // 默认值
+            value: null // 默认值
         };
     }
     convertNum = num => {
@@ -49,12 +48,12 @@ class DatePicker extends Component {
     isDate = date => {
         return !isNaN(new Date(date).getFullYear());
     };
-    updateDate = date => {
+    updateDate = (date, callback) => {
         date = isNaN(date.getFullYear()) ? new Date() : date;
         this.setState({
             year: date.getFullYear(),
             month: this.convertNum(date.getMonth() + 1),
-            day: this.convertNum(date.getDate()),
+            day: date.getDate() > 9 ? date.getDate() : '0' + date.getDate(),
             hour: this.convertNum(date.getHours()),
             minute: this.convertNum(date.getMinutes()),
             today: date.getDate(),
@@ -63,6 +62,9 @@ class DatePicker extends Component {
         }, () => {
             if(this.refs.text.value && !this.isDate(this.refs.text.value)){
                 this.refs.text.value = this.value();
+            }
+            if(typeof callback === 'function'){
+                callback.call();
             }
         })
     };
@@ -96,7 +98,7 @@ class DatePicker extends Component {
             this.refs.text.value = this.value();
         });
     };
-    setDate = date => {
+    setDate = (date, callback) => {
         let regex = {
             a: /^\d{4}$/,
             b: /^\d{4}\W{1}\d{1,2}$/,
@@ -106,19 +108,23 @@ class DatePicker extends Component {
         };
         if(regex.a.test(date)){
             date += '/01/01';
-            this.updateDate(new Date(date));
+            this.updateDate(new Date(date), callback);
         }else if(regex.b.test(date)) {
             date += '/01';
-            this.updateDate(new Date(date));
+            this.updateDate(new Date(date), callback);
         }else if(regex.c.test(date)){
-            this.updateDate(new Date(date));
+            this.updateDate(new Date(date), callback);
         }else if(regex.d.test(date)){
             date += ':00';
-            this.updateDate(new Date(date));
+            this.updateDate(new Date(date), callback);
         }else if(regex.e.test(date)){
-            this.updateDate(new Date(date));
+            this.updateDate(new Date(date), callback);
+        }else if(!isNaN(date)){
+            let newDate = new Date();
+            newDate.setTime(date);
+            this.updateDate(new Date(newDate), callback);
         }else{
-            this.updateDate(new Date());
+            this.updateDate(new Date(), callback);
         }
     };
     componentDidMount = () => {
@@ -135,7 +141,9 @@ class DatePicker extends Component {
         value = value ? value : new Date();
         this.initFormat(format);
         if(value){
-            this.setDate(value);
+            this.setDate(value, () => {
+                this.refs.text.value = this.value();
+            });
         }
     };
     getMonth = month => {
