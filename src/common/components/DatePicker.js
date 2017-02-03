@@ -12,15 +12,15 @@ class DatePicker extends Component {
             format: 'yyyy-MM-dd', // 格式， 默认yyyy-MM-dd
             year: date.getFullYear(), // 年
             month: this.convertNum(date.getMonth() + 1), // 月
-            day: this.convertNum(1), // 日
+            day: date.getDate() > 9 ? date.getDate() : '0' + date.getDate(), // 日
             hour: '00', // 时
             minute: '00', // 分
             week : ['一', '二', '三', '四', '五', '六', '日'], // 星期
             firstDayOfWeek: this.getFirstDayOfWeek(date), // 当月的第一天是星期几
             today: date.getDate(), // 当前日期
-            all: this.getDays(date) // 当前月的所有天
+            all: this.getDays(date), // 当前月的所有天
+            value: null // 默认值
         };
-        console.log(this.state);
     }
     convertNum = num => {
         if(isNaN(num)){
@@ -45,24 +45,55 @@ class DatePicker extends Component {
         }
         return all;
     };
+    isDate = date => {
+        return !isNaN(new Date(date).getFullYear());
+    };
     updateDate = date => {
         date = isNaN(date.getFullYear()) ? new Date() : date;
         this.setState({
             year: date.getFullYear(),
             month: this.convertNum(date.getMonth() + 1),
-            day: this.convertNum(date.getDay()),
+            day: this.convertNum(date.getDate()),
             hour: this.convertNum(date.getHours()),
             minute: this.convertNum(date.getMinutes()),
             today: date.getDate(),
             firstDayOfWeek: this.getFirstDayOfWeek(date),
             all: this.getDays(date)
         }, () => {
-            console.log(this.state);
+            if(this.refs.text.value && !this.isDate(this.refs.text.value)){
+                this.refs.text.value = this.value();
+            }
         })
     };
     initFormat = fmt => {
         if(!fmt) return;
         this.setState({ format: fmt });
+    };
+    value = () => {
+        let format = this.state.format;
+        if (format.match(/yyyy/i)) {
+            format = format.replace(/yyyy/i, this.state.year);
+        }
+        if (format.match(/MM/)) {
+            format = format.replace(/MM/, this.state.month);
+        }
+        if (format.match(/dd/i)) {
+            format = format.replace(/dd/i, this.state.day);
+        }
+        if (format.match(/hh/i)) {
+            format = format.replace(/hh/i, this.state.hour);
+        }
+        if (format.match(/mm/)) {
+            format = format.replace(/mm/, this.state.minute);
+        }
+        return format;
+    };
+    setText = day => {
+        day = parseInt(day);
+        day = day > 9 ? day : '0' + day;
+        this.setState({ day: day }, () => {
+            this.refs.text.value = this.value();
+        });
     };
     setDate = date => {
         let regex = {
@@ -85,6 +116,8 @@ class DatePicker extends Component {
             this.updateDate(new Date(date));
         }else if(regex.e.test(date)){
             this.updateDate(new Date(date));
+        }else{
+            this.updateDate(new Date());
         }
     };
     componentDidMount = () => {
@@ -92,6 +125,7 @@ class DatePicker extends Component {
             if(this.refs.date.style.display == 'block'){
                 this.refs.date.style.display = 'none';
             }else{
+                this.setDate(this.refs.text.value);
                 this.refs.date.style.display = 'block';
             }
         };
@@ -116,7 +150,18 @@ class DatePicker extends Component {
         return _year;
     };
     change = ev => {
-
+        ev.preventDefault();
+        if(ev.currentTarget.value){
+            if(!this.isDate(ev.currentTarget.value)){
+                this.setDate(new Date());
+            }
+            this.removeErrorMsg();
+        }else{
+            let elements = this.refs.datePicker.parentNode.getElementsByClassName('error-msg');
+            if(elements.length > 0){
+                elements[0].innerHTML = '选项不能为空';
+            }
+        }
     };
     prev = ev => {
         this.setDate(this.getYear(this.state.year, parseInt(this.state.month) - 1) + '/' + this.getMonth(parseInt(this.state.month) - 1) + '/1');
@@ -124,12 +169,31 @@ class DatePicker extends Component {
     next = ev => {
         this.setDate(this.getYear(this.state.year, parseInt(this.state.month) + 1) + '/' + this.getMonth(parseInt(this.state.month) + 1) + '/1');
     };
+    handlerClick = (day, ev) => {
+        this.setText(day);
+        this.refs.date.style.display = 'none';
+        this.removeErrorMsg();
+    };
+    removeErrorMsg = () => {
+        let elements = this.refs.datePicker.parentNode.getElementsByClassName('error-msg');
+        if(elements.length > 0){
+            elements[0].innerHTML = '';
+        }
+    };
+    enable = (flag) => {
+        if(flag === true){
+            s(this.refs.shadow).removeClass('i-disabled');
+        }else{
+            s(this.refs.shadow).addClass('i-disabled');
+        }
+    };
     render = () => {
+        let { rule } = this.props;
         return (
-            <div className="date-picker">
-                <span className="input-wrap">
+            <div className="date-picker" data-rule={ rule } ref="datePicker">
+                <span className="input-wrap" >
                     <span className="input i-shadow " ref="shadow"> </span>
-                    <input className="input" type="text" onBlur={ this.change } />
+                    <input className="input show-input" type="text" ref="text" onBlur={ this.change } defaultValue={ this.state.value } />
                     <i className="icon fa fa-calendar" ref="icon"> </i>
                 </span>
                 <div className="date-wrap" ref="date">
@@ -154,7 +218,9 @@ class DatePicker extends Component {
                         {
                             this.state.all.length > 0 && this.state.all.map( (day, index) => {
                                 return (
-                                    <li key={ index } className={ day == 0 ? 'holder' : '' }><span className={ day == this.state.today ? 'active' : '' }>{ day }</span></li>
+                                    <li key={ index } className={ day == 0 ? 'holder' : '' } onClick={ this.handlerClick.bind(this, day)}>
+                                        <span className={ day == this.state.today ? 'active' : '' }>{ day }</span>
+                                    </li>
                                 )
                             })
                         }

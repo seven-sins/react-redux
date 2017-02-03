@@ -203,6 +203,10 @@ class Validator{
                                     valid = false;
                                 }
                             }else if(dom.tagName.toUpperCase() == 'DIV'){
+                                /**
+                                 * DropDownList
+                                 * @type {NodeList}
+                                 */
                                 let showText = dom.getElementsByClassName('show-text');
                                 if(showText.length > 0){
                                     let text = showText[0].innerText.trim();
@@ -213,6 +217,22 @@ class Validator{
                                             elements[0].innerHTML = '选项不能为空';
                                         }
                                     }
+                                    break;
+                                }
+                                /**
+                                 * DatePicker
+                                 * @type {NodeList}
+                                 */
+                                let showInput = dom.getElementsByClassName('show-input');
+                                if(showInput.length > 0){
+                                    if(!showInput[0].value){
+                                        let elements = dom.parentNode.getElementsByClassName('error-msg');
+                                        if(elements.length > 0){
+                                            valid = false;
+                                            elements[0].innerHTML = '选项不能为空';
+                                        }
+                                    }
+                                    break;
                                 }
                             }
                             break;
