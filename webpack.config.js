@@ -3,14 +3,16 @@ var webpack = require('webpack');
 
 module.exports = {
     devtool: 'cheap-module-eval-source-map',
-    entry: [
-       // 'webpack-hot-middleware/client',
-        './index.js'
-    ],
+    entry: {
+        // 'webpack-hot-middleware/client',
+        backend: './index.js',
+        frontend: './src/frontend/app.js'
+    },
     output: {
         path: path.join(__dirname, 'dist'),
 		publicPath: '/dist/',
-        filename: 'bundle.js'
+        filename: '[name].js',
+        chunkFilename: "[name].js"
     },
     plugins: [
         new webpack.optimize.OccurrenceOrderPlugin(),
@@ -23,7 +25,8 @@ module.exports = {
 			compress: {
 				warnings: false
 			}
-        })
+        }) //,
+        //new webpack.optimize.CommonsChunkPlugin("common.js", ["backend", "frontend"])
     ],
     module: {
         loaders: [
