@@ -418,20 +418,20 @@
         },
         top: function () {
             var top = this.elements[0].offsetTop;
-            // var parent=this.elements[0].offsetParent;
-            // while(parent!=null){
-            //  top+=parent.offsetTop;
-            //  parent=parent.offsetParent;
-            // }
+            var parent = this.elements[0].offsetParent;
+            while(parent != null){
+                top += parent.offsetTop;
+                parent = parent.offsetParent;
+            }
             return top;
         },
         left: function () {
             var left = this.elements[0].offsetLeft;
-            // var parent=this.elements[0].offsetParent;
-            // while(parent!=null){
-            //  left+=parent.offsetLeft;
-            //  parent=parent.offsetParent;
-            // }
+            var parent = this.elements[0].offsetParent;
+            while(parent != null){
+                left += parent.offsetLeft;
+                parent = parent.offsetParent;
+            }
             return left;
         },
         width: function (size) {
@@ -1226,7 +1226,6 @@
                 up: false
             };
             self.initialize(settings, args);
-
             var timer = null;
             var iSpeed = 0;
             var width = obj.offsetWidth; // 当前元素宽度
@@ -1239,7 +1238,7 @@
                 timer = setInterval(function () {
                     if(position === obj.offsetTop){
                         onSite++;
-                        if(onSite > 3){ // 连续3次dom在原位置，结束timer
+                        if(onSite > 30){ // 连续3次dom在原位置，结束timer
                             clearInterval(timer);
                         }
                     }else{
@@ -1259,7 +1258,7 @@
                         if (top > target) {
                             top = target;
                             iSpeed = -iSpeed;
-                            iSpeed *= 0.75;
+                            iSpeed *= 0.9;
                         }
                     }else{ // 向上运行
                         if(settings.target == null){
@@ -1268,7 +1267,7 @@
                         if (top < target) {
                             top = target;
                             iSpeed = -iSpeed;
-                            iSpeed *= 0.75;
+                            iSpeed *= 0.9;
                         }
                     }
                     obj.style.top = top + 'px';
@@ -1277,9 +1276,129 @@
 
             return self;
         },
-        // 文字跳跃
-        wordJump: function(){
+        // 弹性文字
+        wordBounce: function(args){
+            var self = this;
+            var settings = {
+                max: 30,
+                range: 100, //
+                distance: 100
+            };
+            self.initialize(settings, args);
+            function init(container){ // 容器必须设置position
+                var text = container.innerText;
+                if(!text) return self;
+                var newHtml = '';
+                for(var i=0;i<text.length;i++){ // 重构文档
+                    newHtml += '<span>' + text[i] + '</span>';
+                }
+                container.innerHTML = newHtml;
+                var wordNode = container.getElementsByTagName('span');
+                for(var i=0; i<wordNode.length; i++){
+                    var word = wordNode[i];
+                    word.offset = seven(word).offset();
+                    word.style.left = word.offset.left + 'px';
+                    word.style.top = 0;
+                }
+            }
+            function getIndex(array, obj){
+                for(var i=0; i<array.length; i++){
+                    if(array[i] == obj){
+                        return i;
+                    }
+                }
+                return -1;
+            }
+            for(var i=0; i<this.elements.length; i++){
+                init(this.elements[i]);
+                seven(this.elements[i]).find('span').css({"position": 'absolute', "display": "inline-block", "cursor": "pointer"});
+                seven(this.elements[i]).bind("mouseenter", function(e){
+                    if(this.into)return false;
+                    e = e || window.event;
+                    e.preventDefault();
+                    e.stopPropagation();
+                    seven(this).find('span').each(function(){
+                        this.onmouseover = null;
+                        this.onmouseout = null;
+                        this.onmouseenter = null;
+                        this.onmouseleave = null;
+                    });
 
+                    // 父节点中心点top值 = 父节点距顶部距离 + 父节点高度 / 2;
+                    var parentPoint = seven(this).top() + this.offsetHeight / 2;
+                    // upward == true 由下向上， 反之由上向下
+                    this.upward = (e.clientY + settings.max - parentPoint) > 0;
+                    this.into = true;
+                })
+                .bind("mousemove", function(e){
+                    //if(!this.into) return false;
+                    e = e || window.event;
+                    e.preventDefault();
+                    e.stopPropagation();
+                    var children = seven(this).find('span').elements;
+                    // min 距离鼠标距离最近的元素
+                    var min;
+                    // 父节点中心点top值 = 父节点距顶部距离 + 父节点高度 / 2;
+                    var parentPoint = seven(this).top() + this.offsetHeight / 2;
+                    // 获取最近的元素
+                    for(var j=0; j<children.length; j++){
+                        var obj = children[j];
+                        var x = obj.offsetWidth / 2 + seven(obj).left();
+                        var y = obj.offsetHeight / 2 + seven(obj).top();
+                        var b = e.clientX - x;
+                        var a = e.clientY - y;
+                        var c = Math.sqrt(Math.pow(b, 2) + Math.pow(a, 2)); // c == 当前位置距dom中心点的距离
+                        obj.distance = c;
+                        if(!min || min.distance > c){
+                            min = obj;
+                        }
+                    }
+                    if(this.upward){
+                        if( (e.clientY + settings.max) >= parentPoint && (seven(this).top() - seven(min).top()) <= settings.max){
+                            min.style.top =  - (seven(this).top() + this.offsetHeight - e.clientY) + "px";
+                            var index = getIndex(children, min);
+                            if(index != -1){
+                                var x = 0, y = 1;
+                                for(var i= index + 1; i < children.length; i++){
+                                    y++;
+                                    if(y % 3 == 0){
+                                        x++;
+                                    }
+                                    children[i].style.top =  - ((seven(this).top() + this.offsetHeight - e.clientY) - x ) + "px";
+                                }
+                                x = 0, y = 1;
+                                for(var i = index - 1; i >= 0; i--){
+                                    y++;
+                                    if(y % 3 == 0){
+                                        x++;
+                                    }
+                                    children[i].style.top =  - ((seven(this).top() + this.offsetHeight - e.clientY) - x ) + "px";
+                                }
+                            }
+                        }else{
+                            seven.each(children, function(){
+                                seven(this).fall({ target: 0, up: true, speed: 1 });
+                            });
+                        }
+                    }else{
+                        //seven(min).fall({ target: 0, up: true, speed: 1, interval: 200 });
+                        if(e.clientY <= parentPoint  && (seven(this).top() - seven(min).top() ) <= settings.max){
+                            //min.style.top =  - (seven(this).top() + this.offsetHeight - e.clientY) + "px";
+                        }
+                    }
+                })
+                .bind("mouseout", function(e){
+                    e = e || window.event;
+                    var _this = e.toElement || e.relatedTarget;
+                    if(this.contains(_this)) return false;
+                    this.into = false;
+                    var children = seven(this).find('span').elements;
+                    seven.each(children, function(){
+                        seven(this).fall({ target: 0, up: true, speed: 1 });
+                    });
+                })
+            }
+            return self;
         },
         /*$(this).move({opacity:100})*/
         move: function (args, fn) {
