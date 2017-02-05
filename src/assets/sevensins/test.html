@@ -2,32 +2,54 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <script type="text/javascript" src="x.js"></script>
-    <script type="text/javascript" src="seven.js"></script>
-    <style type="text/css">
-        .demo{
-            height:100px;line-height:100px;vertical-align: middle;background:#3fa1f0;
-            width:500px;margin:200px auto 0 auto;
-        }
-        .test{
-            position:relative;padding:0 0 0 13px;box-sizing: border-box;top:20px;
-            width:388px;height:31px;line-height:31px;color:#fff;background:#0e88eb;
+    <title></title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'microsoft yahei';
         }
 
+        .wrap {
+            width: 500px;
+            height: 300px;
+            box-shadow: 0 0 26px 3px #2ad;
+            margin: 50px auto;
+            padding: 30px 20px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .wrap p {
+            position: relative;
+            font-size: 16px;
+            color: #333;
+            height: 16px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
     </style>
-    <script type="text/javascript">
-        s(function(){
-            s('.test').wordBounce();
-        })
-    </script>
 </head>
 <body>
-
-<div class="demo">
-    <p class="test">
-        If you need my help, please let me know.
-    </p>
+<div class="wrap">
+    <p>琴弦文字琴弦文字琴弦文字琴弦文字琴弦文字琴弦文字</p>
+    <p>The string words.The string words.The string words.</p>
+    <p>琴弦文字琴弦文字琴弦文字琴弦文字琴弦文字琴弦文字</p>
+    <p>The string words.The string words.The string words.</p>
+    <p>琴弦文字琴弦文字琴弦文字琴弦文字琴弦文字琴弦文字</p>
+    <p>The string words.The string words.The string words.</p>
 </div>
+<script src="x.js"></script>
+<script src="y.js"></script>
+<script>
+    $(".wrap p").qin({
+        offset:22, // default , 最大偏移量
+        duration:500, // default , 晃动时间
+        recline:0.1 // default , 每像素偏移量，越小“琴弦绷的越紧”
+    });
+</script>
 </body>
 </html>
