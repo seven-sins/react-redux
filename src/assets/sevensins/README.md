@@ -70,6 +70,7 @@
     s(selector).is(':checked')
     s(selector).each(fn)
     s(selector).animate({left:300,top:300,speed:20,interval:30})	//left:目标位置，top:目标位置,speed:运动速度,interval:定时器间隔时间
+    s(".list li").wordBounce(); // <ul class='list'><li>琴弦列表琴弦列表琴弦列表琴弦列表琴弦列表琴弦列表琴弦列表</li></ul>
 
 ##工具方法
     s.each(array, fn)

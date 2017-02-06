@@ -17,6 +17,25 @@
             var self = this;
             self.elements = [];
             var match, elem, length;
+            self.tween = {
+                linear:function(t,b,c,d){
+                    return t*c/d+b;
+                },
+                easeIn:function(t,b,c,d){
+                    return c*(t/=d)*t+b;
+                },
+                elasticOut:function (t, b, c, d, a, p) {
+                    if (t == 0) return b;
+                    if ((t /= d) == 1) return b + c;
+                    if (!p) p = d * .3;
+                    if (!a || a < Math.abs(c)) {
+                        a = c;
+                        var s = p / 4;
+                    }
+                    else var s = p / (2 * Math.PI) * Math.asin(c / a);
+                    return (a * Math.pow(2, -10 * t) * Math.sin((t * d - s) * (2 * Math.PI) / p) + c + b);
+                }
+            }
 
             switch (typeof selector) {
                 case 'function':
@@ -1215,65 +1234,51 @@
 
             return self;
         },
-        fall: function (args) {
+        // seven(aSpan[j]).animateEx({ position: { top: aSpan[j].startTop }, duration: 500, easing: 'elasticOut'});
+        animateEx: function (args) {
             var self = this;
             var obj = this.elements[0];
-
             var settings = {
-                speed: 5,
-                interval: 50,
-                target: null,
-                up: false
+                position: {}, // top: 100 ...
+                duration: 500,
+                easing: 'linear',
+                callback: null,
+                interval: 13
             };
             self.initialize(settings, args);
-            var timer = null;
-            var iSpeed = 0;
-            var width = obj.offsetWidth; // 当前元素宽度
-            var height = obj.offsetHeight; // 当前元素高度
-            
-            var onSite = 0; // 检查dom是否在原位置
-            var position = 0;
-            function startMove() {
-                timer = setInterval(function () {
-                    if(position === obj.offsetTop){
-                        onSite++;
-                        if(onSite > 30){ // 连续30次dom在原位置，结束timer
-                            clearInterval(timer);
-                        }
-                    }else{
-                        position = obj.offsetTop;
-                    }
-
-                    iSpeed += settings.speed;
-					iSpeed = (obj.offsetTop > target) ? -iSpeed : iSpeed;
-
-                    var top = obj.offsetTop + iSpeed;
-
-                    // 目标位置
-                    var target = settings.target;
-                    if(settings.up === false){ // 向下运动
-                        if(settings.target == null){
-                            target = self.getInner().height - height;
-                        }
-                        if (top > target) {
-                            top = target;
-                            iSpeed = -iSpeed;
-                            iSpeed *= 0.9;
-                        }
-                    }else{ // 向上运行
-                        if(settings.target == null){
-                            target = 0;
-                        }
-                        if (top < target) {
-                            top = target;
-                            iSpeed = -iSpeed;
-                            iSpeed *= 0.9;
-                        }
-                    }
-                    obj.style.top = top + 'px';
-                }, settings.interval);
+            clearInterval(obj.timer);
+            function now(){
+                return new Date().getTime();
             }
-			startMove();
+            var iCur = {};
+            var startTime = now();
+            for(var attr in settings.position){
+                if (attr == 'opacity') {
+                    iCur[attr] = parseInt(parseFloat(this.getStyle(obj, attr)) * 100);
+                } else {
+                    iCur[attr] = parseInt(this.getStyle(obj, attr));
+                }
+            }
+            //
+            obj.timer = setInterval(function() {
+                var changeTime = now();
+                var t = settings.duration  - Math.max(0,startTime- changeTime + settings.duration);
+                for (var attr in settings.position) {
+                    var value = self.tween[settings.easing](t, iCur[attr], settings.position[attr] - iCur[attr], settings.duration);
+                    if (attr == 'opacity') {
+                        obj.style.filter = 'alpha(opacity=' + value + ') ';
+                        obj.style.opacity = value / 100;
+                    } else {
+                        obj.style[attr] = value + 'px';
+                    }
+                }
+                if (t == settings.duration) {
+                    clearInterval(obj.timer);
+                    if (settings.callback) {
+                        settings.callback.call(obj)
+                    }
+                }
+            }, settings.interval);
 
             return self;
         },
@@ -1286,6 +1291,7 @@
                 distance: 100
             };
             self.initialize(settings, args);
+
             function init(container){ // 容器必须设置position
                 var text = container.innerText;
                 if(!text) return self;
@@ -1299,105 +1305,46 @@
                     var word = wordNode[i];
                     word.offset = seven(word).offset();
                     word.style.left = word.offset.left + 'px';
-                    word.style.top = 0;
+                    word.style.top = word.offset.top + 'px';
+                    word.startTop = word.offset.top;
                 }
             }
-            function getIndex(array, obj){
-                for(var i=0; i<array.length; i++){
-                    if(array[i] == obj){
-                        return i;
-                    }
-                }
-                return -1;
-            }
-            for(var i=0; i<this.elements.length; i++){
-                init(this.elements[i]);
-                seven(this.elements[i]).find('span').css({"position": 'absolute', "display": "inline-block", "cursor": "pointer"});
-                seven(this.elements[i]).bind("mouseenter", function(e){
-                    if(this.into)return false;
-                    e = e || window.event;
-                    e.preventDefault();
-                    e.stopPropagation();
-                    seven(this).find('span').each(function(){
-                        this.onmouseover = null;
-                        this.onmouseout = null;
-                        this.onmouseenter = null;
-                        this.onmouseleave = null;
-                    });
 
-                    // 父节点中心点top值 = 父节点距顶部距离 + 父节点高度 / 2;
-                    var parentPoint = seven(this).top() + this.offsetHeight / 2;
-                    // upward == true 由下向上， 反之由上向下
-                    this.upward = (e.clientY + settings.max - parentPoint) > 0;
-                    this.into = true;
-                })
-                .bind("mousemove", function(e){
-                    //if(!this.into) return false;
-                    e = e || window.event;
-                    e.preventDefault();
-                    e.stopPropagation();
-                    var children = seven(this).find('span').elements;
-                    // min 距离鼠标距离最近的元素
-                    var min;
-                    // 父节点中心点top值 = 父节点距顶部距离 + 父节点高度 / 2;
-                    var parentPoint = seven(this).top() + this.offsetHeight / 2;
-                    // 获取最近的元素
-                    for(var j=0; j<children.length; j++){
-                        var obj = children[j];
-                        var x = obj.offsetWidth / 2 + seven(obj).left();
-                        var y = obj.offsetHeight / 2 + seven(obj).top();
-                        var b = e.clientX - x;
-                        var a = e.clientY - y;
-                        var c = Math.sqrt(Math.pow(b, 2) + Math.pow(a, 2)); // c == 当前位置距dom中心点的距离
-                        obj.distance = c;
-                        if(!min || min.distance > c){
-                            min = obj;
-                        }
-                    }
-                    if(this.upward){
-                        if( (e.clientY + settings.max) >= parentPoint && (seven(this).top() - seven(min).top()) <= settings.max){
-                            min.style.top =  - (seven(this).top() + this.offsetHeight - e.clientY) + "px";
-                            var index = getIndex(children, min);
-                            if(index != -1){
-                                var x = 0, y = 1;
-                                for(var i= index + 1; i < children.length; i++){
-                                    y++;
-                                    if(y % 3 == 0){
-                                        x++;
+            for(var i=0; i<this.elements.length; i++){
+                var obj = this.elements[i];
+                init(obj);
+                seven(obj).find('span').css({"position": 'absolute', "cursor": "pointer"});
+                var aSpan = seven(obj).find('span').elements;
+                seven(obj).find('span').each(function(item, j){
+                    (function(aSpan, nub2){
+                        var iStart = 0;
+                        var oSpan = aSpan[nub2];
+                        oSpan.onmouseenter = function( ev ){
+                            var ev = window.event || ev;
+                            iStart = ev.clientY;
+                        };
+                        oSpan.onmousemove = function( ev ){
+                            var ev = window.event || ev;
+                            var iDis = ev.clientY - iStart;
+                            var iNub = iDis > 0 ? 1 : -1;
+                            if(this.startTop + iDis  > 0 && this.startTop + iDis < obj.offsetHeight - item.offsetHeight){
+                                for(var j = 0; j<aSpan.length;j++){
+                                    if(Math.abs(iDis)> Math.abs(nub2-j)){
+                                        aSpan[j].style.top = aSpan[j].startTop + (Math.abs(iDis) - Math.abs(nub2-j)) * iNub+'px';
+                                    }else{
+                                        aSpan[j].style.top = aSpan[j].startTop +'px';
                                     }
-                                    children[i].style.top =  - ((seven(this).top() + this.offsetHeight - e.clientY) - x ) + "px";
-                                }
-                                x = 0, y = 1;
-                                for(var i = index - 1; i >= 0; i--){
-                                    y++;
-                                    if(y % 3 == 0){
-                                        x++;
-                                    }
-                                    children[i].style.top =  - ((seven(this).top() + this.offsetHeight - e.clientY) - x ) + "px";
                                 }
                             }
-                        }else{
-                            seven.each(children, function(){
-                                seven(this).fall({ target: 0, up: true, speed: 1 });
-                            });
+                        };
+                        oSpan.onmouseleave = function( ev ){
+                            for(var j = 0; j<aSpan.length;j++){
+                                seven(aSpan[j]).animateEx({ position: { top: aSpan[j].startTop }, duration: 500, easing: 'elasticOut'});
+                            }
                         }
-                    }else{
-                        //seven(min).fall({ target: 0, up: true, speed: 1, interval: 200 });
-                        if(e.clientY <= parentPoint  && (seven(this).top() - seven(min).top() ) <= settings.max){
-                            //min.style.top =  - (seven(this).top() + this.offsetHeight - e.clientY) + "px";
-                        }
-                    }
+                    })(aSpan, j)
                 })
-                .bind("mouseout", function(e){
-                    e = e || window.event;
-                    var _this = e.toElement || e.relatedTarget;
-                    if(this.contains(_this)) return false;
-                    this.into = false;
-                    var children = seven(this).find('span').elements;
-                    seven.each(children, function(){
-                        seven(this).fall({ target: 0, up: true, speed: 1 });
-                    });
-                })
+
             }
             return self;
         },

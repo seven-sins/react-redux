@@ -1,26 +1,26 @@
 // JavaScript Document
 
-//t  ±º‰±‰ªØ¡øtime£¨B≥ı º¡ø begin£¨C±‰ªØ¡øchange£¨D£¨ ±º‰duraction  
-     var Tween = {  
-        linear:function(t,b,c,d){  
-             return t*c/d+b;  
-         },  
-         easeIn:function(t,b,c,d){  
-             return c*(t/=d)*t+b;  
-         },
-         elasticOut:function (t, b, c, d, a, p) {
-             if (t == 0) return b;
-             if ((t /= d) == 1) return b + c;
-             if (!p) p = d * .3;
-             if (!a || a < Math.abs(c)) {
-                 a = c;
-                 var s = p / 4;
-             }
-             else var s = p / (2 * Math.PI) * Math.asin(c / a);
-             return (a * Math.pow(2, -10 * t) * Math.sin((t * d - s) * (2 * Math.PI) / p) + c + b);
-         }
-
-     }  
+//t  ±ÔøΩÔøΩ‰ªØÔøΩÔøΩtimeÔøΩÔøΩBÔøΩÔøΩ ºÔøΩÔøΩ beginÔøΩÔøΩCÔøΩ‰ªØÔøΩÔøΩchangeÔøΩÔøΩDÔøΩÔøΩ ±ÔøΩÔøΩduraction  
+//      var Tween = {
+//         linear:function(t,b,c,d){
+//              return t*c/d+b;
+//          },
+//          easeIn:function(t,b,c,d){
+//              return c*(t/=d)*t+b;
+//          },
+//          elasticOut:function (t, b, c, d, a, p) {
+//              if (t == 0) return b;
+//              if ((t /= d) == 1) return b + c;
+//              if (!p) p = d * .3;
+//              if (!a || a < Math.abs(c)) {
+//                  a = c;
+//                  var s = p / 4;
+//              }
+//              else var s = p / (2 * Math.PI) * Math.asin(c / a);
+//              return (a * Math.pow(2, -10 * t) * Math.sin((t * d - s) * (2 * Math.PI) / p) + c + b);
+//          }
+//
+//      }
 
      function startMove(obj, json,times,fx, fn) {  
 
@@ -83,20 +83,20 @@
      }  
 
 
-     function getStyle(obj, attr) {  
+     // function getStyle(obj, attr) {
+     //
+     //     if (obj.currentStyle) {
+     //
+     //         return obj.currentStyle[attr];
+     //
+     //     } else {
+     //
+     //         return getComputedStyle(obj, false)[attr];
+     //     }
+     // }
 
-         if (obj.currentStyle) {  
 
-             return obj.currentStyle[attr];  
-
-         } else {  
-
-             return getComputedStyle(obj, false)[attr];  
-         }  
-     }  
-
-
-     function now(){  
-
-         return new Date().getTime();  
-     }  
+     // function now(){
+     //
+     //     return new Date().getTime();
+     // }

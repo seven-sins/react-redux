@@ -2,86 +2,35 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
-        <meta http-equiv="pragma" content="no-cache">
-        <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
-        <meta http-equiv="expires" content="-1">
-        <title>魔幻英雄小游戏</title>
+        <title></title>
         <style>
         #list{
-            width: 302px; margin: 50px auto; padding: 0; list-style: none;
+            width: 500px; margin: 50px auto; padding: 0; list-style: none;
         }
         #list li{
-            height: 40px; font: 12px/40px "宋体"; border:1px solid #000; position: relative;
+            height: 40px; font: 12px/40px "宋体"; position: relative; padding: 0 0 0 13px;
+            background: #f60; margin: 6px 0 0 0;
         }
         #list span{
-            height: 12px; line-height: 12px;
+            height: 12px; line-height: 12px; color:#fff;
         }
         </style>
-        <script src="move.js"></script>
+        <script src="seven.js"></script>
         <script>
             window.onload = function(){
-                var oList = document.getElementById('list');
-                var aLi = document.getElementsByTagName('li');
-                var iLiHeight = aLi[0].offsetHeight;
-                for (var i = aLi.length - 1; i >= 0; i--) {
-                    var sHtml = aLi[i].innerHTML;
-                    aLi[i].innerHTML ='';
-                    for(var j = 0; j<sHtml.length; j++){
-                        aLi[i].innerHTML +="<span>"+sHtml.charAt(j)+"</span>";
-                    }
-                    var aSpan = aLi[i].children;
-                    var iSpanHeight = aSpan[0].offsetHeight;
-                    for(var j = 0; j<aSpan.length; j++){
-                        var oSpan = aSpan[j];
-                        oSpan.style.left = oSpan.offsetLeft + 'px';
-                        oSpan.style.top = oSpan.offsetTop + 'px';
-                        oSpan.startTop = oSpan.offsetTop;
-                    }
-                    for(var j = 0; j<aSpan.length; j++){
-                        aSpan[j].style.position = 'absolute';
-                        (function(aSpan,nub2){
-                            var iStart = 0;
-                            var oSpan = aSpan[nub2];
-                            oSpan.onmouseover = function(ev ){
-                                var ev = window.event || ev;
-                                iStart = ev.clientY;
-                            }
-                            oSpan.onmousemove = function(ev ){
-                                var ev = window.event || ev;
-                                var iDis = ev.clientY - iStart;
-                                var iNub = iDis >0?1:-1;
-                                if(this.startTop + iDis  > 0 && this.startTop + iDis < iLiHeight - iSpanHeight){
-                                   // this.style.top = this.startTop + iDis + 'px';
-                                   for(var j = 0; j<aSpan.length;j++){
-                                        if(Math.abs(iDis)> Math.abs(nub2-j)){
-                                            aSpan[j].style.top = aSpan[j].startTop + (Math.abs(iDis) - Math.abs(nub2-j))*iNub+'px';
-                                        }else{
-                                            aSpan[j].style.top = aSpan[j].startTop +'px';
-                                        }
-                                   }
-                                }
-                            }
-                            oSpan.onmouseout = function(ev ){
-                                for(var j = 0; j<aSpan.length;j++){
-                                    startMove(aSpan[j],{top:aSpan[j].startTop},500,"elasticOut");
-                                }
-                            }
-                        })(aSpan,j)
-
-                    }
-                };
-
+                s("#list li").wordBounce();
             }
         </script>
     </head>
 <body>
     <ul id="list">
-        <li>魔幻英雄小游戏文字列表图片高斯斯文模糊切换1</li>
-        <li>魔幻英雄小游戏文字列表图片高斯斯文模糊切换222</li>
-        <li>魔幻英雄小游戏文字列表图片高斯斯文模糊切换3333</li>
-        <li>魔幻英雄小游戏文字列表图片高斯斯文模糊切换44444</li>
-        <li>魔幻英雄小游戏文字列表图片高斯斯文模糊切换555555</li>
+        <li>琴弦列表琴弦列表琴弦列表琴弦列表琴弦列表琴弦列表琴弦列表</li>
+        <li>琴弦列表琴弦列表琴弦列表琴弦列表琴弦列表琴弦列表琴弦列表</li>
+        <li>琴弦列表琴弦列表琴弦列表琴弦列表琴弦列表琴弦列表琴弦列表</li>
+        <li>琴弦列表琴弦列表琴弦列表琴弦列表琴弦列表琴弦列表琴弦列表</li>
+        <li>琴弦列表琴弦列表琴弦列表琴弦列表琴弦列表琴弦列表琴弦列表</li>
+        <li>琴弦列表琴弦列表琴弦列表琴弦列表琴弦列表琴弦列表琴弦列表</li>
+        <li>琴弦列表琴弦列表琴弦列表琴弦列表琴弦列表琴弦列表琴弦列表</li>
     </ul>
 </body>
 </html>
