@@ -1230,15 +1230,14 @@
             var iSpeed = 0;
             var width = obj.offsetWidth; // 当前元素宽度
             var height = obj.offsetHeight; // 当前元素高度
-            startMove();
-
+            
             var onSite = 0; // 检查dom是否在原位置
             var position = 0;
             function startMove() {
                 timer = setInterval(function () {
                     if(position === obj.offsetTop){
                         onSite++;
-                        if(onSite > 30){ // 连续3次dom在原位置，结束timer
+                        if(onSite > 30){ // 连续30次dom在原位置，结束timer
                             clearInterval(timer);
                         }
                     }else{
@@ -1246,8 +1245,9 @@
                     }
 
                     iSpeed += settings.speed;
+					iSpeed = (obj.offsetTop > target) ? -iSpeed : iSpeed;
 
-                    var top = settings.up === false ? obj.offsetTop + iSpeed : obj.offsetTop - iSpeed;
+                    var top = obj.offsetTop + iSpeed;
 
                     // 目标位置
                     var target = settings.target;
@@ -1273,6 +1273,7 @@
                     obj.style.top = top + 'px';
                 }, settings.interval);
             }
+			startMove();
 
             return self;
         },
