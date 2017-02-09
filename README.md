@@ -12,6 +12,7 @@ Validator.
 ![image](https://github.com/seven-sins/react-redux/blob/master/tmp/validate.png)
 ###待处理问题
     1. Grid组件编辑数据成功， Grid数据重置， Pager组件index显示错误
+        暂时通用ref主动调用grid中的方法， 待优化
     2. 分页组件显示每页记录下拉列表事件未处理
     
 ###公共组件
