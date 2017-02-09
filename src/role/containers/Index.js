@@ -25,7 +25,7 @@ class Index extends Base{
     };
     update = (model) =>{
         let dialogParams = { width: 500, height: 366, title: "编辑", dialog: this.dialog };
-        let roleParams = Object.assign( { role: model }, { ...this.method() } );
+        let roleParams = Object.assign( { role: model, changeIndex: this.refs.grid.changeIndex }, { ...this.method() } );
         this.dialog(   <Dialog { ...dialogParams }>
                             <Role { ...roleParams } />
                         </Dialog>)
@@ -58,7 +58,7 @@ class Index extends Base{
         };
         return(
             <div>
-                <Grid { ... grid } />
+                <Grid { ... grid } ref="grid" />
                 { this.state.dialog }
             </div>
         )

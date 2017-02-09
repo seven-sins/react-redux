@@ -40,7 +40,7 @@ class Home extends Component{
                 <div>
                     <Left />
                 </div>
-                <div className='center-container'  ref='container'>
+                <div className='center-container'  ref='container' id="container">
                     <div className='content' ref='content' id="content">
                         {this.props.children}
                     </div>

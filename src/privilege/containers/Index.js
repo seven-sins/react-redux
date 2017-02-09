@@ -25,7 +25,7 @@ class Index extends Base{
     };
     update = (model) =>{
         let dialogParams = { width: 500, height: 366, title: "编辑", dialog: this.dialog };
-        let privilegeParams = Object.assign( { privilege: model }, { ...this.method() } );
+        let privilegeParams = Object.assign( { privilege: model, changeIndex: this.refs.grid.changeIndex }, { ...this.method() } );
         this.dialog(   <Dialog { ...dialogParams }>
                             <Privilege { ...privilegeParams } />
                         </Dialog>)
@@ -73,7 +73,7 @@ class Index extends Base{
         };
         return(
             <div>
-                <GridTree { ... grid } />
+                <GridTree { ... grid } ref="grid" />
                 { this.state.dialog }
             </div>
         )

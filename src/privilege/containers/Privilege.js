@@ -22,6 +22,7 @@ class Role extends Component{
         privilege.parentId = this.refs.parentId.value();
         this.props.save(privilege, () => {
             this.props.dialog();
+            this.props.changeIndex(1);
             this.props.load();
         });
     };

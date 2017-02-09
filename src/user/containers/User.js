@@ -22,6 +22,7 @@ class User extends Component{
         user.birthday = this.refs.birthday.value();
         this.props.save(user, () => {
             this.props.dialog();
+            this.props.changeIndex(1);
             this.props.load();
         });
     };
