@@ -34,6 +34,14 @@ export const http = {
             .then(data => {
                 if(data.code == 0){
                     success.call(this, data);
+                }else if(data.code == 2){
+                    if(data.message.length > 0){
+                        let msg = "";
+                        for(let i=0; i<data.message.length; i++){
+                            msg += "<span>" + data.message[i].field + ": "+ data.message[i].error + "</span>";
+                        }
+                        s.alert(msg);
+                    }
                 }else{
                     s.alert(data.message);
                 }

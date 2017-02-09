@@ -16,6 +16,7 @@
     /*text-shadow:1px 1px 2px rgba(0,0,0,0.3);*/
 }
 .t-message-content{text-align:left;line-height:24px;color:#777;padding: 10px 0 10px 7px;font-size:12px;}
+.t-message-content span{display:block;border-bottom:1px dashed #ddd;}
 .t-message-toolbar{width:100%;height:31px;line-height:31px;position:absolute;bottom:2px;right:2px;
 	text-align:right;
 }
@@ -99,11 +100,11 @@
     background-position: 0 -20px;
 }
 
-/*±íµ¥²å¼þÑùÊ½*/
+/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½*/
 .t-form-elem{height:25px;line-height:25px;}
 .t-input{height:25px;line-height:25px;display:inline-block;}
 .t-button{height:28px;line-height:28px;display:inline-block;}
-/*Ê÷ÊÓÍ¼*/
+/*ï¿½ï¿½ï¿½ï¿½Í¼*/
 .t-tree-container{padding:6px 0 0 0;}
 .t-tree-container *{font: 12px/16px Arial, Helvetica, simsun, sans-serif;}
 .t-tree-container ul{background: url(images/line_conn.gif) 0 0 repeat-y;padding:0 0 0 18px;}
@@ -129,7 +130,7 @@
 .t-tree-child-node-text{ margin-right: 2px; }
 .t-tree-node-active .t-tree-node-text-value{background:#3ba1f0;color:#fff;}
 
-/*ÏÂÀ­Ê÷*/
+/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 .t-dropdownlist-container{position:relative;}
 .t-dropdownlist-container *{font-size:12px;}
 .t-dropdownlist-container .t-dropdownlist-text{background:#eee;display:inline-block;width:100%;
@@ -147,7 +148,7 @@
 .t-dropdownlist-item{text-indent:8px;cursor:pointer;}
 .t-dropdownlist-item:hover{background:#eee;}
 
-/*ÊäÈë¿ò*/
+/*ï¿½ï¿½ï¿½ï¿½ï¿½*/
 .t-input{border:1px solid #ddd;margin:-1px;padding:3px 6px;outline: none;box-sizing: border-box;}
 .t-button{border:1px solid #ddd;margin:-1px;outline: none;box-sizing: border-box;font-size:12px;padding:0 13px;
     cursor: pointer;
