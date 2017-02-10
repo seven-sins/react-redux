@@ -23,16 +23,8 @@ class GridTree extends Component {
         if(toolbar){
             toolbarContent = toolbar.map( (item, index) => {
                 let name = item.name;
-                let className = '';
-                let action = null;
-                if(item.option){
-                    if(item.option.class){
-                        className = item.option.class;
-                    }
-                    if(item.option.action){
-                        action = item.option.action;
-                    }
-                }
+                let className = item.class ? item.class : "";
+                let action = (item.option && item.option.action) ? item.option.action : null;
                 switch(name){
                     case 'load':
                         this.reload = action;// load 不添加按钮
@@ -184,6 +176,8 @@ class GridTree extends Component {
         this.setState({
             index: index,
             model: null
+        }, () => {
+            s(".grid-content ul").removeClass("active");
         })
     };
     componentDidMount = () => {

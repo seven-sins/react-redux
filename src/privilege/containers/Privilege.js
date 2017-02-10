@@ -5,7 +5,7 @@ import React, { Component, PropTypes } from 'react';
 import DropDownList from '../../common/components/DropDownList';
 import { validate } from '../../common/components/Validator';
 
-class Role extends Component{
+class Privilege extends Component{
     constructor(props, context){
         super(props, context);
     }
@@ -22,7 +22,7 @@ class Role extends Component{
         privilege.parentId = this.refs.parentId.value();
         this.props.save(privilege, () => {
             this.props.dialog();
-            this.props.changeIndex(1);
+            this.props.changeIndex ? this.props.changeIndex.call(this, 1) : null;
             this.props.load();
         });
     };
@@ -48,7 +48,7 @@ class Role extends Component{
                             <span className='label'>Id: </span><input type='text' className='input' defaultValue={ privilege.id } name='id' />
                         </li>
                         <li>
-                            <span className='label'>名称:</span><input type='text'  className='input' defaultValue={ privilege.name } name='name' data-rule="require:true, max:100" />
+                            <span className='label'>名称:</span><input type='text'  className='input' defaultValue={ privilege.name } name='name' data-rule="require:true, max:30" />
                         </li>
                         <li>
                             <span className='label'>URL:</span><input type='text'  className='input' defaultValue={ privilege.url } name='url' data-rule="require:true" />
@@ -65,6 +65,9 @@ class Role extends Component{
                         <li>
                             <span className='label'>状态:</span><DropDownList ref='status' { ...statusParams } rule="require:true" />
                         </li>
+                        <li>
+                            <span className='label'>排序:</span><input type='text' className='input' defaultValue={ privilege.position } name='position' data-rule="type:number" />
+                        </li>
                     </ul>
                 </form>
                 <ul className='toolbar'>
@@ -75,4 +78,4 @@ class Role extends Component{
         )
     }
 }
-export default Role;
+export default Privilege;

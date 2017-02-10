@@ -19,7 +19,7 @@ class Role extends Component{
         role.status = this.refs.status.value();
         this.props.save(role, () => {
             this.props.dialog();
-            this.props.changeIndex(1);
+            this.props.changeIndex ? this.props.changeIndex.call(this, 1) : null;
             this.props.load();
         });
     };

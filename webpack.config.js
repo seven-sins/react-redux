@@ -5,8 +5,8 @@ module.exports = {
     devtool: 'cheap-module-eval-source-map',
     entry: {
         // 'webpack-hot-middleware/client',
-        backend: './index.js',
-        frontend: './src/frontend/app.js'
+        main: './index.js',
+        index: './src/frontend/app.js'
     },
     output: {
         path: path.join(__dirname, 'dist'),
@@ -25,8 +25,13 @@ module.exports = {
 			compress: {
 				warnings: false
 			}
-        }) //,
-        //new webpack.optimize.CommonsChunkPlugin("common.js", ["backend", "frontend"])
+        }),
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: '"production"'
+            }
+        })
+        //new webpack.optimize.CommonsChunkPlugin("common.js", ["main", "index"])
     ],
     module: {
         loaders: [
@@ -45,16 +50,12 @@ module.exports = {
                 loader: "style-loader!css-loader"
             },
             {
-                test: /\.woff2?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-                loader: "url?limit=10000"
+                test: /\.(woff2|woff|ttf).*$/,
+                loader: "file-loader"
             },
             {
-                test: /\.(eot|svg|woff2|woff)(\?[\s\S]+)?$/,
-                loader: 'file?name=font/[hash].[ext]'
-            },
-            {
-                test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-                loader: 'url?name=font/[hash].[ext]'
+                test: /\.(eot|svg).*$/,
+                loader: 'file'
             },
             {
                 test: /\.(jpg|png|gif)$/,

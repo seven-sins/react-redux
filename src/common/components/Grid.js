@@ -40,21 +40,13 @@ class Grid extends Component {
         }
         return format;
     };
-    initToolbar = (toolbar) => {
+    initToolbar = (toolbar, action) => {
         let toolbarContent = '';
         if(toolbar){
             toolbarContent = toolbar.map( (item, index) => {
                 let name = item.name;
-                let className = '';
-                let action = null;
-                if(item.option){
-                    if(item.option.class){
-                        className = item.option.class;
-                    }
-                    if(item.option.action){
-                        action = item.option.action;
-                    }
-                }
+                let className = item.class ? item.class : "";
+                let action = (item.option && item.option.action) ? item.option.action : null;
                 switch(name){
                     case 'load':
                         this.reload = action;// load 不添加按钮
@@ -90,7 +82,20 @@ class Grid extends Component {
                     <a key={ index } className='link-btn' onClick={ action }><i className={ className }> </i><span>{ name }</span></a>
                 )
             });
+            let actionContent = [];
+            if(action){
+                actionContent = action.map( (item, index) => {
+                    let className = item.class ? item.class : "";
+                    let action = (item.option && item.option.action) ? item.option.action : null;
+                    return (
+                        <a key={ index } className='link-btn' onClick={ this.callMethod.bind(this, action, item.isSelect) }><i className={ className }> </i><span>{ item.name }</span></a>
+                    )
+                })
+            }
             if(toolbarContent){
+                if(actionContent.length > 0){
+                    toolbarContent = toolbarContent.concat(actionContent);
+                }
                 toolbarContent = (
                     <ul className='toolbar'>
                         { toolbarContent }
@@ -203,11 +208,24 @@ class Grid extends Component {
         this.setState({
             index: index,
             model: null
+        }, () => {
+            s(".grid-content ul").removeClass("active");
         })
     };
+    callMethod = (action, isSelect) => {
+        if(isSelect === true){
+            if(!this.state.model){
+                s.alert('请选择数据');
+                return false;
+            }
+        }
+        if(typeof action === 'function'){
+            action.call(this, this.state.model);
+        }
+    };
     componentDidMount = () => {
-        let { toolbar, columns } = this.props;
-        let toolbarDom = this.initToolbar(toolbar);
+        let { toolbar, action, columns } = this.props;
+        let toolbarDom = this.initToolbar(toolbar, action);
         let columnsDom = this.initColumns(columns);
         this.setState({
             toolbarDom: toolbarDom,
