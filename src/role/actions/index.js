@@ -3,7 +3,7 @@
  */
 import { http } from '../../common/common';
 
-const loadData = (response) => {
+const updateData = (response) => {
     return {
         type: http.LOAD,
         data: response.data,
@@ -13,7 +13,7 @@ const loadData = (response) => {
 const get = (dispatch, filter) => {
     http.request("/role" + http.convert(filter), { method: 'GET' },
         data => {
-            dispatch(loadData({ data: data.data, total: data.total }));
+            dispatch(updateData({ data: data.data, total: data.total }));
         });
 };
 export const load = (filter) => {

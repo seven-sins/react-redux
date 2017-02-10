@@ -18,7 +18,7 @@ class GridTree extends Component {
             pagerOption: {}
         }
     }
-    initToolbar = (toolbar) => {
+    initToolbar = (toolbar, action) => {
         let toolbarContent = '';
         if(toolbar){
             toolbarContent = toolbar.map( (item, index) => {
@@ -60,7 +60,20 @@ class GridTree extends Component {
                     <a key={ index } className='link-btn' onClick={ action }><i className={ className }> </i><span>{ name }</span></a>
                 )
             });
+            let actionContent = [];
+            if(action){
+                actionContent = action.map( (item, index) => {
+                    let className = item.class ? item.class : "";
+                    let action = (item.option && item.option.action) ? item.option.action : null;
+                    return (
+                        <a key={ index } className='link-btn' onClick={ this.callMethod.bind(this, action, item.isSelect) }><i className={ className }> </i><span>{ item.name }</span></a>
+                    )
+                })
+            }
             if(toolbarContent){
+                if(actionContent.length > 0){
+                    toolbarContent = toolbarContent.concat(actionContent);
+                }
                 toolbarContent = (
                     <ul className='toolbar'>
                         { toolbarContent }
@@ -180,9 +193,20 @@ class GridTree extends Component {
             s(".grid-content ul").removeClass("active");
         })
     };
+    callMethod = (action, isSelect) => {
+        if(isSelect === true){
+            if(!this.state.model){
+                s.alert('请选择数据');
+                return false;
+            }
+        }
+        if(typeof action === 'function'){
+            action.call(this, this.state.model);
+        }
+    };
     componentDidMount = () => {
-        let { toolbar, columns } = this.props;
-        let toolbarDom = this.initToolbar(toolbar);
+        let { toolbar, action, columns } = this.props;
+        let toolbarDom = this.initToolbar(toolbar, action);
         let columnsDom = this.initColumns(columns);
         this.setState({
             toolbarDom: toolbarDom,

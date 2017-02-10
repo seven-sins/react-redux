@@ -8,6 +8,7 @@ import Grid from '../../common/components/Grid';
 import Dialog from '../../common/components/Dialog';
 import MenuCategory from './MenuCategory';
 import { Base } from '../../common/common';
+import SetModule from './SetModule';
 
 @connect( state =>({ data: state.MenuCategory.data, total: state.MenuCategory.total }), ActionCreators )
 class Index extends Base{
@@ -34,7 +35,11 @@ class Index extends Base{
         this.props.remove(model);
     };
     setModule = model => {
-        console.log(model);
+        let dialogParams = { width: 500, height: 366, title: "新建", dialog: this.dialog };
+        let menuCategoryParams = { menuCategory: model, dialog: this.dialog };
+        this.dialog(   <Dialog { ...dialogParams }>
+            <SetModule { ...menuCategoryParams }  />
+        </Dialog>)
     };
     render = () =>{
         let { data, total } = this.props;
@@ -46,7 +51,7 @@ class Index extends Base{
                 { name: 'remove', option: {  action: this.remove } }
             ],
             action: [
-                { name: '设置模块', class: "fa fa-edit", option: { action: this.setModule }, isSelect: true }, // isSelect是否需要选中数据
+                { name: '设置模块', class: "fa fa-cog", option: { action: this.setModule }, isSelect: true }, // isSelect是否需要选中数据
             ],
             columns: [
                 { field: "id", title: 'id', width: 200, class: 'hide' },

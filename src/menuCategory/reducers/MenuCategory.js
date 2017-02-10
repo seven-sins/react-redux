@@ -4,7 +4,8 @@
  */
 const initialState = {
     total: 0,
-    data: []
+    data: [],
+    modules: []
 };
 const MenuCategory = (state = initialState, action = null) => {
     switch (action.type) {
@@ -13,6 +14,11 @@ const MenuCategory = (state = initialState, action = null) => {
                 ...state,
                 data: action.data,
                 total: action.total
+            };
+        case 'LOADMODULE':
+            return {
+                ...state,
+                modules: action.modules
             };
         default:
             return {

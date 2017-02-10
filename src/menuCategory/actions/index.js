@@ -3,7 +3,7 @@
  */
 import { http } from '../../common/common';
 
-const loadData = (response) => {
+const updateData = (response) => {
     return {
         type: http.LOAD,
         data: response.data,
@@ -13,7 +13,7 @@ const loadData = (response) => {
 const get = (dispatch, filter) => {
     http.request("/menuCategory" + http.convert(filter), { method: 'GET' },
         data => {
-            dispatch(loadData({ data: data.data, total: data.total }));
+            dispatch(updateData({ data: data.data, total: data.total }));
         });
 };
 export const load = (filter) => {
@@ -39,4 +39,28 @@ export const save = (menuCategory, callback) => {
                 callback.call();
             });
     };
+};
+////////////////////////////////////////////////////////
+const updateModule = response => {
+    return {
+        type: "LOADMODULE",
+        modules: response.modules
+    }
+};
+export const loadModule = () => {
+    return dispatch => {
+        dispatch(updateModule({ modules: [] })); // 先清空store中的缓存
+        http.request("/privilege/list", { method: 'GET' },
+            data => {
+                dispatch(updateModule({ modules: data.data }));
+            });
+    }
+};
+export const saveModule = (data, callback) => {
+    return dispatch => {
+        http.request("/menuCategory/" + data.id + "/modules", { method: 'PUT', body: JSON.stringify(data) },
+            data => {
+                if(callback) callback.call();
+            });
+    }
 };
