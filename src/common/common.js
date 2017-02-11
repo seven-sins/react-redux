@@ -6,9 +6,13 @@ import React, { Component } from 'react';
 /**
  * http
  */
-const srvUrl = "http://localhost:3001";
-
-
+const srvUrl = "http://localhost:3001"; //
+const localUrl = "http://127.0.0.1:3000";
+/**
+ * 从cookie中获取
+ * @param key
+ * @returns {*}
+ */
 const getToken = key => {
     key = key ? key : "token";
     if (document.cookie.length > 0) {
@@ -29,6 +33,7 @@ let headers = {
 };
 export const http = {
     srvUrl: srvUrl,
+    localUrl: localUrl,
     headers: headers,
     LOAD: "LOADDATA",
     convert: (filter) => {
@@ -46,7 +51,7 @@ export const http = {
         return params;
     },
     request: (url, data, success) => {
-        headers.token = getToken(); // 添加请求头
+        headers.token = getToken("token"); // 获取token添加到请求头
         fetch(srvUrl + url, Object.assign({ headers: headers }, data) )
             .then( response =>  response.json() )
             .then(data => {

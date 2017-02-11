@@ -1,0 +1,32 @@
+@import '../../common/base';
+
+.privilege-container{
+  .privilege-list{
+    height:251px; overflow:auto;
+    .privilege-item{
+      line-height:25px;margin:0 0 0 26px;border-left:1px dashed #ddd;cursor:pointer;
+      vertical-align: middle;box-sizing: border-box;
+      .privilege-title{
+        line-height:25px;border-left:1px dashed #ddd;box-sizing: border-box;margin-left:-1px;
+        cursor:pointer;
+        .line{
+          padding:0 0 0 6px;color:#888;
+          &.place{
+            visibility: hidden;
+          }
+        }
+      }
+      .privilege-input{
+        margin:0 3px 0 6px;position:relative;top:3px;
+      }
+      span{
+        cursor:pointer;
+      }
+    }
+  }
+  ul{
+    &.toolbar{
+      text-align:center;padding:15px 0;
+    }
+  }
+}

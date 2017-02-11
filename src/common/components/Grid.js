@@ -253,14 +253,6 @@ class Grid extends Component {
         let {  columns, data, total } = this.props;
         let dataDom = this.initData(columns, data);
         let pagerOption = { total: total, load: this.load, index: this.state.index, changeIndex: this.changeIndex };
-        if(!dataDom){
-            return (
-                <div className='grid' ref="container">
-                    <div className='grid-head' ref="head"></div>
-                    <div className='grid-content' ref="content"></div>
-                </div>
-            )
-        }
         return (
             <div>
                 <div className='grid'>

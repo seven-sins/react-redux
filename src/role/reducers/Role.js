@@ -4,7 +4,8 @@
 
 const initialState = {
     total: 0,
-    data: []
+    data: [],
+    privileges: []
 };
 const Role = (state = initialState, action = null) => {
     switch (action.type) {
@@ -13,6 +14,11 @@ const Role = (state = initialState, action = null) => {
                 ...state,
                 data: action.data,
                 total: action.total
+            };
+        case 'LOADPRIVILEGE':
+            return {
+                ...state,
+                privileges: action.privileges
             };
         default:
             return {

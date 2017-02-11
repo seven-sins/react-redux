@@ -45,14 +45,14 @@ class Index extends Base{
             columns: [
                 { field: "id", title: 'id', width: 200, class: 'hide' },
                 { field: "name", title: '名称', width: '20%', template: (row) => {
-                    if(row.type === 0){
+                    if(row.type === 1){
                         return <span style={{ color: 'green' }}>{ row.name }</span>;
                     }else{
                         return <span style={{ color: 'blue', padding: '0 0 0 13px' }}>{ row.name }</span>;
                     }
                 } },
                 { field: "type", title: '类型', width: '10%', template: (row) => {
-                    if(row.type === 0){
+                    if(row.type === 1){
                         return <span style={{ color: 'green' }}>模块</span>;
                     }else{
                         return <span style={{ color: 'blue' }}>接口</span>;
@@ -61,7 +61,7 @@ class Index extends Base{
                 { field: "menuCategoryName", title: '菜单分类', width: '15%' },
                 { field: "url", title: 'URL', width: '23%' },
                 { field: "position", title: '排序', width: '6%', template: row => {
-                    if(row.type === 0){
+                    if(row.type === 1){
                         return <span style={{ color: 'green' }}>{ row.position }</span>;
                     }else{
                         return <span style={{ color: 'blue' }}>{ row.position }</span>;

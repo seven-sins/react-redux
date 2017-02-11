@@ -18,7 +18,7 @@ class Index extends Component{
                         s.msg("登录成功");
                         let token = res.data.passWord;
                         s.cookie.add("token", token);
-                        window.location.href = "http://127.0.0.1:3000/";
+                        window.location.href = http.localUrl;
                     }else{
                         s.msg(res.message);
                     }

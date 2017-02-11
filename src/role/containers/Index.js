@@ -8,6 +8,7 @@ import Grid from '../../common/components/Grid';
 import Dialog from '../../common/components/Dialog';
 import Role from './Role';
 import { Base } from '../../common/common';
+import SetPrivilege from './SetPrivilege';
 
 @connect( state =>({ data: state.Role.data, total: state.Role.total }), ActionCreators )
 class Index extends Base{
@@ -23,15 +24,22 @@ class Index extends Base{
                             <Role { ...this.method() } />
                         </Dialog>)
     };
-    update = (model) =>{
+    update = model =>{
         let dialogParams = { width: 500, height: 366, title: "编辑", dialog: this.dialog };
         let roleParams = Object.assign( { role: model, changeIndex: this.refs.grid.changeIndex }, { ...this.method() } );
         this.dialog(   <Dialog { ...dialogParams }>
                             <Role { ...roleParams } />
                         </Dialog>)
     };
-    remove = (model) =>{
+    remove = model =>{
         this.props.remove(model);
+    };
+    setPrivilege = model => {
+        let dialogParams = { width: 500, height: 366, title: "编辑", dialog: this.dialog };
+        let setPrivilegeParams = { role: model };
+        this.dialog(   <Dialog { ...dialogParams }>
+            <SetPrivilege { ...setPrivilegeParams } />
+        </Dialog>)
     };
     render = () =>{
         let { data, total } = this.props;
@@ -41,6 +49,9 @@ class Index extends Base{
                 { name: 'create', option: { action: this.create } },
                 { name: 'update', option: { action: this.update } },
                 { name: 'remove', option: { action: this.remove } }
+            ],
+            action: [
+                { name: '设置权限', class: "fa fa-cog", option: { action: this.setPrivilege }, isSelect: true }, // isSelect是否需要选中数据
             ],
             columns: [
                 { field: "id", title: 'id', width: 200, class: 'hide' },

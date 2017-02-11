@@ -314,10 +314,26 @@
 
             return self;
         },
-        siblings: function () {
+        siblings: function (selector) {
             var currentNote = this.elements[0];
-            this.elements = currentNote.parentNode.children;
-
+            var self = this;
+            if(!selector) {
+                this.elements = currentNote.parentNode.children;
+            }else{
+                switch (selector.charAt(0)){
+                    case '#':{
+                        self.elements = self.getId(selector.substring(1), currentNote.parentNode);
+                        break;
+                    }
+                    case '.':{
+                        self.elements = self.getClass(selector.substring(1), currentNote.parentNode);
+                        break;
+                    }
+                    default:
+                        self.elements = self.getTag(selector, currentNote.parentNode);
+                        break;
+                }
+            }
             return this;
         },
         is: function (state) {

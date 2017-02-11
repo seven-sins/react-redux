@@ -38,7 +38,7 @@ class Privilege extends Component{
         if(!privilege) privilege = {};
         let methodParams = { value: privilege.method, id: 'id', text: 'text', empty: false, data: [{ id: 'get', text: 'get'}, { id: 'post', text: 'post'}, { id: 'put', text: 'put'}, { id: 'delete', text: 'delete'}]};
         let statusParams = { value: privilege.status, id: 'id', text: 'text', empty: false, data: [{ id: 0, text: '启用'}, { id: 1, text: '禁用'}]};
-        let typeParams = { value: privilege.type, id: 'id', text: 'text', empty: false, data: [{ id: 0, text: '模块'}, { id: 1, text: '接口'}]};
+        let typeParams = { value: privilege.type, id: 'id', text: 'text', empty: false, data: [{ id: 1, text: '模块'}, { id: 2, text: '接口'}]};
         let moduleParams = { value: privilege.parentId ? privilege.parentId : 0, id: 'id', text: 'name', url: '/privilege/list', empty: false, init: [{ id: 0, name: '无'}] };
         return(
             <div className='form'>

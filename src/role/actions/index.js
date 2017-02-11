@@ -3,7 +3,7 @@
  */
 import { http } from '../../common/common';
 
-const updateData = (response) => {
+const updateData = response => {
     return {
         type: http.LOAD,
         data: response.data,
@@ -16,12 +16,12 @@ const get = (dispatch, filter) => {
             dispatch(updateData({ data: data.data, total: data.total }));
         });
 };
-export const load = (filter) => {
+export const load = filter => {
     return dispatch => {
         get(dispatch, filter);
     }
 };
-export const remove = (role) => {
+export const remove = role => {
     return dispatch => {
         http.request( "/role/" + role.id, { method: 'DELETE' },
             data => {
@@ -39,4 +39,20 @@ export const save = (role, callback) => {
                 callback.call();
             });
     };
+};
+//////////////////////////////
+const updatePrivilege = response => {
+    return {
+        type: 'LOADPRIVILEGE',
+        privileges: response.privileges
+    }
+};
+export const loadPrivilege = () => {
+    return dispatch => {
+        dispatch(updatePrivilege({ privileges: [] })); // 先清空store中的缓存
+        http.request("/privilege/all", { method: 'GET' },
+            data => {
+                dispatch(updatePrivilege({ privileges: data.data }));
+            });
+    }
 };
