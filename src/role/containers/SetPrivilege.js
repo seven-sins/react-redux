@@ -36,7 +36,7 @@ class SetPrivilege extends Component {
             let item = privileges[i];
             if(id == item[parentField]){
                 let children = this.recursion(item.id, privileges, "parentId");
-                let className = children.length > 0 ? "line fa fa-plus" : "line fa fa-plus place";
+                let className = children.length > 0 ? "line fa fa-sort-down" : "line fa fa-sort-down place";
                 let title = (<div className="privilege-title" key={ item.id } onClick={ this.toggle }>
                     <i className={ className }> </i>
                     <input type="checkbox" className="privilege-input" data-id={ item.id } onClick={ this.bubbling } />
@@ -59,7 +59,7 @@ class SetPrivilege extends Component {
             let item = privileges[i];
             if(item.type == 0){
                 let children = this.recursion(item.id, privileges, "menuCategoryId");
-                let className = children.length > 0 ? "line fa fa-plus" : "line fa fa-plus place";
+                let className = children.length > 0 ? "line fa fa-sort-down" : "line fa fa-sort-down place";
                 let title = (
                     <div className="privilege-title" key={ item.id } onClick={ this.toggle }>
                         <i className={ className }> </i>
