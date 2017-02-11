@@ -1,0 +1,22 @@
+@import '../../common/base';
+
+.module-container{
+  .module-list{
+    height:251px;
+    .module-item{
+      display:inline-block;width:150px;height:31px;line-height:31px;
+      vertical-align: middle;box-sizing: border-box;
+      .module-input{
+        margin:0 6px 0 0;position:relative;top:1px;
+      }
+      span{
+        cursor:pointer;
+      }
+    }
+  }
+  ul{
+    &.toolbar{
+      text-align:center;padding:15px 0;
+    }
+  }
+}

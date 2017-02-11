@@ -58,7 +58,8 @@ class Index extends Base{
                         return <span style={{ color: 'blue' }}>接口</span>;
                     }
                 } },
-                { field: "url", title: 'URL', width: '38%' },
+                { field: "menuCategoryName", title: '菜单分类', width: '15%' },
+                { field: "url", title: 'URL', width: '23%' },
                 { field: "position", title: '排序', width: '6%', template: row => {
                     if(row.type === 0){
                         return <span style={{ color: 'green' }}>{ row.position }</span>;

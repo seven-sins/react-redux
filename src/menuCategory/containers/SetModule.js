@@ -8,6 +8,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import DropDownList from '../../common/components/DropDownList';
 import * as ActionCreators from '../actions';
+import './SetModule.less';
 
 @connect( state =>({ modules: state.MenuCategory.modules }), ActionCreators )
 class SetModule extends Component {
@@ -49,15 +50,29 @@ class SetModule extends Component {
             s.alert("操作成功");
         })
     };
+    selectAll = () => {
+        if(this.refs.selectAll.innerText == '全选'){
+            this.refs.selectAll.innerText = '取消';
+            s(".module-list .module-input").each( (item) => {
+                item.checked = true;
+            })
+        }else{
+            this.refs.selectAll.innerText = '全选';
+            s(".module-list .module-input").each( (item) => {
+                item.checked = false;
+            })
+        }
+    };
     render = () => {
         let { menuCategory, modules } = this.props;
         let dom = this.init(menuCategory, modules);
         return(
-            <div className='form'>
+            <div className='form module-container'>
                 <div className="module-list">
                     { dom }
                 </div>
                 <ul className='toolbar'>
+                    <span onClick={ this.selectAll } className='link-btn save'><i className='fa fa-toggle-off'> </i><span ref="selectAll">全选</span></span>
                     <span onClick={ this.save } className='link-btn save'><i className='fa fa-plus'> </i><span>保存</span></span>
                     <span onClick={ this.cancel } className='link-btn'><i className='fa fa-remove'> </i><span>取消</span></span>
                 </ul>
