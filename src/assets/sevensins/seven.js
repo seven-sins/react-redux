@@ -2260,7 +2260,7 @@
             }
 
             //设置ajax请求头
-            ajax.setRequestHeader("content-type", "application/x-www-form-urlencoded; charset=utf-8");
+            ajax.setRequestHeader("content-type", "application/json; charset=utf-8");
 
             //AJAX异步对象不断监听服务器响应状态0-1-2-3-4
             ajax.onreadystatechange = function () {
@@ -2284,7 +2284,7 @@
                 }
                 _data = query.join('&');
             } else {
-                _data = encodeURI(data);
+                _data = data;
             }
 
             //
@@ -2841,8 +2841,27 @@
         random: function (n, m) {
             var num = Math.random() * (m - n) + n;
             return parseInt(num);
+        },
+        cookie: {
+            add: function (key, value, expiredays) {
+                expiredays = expiredays ? expiredays : 1000;
+                var exdate = new Date();
+                exdate.setDate(exdate.getDate() + expiredays);
+                document.cookie = key + "=" + escape(value) + ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString())
+            },
+            get: function (key) {
+                if (document.cookie.length > 0) {
+                    var c_start = document.cookie.indexOf(key + "=");
+                    if (c_start != -1) {
+                        c_start = c_start + key.length + 1;
+                        var c_end = document.cookie.indexOf(";", c_start);
+                        if (c_end == -1) c_end = document.cookie.length;
+                        return unescape(document.cookie.substring(c_start, c_end));
+                    }
+                }
+                return null;
+            }
         }
-
 
     });
 

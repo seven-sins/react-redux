@@ -80,6 +80,8 @@
     s.isFunction(obj)
     s.isArray(obj)
     s.random(n, m)         // 返回n - (m-1) 随机数
+    s.cookie.add(key, value, expire)  // expire有效期， 设为负数删除
+    s.cookie.get(key)
     //ajax
     s.get(url, data, fn)
     s.post(url, data, fn)

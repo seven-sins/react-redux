@@ -2,11 +2,28 @@
  * Created by seven sins on 1/10/2017.
  */
 import React, { Component } from 'react';
+
 /**
  * http
  */
 const srvUrl = "http://localhost:3001";
-const headers = {
+
+
+const getToken = key => {
+    key = key ? key : "token";
+    if (document.cookie.length > 0) {
+        let c_start = document.cookie.indexOf(key + "=");
+        if (c_start != -1) {
+            c_start = c_start + key.length + 1;
+            let c_end = document.cookie.indexOf(";", c_start);
+            if (c_end == -1) c_end = document.cookie.length;
+            return unescape(document.cookie.substring(c_start, c_end));
+        }
+    }
+    return null;
+};
+
+let headers = {
     "Accept": "application/json",
     "Content-Type": "application/json; charset=UTF-8"
 };
@@ -29,6 +46,7 @@ export const http = {
         return params;
     },
     request: (url, data, success) => {
+        headers.token = getToken(); // 添加请求头
         fetch(srvUrl + url, Object.assign({ headers: headers }, data) )
             .then( response =>  response.json() )
             .then(data => {
@@ -42,6 +60,8 @@ export const http = {
                         }
                         s.alert(msg);
                     }
+                }else if(data.code == 6){
+                    window.location.href = 'http://127.0.0.1:3000/login.html';
                 }else{
                     s.alert(data.message);
                 }

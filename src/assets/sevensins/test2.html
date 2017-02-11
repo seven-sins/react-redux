@@ -4,34 +4,17 @@
         <meta charset="utf-8">
         <title></title>
         <style>
-        #list{
-            width: 500px; margin: 50px auto; padding: 0; list-style: none;
-        }
-        #list li{
-            height: 40px; font: 12px/40px "宋体"; position: relative; padding: 0 0 0 13px;
-            background: #f60; margin: 6px 0 0 0;
-        }
-        #list span{
-            height: 12px; line-height: 12px; color:#fff;
-        }
+
         </style>
         <script src="seven.js"></script>
         <script>
             window.onload = function(){
-                s("#list li").wordBounce();
-
+                s.cookie.add("userId", { userName: "me", passWord: "xyz", role: [1, 2] }, 1);
+                console.log((s.cookie.get("userId")).passWord);
             }
         </script>
     </head>
 <body>
-    <ul id="list">
-        <li>琴弦列表琴弦列表琴弦列表琴弦列表琴弦列表琴弦列表琴弦列表</li>
-        <li>琴弦列表琴弦列表琴弦列表琴弦列表琴弦列表琴弦列表琴弦列表</li>
-        <li>琴弦列表琴弦列表琴弦列表琴弦列表琴弦列表琴弦列表琴弦列表</li>
-        <li>琴弦列表琴弦列表琴弦列表琴弦列表琴弦列表琴弦列表琴弦列表</li>
-        <li>琴弦列表琴弦列表琴弦列表琴弦列表琴弦列表琴弦列表琴弦列表</li>
-        <li>琴弦列表琴弦列表琴弦列表琴弦列表琴弦列表琴弦列表琴弦列表</li>
-        <li>琴弦列表琴弦列表琴弦列表琴弦列表琴弦列表琴弦列表琴弦列表</li>
-    </ul>
+
 </body>
 </html>
