@@ -40,7 +40,7 @@ export const save = (role, callback) => {
             });
     };
 };
-//////////////////////////////
+////////////////////////////// 所有 status = 0 权限列表
 const updatePrivilege = response => {
     return {
         type: 'LOADPRIVILEGE',
@@ -61,6 +61,22 @@ export const savePrivilege = (data, callback) => {
         http.request("/rolePrivilege/" + data.id, { method: 'PUT', body: JSON.stringify(data) },
             data => {
                 if(callback) callback.call();
+            });
+    }
+};
+///////////////////////////////////// 所有 roleId = role.id 权限列表
+const updateRolePrivilege = response => {
+    return {
+        type: 'LOADROLEPRIVILEGE',
+        rolePrivileges: response.rolePrivileges
+    }
+};
+export const loadRolePrivilege = role => {
+    return dispatch => {
+        dispatch(updateRolePrivilege({ rolePrivileges: [] })); // 先清空store中的缓存
+        http.request("/rolePrivilege/" + role.id, { method: 'GET' },
+            data => {
+                dispatch(updateRolePrivilege({ rolePrivileges: data.data }));
             });
     }
 };

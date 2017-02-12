@@ -10,13 +10,15 @@ import DropDownList from '../../common/components/DropDownList';
 import * as ActionCreators from '../actions';
 import './SetPrivilege.less';
 
-@connect( state =>({ privileges: state.Role.privileges }), ActionCreators )
+@connect( state =>({ privileges: state.Role.privileges, rolePrivileges: state.Role.rolePrivileges }), ActionCreators )
 class SetPrivilege extends Component {
     constructor(props, context) {
         super(props, context);
     }
     componentDidMount = () => {
+        let { role } = this.props;
         this.props.loadPrivilege();
+        this.props.loadRolePrivilege(role);
     };
     toggle = ev => {
         ev = ev || window.event;
@@ -32,16 +34,26 @@ class SetPrivilege extends Component {
         ev = ev || window.event;
         ev.stopPropagation();
     };
-    recursion = (id, privileges, parentField) => {
+    isExist = (id, rolePrivileges) => {
+        if(!rolePrivileges || rolePrivileges.length == 0) return false;
+        for(let i = 0; i<rolePrivileges.length; i++){
+            if(id == rolePrivileges[i]){
+                return true;
+            }
+        }
+        return false;
+    };
+    recursion = (id, privileges, parentField, rolePrivileges) => {
         let dom = [];
         for(let i = 0; i<privileges.length; i++){
             let item = privileges[i];
             if(id == item[parentField]){
-                let children = this.recursion(item.id, privileges, "parentId");
+                let children = this.recursion(item.id, privileges, "parentId", rolePrivileges);
                 let className = children.length > 0 ? "line " : "line  place";
+                let isSelect = this.isExist(item.id, rolePrivileges);
                 let title = (<div className="privilege-title" key={ item.id } onClick={ this.toggle }>
                     <i className={ className }> </i>
-                    <input type="checkbox" className="privilege-input" data-id={ item.id } onClick={ this.bubbling } />
+                    <input type="checkbox" className="privilege-input" data-id={ item.id } onClick={ this.bubbling } defaultChecked={ isSelect } />
                     <span>{ item.name }</span>
                 </div>);
                 dom.push(
@@ -54,18 +66,19 @@ class SetPrivilege extends Component {
         }
         return dom;
     };
-    init = (role, privileges) => {
+    init = (role, privileges, rolePrivileges) => {
         if(privileges.length == 0) return "";
         let dom = [];
         for(let i=0; i<privileges.length; i++){
             let item = privileges[i];
             if(item.type == 0){
-                let children = this.recursion(item.id, privileges, "menuCategoryId");
+                let children = this.recursion(item.id, privileges, "menuCategoryId", rolePrivileges);
                 let className = children.length > 0 ? "line " : "line  place";
+                let isSelect = this.isExist(item.id, rolePrivileges);
                 let title = (
                     <div className="privilege-title" key={ item.id } onClick={ this.toggle }>
                         <i className={ className }> </i>
-                        <input type="checkbox" className="privilege-input" data-id={ item.id } onClick={ this.bubbling } />
+                        <input type="checkbox" className="privilege-input" data-id={ item.id } onClick={ this.bubbling } defaultChecked={ isSelect } />
                         <span>{ item.name }</span>
                     </div>
                 );
@@ -110,8 +123,8 @@ class SetPrivilege extends Component {
         }
     };
     render = () => {
-        let { role, privileges } = this.props;
-        let dom = this.init(role, privileges);
+        let { role, privileges, rolePrivileges } = this.props;
+        let dom = this.init(role, privileges, rolePrivileges);
         return(
             <div className='form privilege-container'>
                 <div className="privilege-list">

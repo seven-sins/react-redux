@@ -7,9 +7,13 @@ const initialState = {
 const Home = (state = initialState, action = null) => {
     switch (action.type) {
         case 'INCREMENT':
-            return state;
+            return {
+                ...state
+            };
         default:
-            return state
+            return {
+                ...state
+            }
     }
 };
 export default Home;
