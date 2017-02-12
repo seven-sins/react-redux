@@ -56,3 +56,11 @@ export const loadPrivilege = () => {
             });
     }
 };
+export const savePrivilege = (data, callback) => {
+    return dispatch => {
+        http.request("/rolePrivilege/" + data.id, { method: 'PUT', body: JSON.stringify(data) },
+            data => {
+                if(callback) callback.call();
+            });
+    }
+};

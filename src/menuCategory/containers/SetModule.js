@@ -41,11 +41,10 @@ class SetModule extends Component {
         let moduleIds = [];
         s(".module-list .module-input").each( (item) => {
             if(item.checked){
-                moduleIds.push(item.getAttribute("data-id"));
+                moduleIds.push(parseInt(item.getAttribute("data-id")));
             }
         });
         this.props.saveModule({ id: menuCategory.id, moduleIds: moduleIds }, () => {
-            this.props.load(); // 刷新父窗口列表
             this.props.dialog(); // 关闭弹出窗口
             s.alert("操作成功");
         })

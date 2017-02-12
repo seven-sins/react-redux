@@ -21,9 +21,11 @@ class SetPrivilege extends Component {
     toggle = ev => {
         ev = ev || window.event;
         if(s(ev.currentTarget).siblings(".privilege-item").size() > 0){
-            let flag = s(ev.currentTarget).siblings(".privilege-item").eq(0).css("display");
-            flag = flag == "block" ? "none" : "block";
-            s(ev.currentTarget).siblings(".privilege-item").css("display", flag);
+            if(s(ev.currentTarget.parentNode).hasClass("item-close")){
+                s(ev.currentTarget.parentNode).removeClass("item-close");
+            }else{
+                s(ev.currentTarget.parentNode).addClass("item-close");
+            }
         }
     };
     bubbling = ev => {
@@ -36,7 +38,7 @@ class SetPrivilege extends Component {
             let item = privileges[i];
             if(id == item[parentField]){
                 let children = this.recursion(item.id, privileges, "parentId");
-                let className = children.length > 0 ? "line fa fa-sort-down" : "line fa fa-sort-down place";
+                let className = children.length > 0 ? "line " : "line  place";
                 let title = (<div className="privilege-title" key={ item.id } onClick={ this.toggle }>
                     <i className={ className }> </i>
                     <input type="checkbox" className="privilege-input" data-id={ item.id } onClick={ this.bubbling } />
@@ -59,7 +61,7 @@ class SetPrivilege extends Component {
             let item = privileges[i];
             if(item.type == 0){
                 let children = this.recursion(item.id, privileges, "menuCategoryId");
-                let className = children.length > 0 ? "line fa fa-sort-down" : "line fa fa-sort-down place";
+                let className = children.length > 0 ? "line " : "line  place";
                 let title = (
                     <div className="privilege-title" key={ item.id } onClick={ this.toggle }>
                         <i className={ className }> </i>
@@ -82,15 +84,14 @@ class SetPrivilege extends Component {
         this.props.dialog();
     };
     save = () => {
-        let { menuCategory } = this.props;
-        let moduleIds = [];
-        s(".module-list .module-input").each( (item) => {
+        let { role } = this.props;
+        let privileges = [];
+        s(".privilege-list .privilege-input").each( (item) => {
             if(item.checked){
-                moduleIds.push(item.getAttribute("data-id"));
+                privileges.push(parseInt(item.getAttribute("data-id")));
             }
         });
-        this.props.saveModule({ id: menuCategory.id, moduleIds: moduleIds }, () => {
-            this.props.load(); // 刷新父窗口列表
+        this.props.savePrivilege({ id: role.id, privileges: privileges }, () => {
             this.props.dialog(); // 关闭弹出窗口
             s.alert("操作成功");
         })

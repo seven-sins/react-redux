@@ -55,8 +55,16 @@ class Index extends Base{
             ],
             columns: [
                 { field: "id", title: 'id', width: 200, class: 'hide' },
-                { field: "name", title: '名称', width: '60%' },
-                { field: "position", title: '排序', width: '39%' }
+                { field: "name", title: '名称', width: '29%' },
+                { field: "url", title: 'Url', width: '30%' },
+                { field: "position", title: '排序', width: '20%' },
+                { field: "status", title: '状态', width: '20%', template: (row) => {
+                    if(row.status === 0){
+                        return <span style={{ color: 'green' }}>启用</span>;
+                    }else{
+                        return <span style={{ color:'#f00' }}>禁用</span>;
+                    }
+                } }
             ],
             data: data,
             total: total

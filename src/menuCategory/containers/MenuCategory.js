@@ -16,6 +16,7 @@ class MenuCategory extends Component{
         }
         ev.preventDefault();
         let menuCategory = s(this.refs.form).serialize();
+        menuCategory.status = this.refs.status.value();
         this.props.save(menuCategory, () => {
             this.props.dialog();
             this.props.changeIndex ? this.props.changeIndex.call(this, 1) : null;
@@ -32,6 +33,7 @@ class MenuCategory extends Component{
     render = () =>{
         let { menuCategory } = this.props;
         if(!menuCategory) menuCategory = {};
+        let statusParams = { value: menuCategory.status, id: 'id', text: 'text', data: [{ id: 0, text: '启用'}, { id: 1, text: '禁用'}]};
         return(
             <div className='form'>
                 <form ref='form'>
@@ -43,7 +45,13 @@ class MenuCategory extends Component{
                             <span className='label'>名称:</span><input type='text'  className='input' defaultValue={ menuCategory.name } name='name' data-rule="require:true, max:30" />
                         </li>
                         <li>
+                            <span className='label'>Url:</span><input type='text'  className='input' defaultValue={ menuCategory.url } name='url' data-rule="require:true" />
+                        </li>
+                        <li>
                             <span className='label'>排序:</span><input type='text'  className='input' defaultValue={ menuCategory.position } name='position' data-rule="type:number" />
+                        </li>
+                        <li>
+                            <span className='label'>状态:</span><DropDownList ref='status' { ...statusParams } rule="require:true" />
                         </li>
                     </ul>
                 </form>

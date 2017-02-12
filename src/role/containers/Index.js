@@ -36,7 +36,7 @@ class Index extends Base{
     };
     setPrivilege = model => {
         let dialogParams = { width: 500, height: 366, title: "编辑", dialog: this.dialog };
-        let setPrivilegeParams = { role: model };
+        let setPrivilegeParams = { role: model, dialog: this.dialog };
         this.dialog(   <Dialog { ...dialogParams }>
             <SetPrivilege { ...setPrivilegeParams } />
         </Dialog>)

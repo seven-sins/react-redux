@@ -66,7 +66,8 @@ export const http = {
                         s.alert(msg);
                     }
                 }else if(data.code == 6){
-                    window.location.href = 'http://127.0.0.1:3000/login.html';
+                    s.msg(data.message);
+                    window.location.href = localUrl + '/login';
                 }else{
                     s.alert(data.message);
                 }

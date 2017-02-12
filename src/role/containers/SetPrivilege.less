@@ -3,6 +3,16 @@
 .privilege-container{
   .privilege-list{
     height:251px; overflow:auto;
+    .item-close{
+      .privilege-title{
+        .line{
+          background:url(../../assets/images/tree/folder-closed.png) no-repeat !important;
+        }
+      }
+      .privilege-item{
+        display:none;
+      }
+    }
     .privilege-item{
       line-height:25px;margin:0 0 0 26px;border-left:1px dashed #ddd;cursor:pointer;
       vertical-align: middle;box-sizing: border-box;
@@ -10,14 +20,15 @@
         line-height:25px;border-left:1px dashed #ddd;box-sizing: border-box;margin-left:-1px;
         cursor:pointer;
         .line{
-          padding:0 0 0 6px;color:#888;font-size:13px;
+          padding:0;display:inline-block;width:16px;height:16px;position:relative;top:3px;margin:0 3px;
+          background:url(../../assets/images/tree/folder.png) no-repeat;
           &.place{
             visibility: hidden;
           }
         }
       }
       .privilege-input{
-        margin:0 3px 0 6px;position:relative;top:3px;
+        margin:0 3px;position:relative;top:2px;
       }
       span{
         cursor:pointer;
