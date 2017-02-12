@@ -6,8 +6,8 @@ import React, { Component } from 'react';
 /**
  * http
  */
-const srvUrl = "http://localhost:3001"; //
-const localUrl = "http://127.0.0.1:3000";
+const srvUrl = ""; // http://localhost:3001
+const localUrl = "http://www.lonecpp.com"; // http://127.0.0.1:3000
 /**
  * 从cookie中获取
  * @param key
