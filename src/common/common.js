@@ -78,17 +78,6 @@ export const http = {
     }
 };
 /**
- * 左侧导航菜单
- * @type {[*]}
- */
-export const menu = [
-    { name: "首页", url: "/" },
-    { name: "角色管理", url: "/role" },
-    { name: "用户管理", url: "/user" },
-    { name: "权限管理", url: "/privilege" },
-    { name: "菜单分类", url: "/menuCategory" }
-];
-/**
  * 模块index基类
  */
 export class Base extends Component {
@@ -111,3 +100,21 @@ export class Base extends Component {
         }
     }
 }
+/**
+ * 检查当前按钮是否有权限
+ * @param obj ==> { url: xxx, method: 'get' }
+ * @param privileges
+ */
+export const hasPrivilege = (obj, privileges) => {
+    console.log(privileges)
+    if(!obj.url || !obj.method || privileges.length == 0){
+        return false;
+    }
+    console.log(obj);
+    for(let i=0; i<privileges.length; i++){
+        if(obj.url == privileges[i].url && obj.method == privileges[i].method){
+            return true;
+        }
+    }
+    return false;
+};

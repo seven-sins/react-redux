@@ -7,9 +7,28 @@
 <body>
 <div id="app"></div>
 <script type="text/javascript">
-    var myPrivilege = [
-        1, 2, 3
-    ];
+    var myPrivilege = [{"index":1,"size":20,"id":1,"name":"用户管理","url":"/user","method":"get","type":1,"parentId":0,"status":null,"menuCategoryId":25,"menuCategoryName":null,"position":null,"children":null},{"index":1,"size":20,"id":2,"name":"列表","url":"/user","method":"get","type":2,"parentId":1,"status":null,"menuCategoryId":0,"menuCategoryName":null,"position":null,"children":null},{"index":1,"size":20,"id":3,"name":"添加","url":"/user","method":"post","type":2,"parentId":1,"status":null,"menuCategoryId":0,"menuCategoryName":null,"position":null,"children":null},{"index":1,"size":20,"id":4,"name":"修改","url":"/user/{id}","method":"put","type":2,"parentId":1,"status":null,"menuCategoryId":0,"menuCategoryName":null,"position":null,"children":null},{"index":1,"size":20,"id":5,"name":"删除","url":"/user/{id}","method":"delete","type":2,"parentId":1,"status":null,"menuCategoryId":0,"menuCategoryName":null,"position":null,"children":null},{"index":1,"size":20,"id":6,"name":"角色管理","url":"/role","method":"get","type":1,"parentId":0,"status":null,"menuCategoryId":25,"menuCategoryName":null,"position":null,"children":null},{"index":1,"size":20,"id":7,"name":"列表","url":"/role","method":"get","type":2,"parentId":6,"status":null,"menuCategoryId":0,"menuCategoryName":null,"position":null,"children":null},{"index":1,"size":20,"id":8,"name":"添加","url":"/role","method":"post","type":2,"parentId":6,"status":null,"menuCategoryId":0,"menuCategoryName":null,"position":null,"children":null},{"index":1,"size":20,"id":9,"name":"修改","url":"/role/{id}","method":"put","type":2,"parentId":6,"status":null,"menuCategoryId":0,"menuCategoryName":null,"position":null,"children":null},{"index":1,"size":20,"id":10,"name":"删除","url":"/role/{id}","method":"delete","type":2,"parentId":6,"status":null,"menuCategoryId":0,"menuCategoryName":null,"position":null,"children":null},{"index":1,"size":20,"id":13,"name":"权限管理","url":"/privilege","method":"get","type":1,"parentId":0,"status":null,"menuCategoryId":25,"menuCategoryName":null,"position":null,"children":null},{"index":1,"size":20,"id":15,"name":"列表","url":"/privilege","method":"get","type":2,"parentId":13,"status":null,"menuCategoryId":0,"menuCategoryName":null,"position":null,"children":null},{"index":1,"size":20,"id":17,"name":"添加","url":"/privilege","method":"post","type":2,"parentId":13,"status":null,"menuCategoryId":0,"menuCategoryName":null,"position":null,"children":null},{"index":1,"size":20,"id":18,"name":"修改","url":"/privilege/{id}","method":"put","type":2,"parentId":13,"status":null,"menuCategoryId":0,"menuCategoryName":null,"position":null,"children":null},{"index":1,"size":20,"id":19,"name":"删除","url":"/privilege/{id}","method":"delete","type":2,"parentId":13,"status":null,"menuCategoryId":0,"menuCategoryName":null,"position":null,"children":null},{"index":1,"size":20,"id":22,"name":"模块列表","url":"/privilege/list","method":"get","type":2,"parentId":13,"status":null,"menuCategoryId":0,"menuCategoryName":null,"position":null,"children":null},{"index":1,"size":20,"id":25,"name":"系统设置","url":"/sysSettings","method":"get","type":0,"parentId":-1,"status":null,"menuCategoryId":0,"menuCategoryName":null,"position":null,"children":null},{"index":1,"size":20,"id":27,"name":"菜单分类","url":"/menuCategory","method":"get","type":1,"parentId":0,"status":null,"menuCategoryId":25,"menuCategoryName":null,"position":null,"children":null},{"index":1,"size":20,"id":28,"name":"列表","url":"/menuCategory","method":"get","type":2,"parentId":27,"status":null,"menuCategoryId":null,"menuCategoryName":null,"position":null,"children":null},{"index":1,"size":20,"id":29,"name":"添加","url":"/menuCategory","method":"post","type":2,"parentId":27,"status":null,"menuCategoryId":null,"menuCategoryName":null,"position":null,"children":null},{"index":1,"size":20,"id":30,"name":"修改","url":"/menuCategory/{id}","method":"put","type":2,"parentId":27,"status":null,"menuCategoryId":null,"menuCategoryName":null,"position":null,"children":null},{"index":1,"size":20,"id":31,"name":"删除","url":"/menuCategory/{id}","method":"delete","type":2,"parentId":27,"status":null,"menuCategoryId":null,"menuCategoryName":null,"position":null,"children":null},{"index":1,"size":20,"id":32,"name":"设置模块","url":"/menuCategory/{id}/modules","method":"put","type":2,"parentId":27,"status":null,"menuCategoryId":null,"menuCategoryName":null,"position":null,"children":null},{"index":1,"size":20,"id":33,"name":"权限列表","url":"/privilege/all","method":"get","type":2,"parentId":13,"status":null,"menuCategoryId":null,"menuCategoryName":null,"position":null,"children":null},{"index":1,"size":20,"id":34,"name":"设置权限","url":"/rolePrivilege/{roleId}","method":"put","type":2,"parentId":6,"status":null,"menuCategoryId":null,"menuCategoryName":null,"position":null,"children":null},{"index":1,"size":20,"id":35,"name":"获取权限","url":"/rolePrivilege/{roleId}","method":"get","type":2,"parentId":6,"status":null,"menuCategoryId":null,"menuCategoryName":null,"position":null,"children":null}];
+
+    var MENUS = (function(){
+        var menu = [];
+        for(var i=0; i<myPrivilege.length; i++){
+            if(myPrivilege[i].type == 0){
+                menu.push(myPrivilege[i]);
+            }
+        }
+        return menu;
+    })();
+    if(MENUS && MENUS.length > 0){
+        for(var i=0; i<MENUS.length; i++){
+            var children = [];
+            for(var j=0; j<myPrivilege.length; j++){
+                if(myPrivilege[j].menuCategoryId && myPrivilege[j].menuCategoryId == MENUS[i].id){
+                    children.push(myPrivilege[j]);
+                }
+            }
+            MENUS[i].children = children;
+        }
+    }
 </script>
 <script src="dist/main.js" type="text/javascript"></script>
 </body>

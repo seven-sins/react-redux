@@ -45,13 +45,13 @@ class Index extends Base{
         let { data, total } = this.props;
         let grid = {
             toolbar: [
-                { name: 'load', option: { action: this.props.load } },
-                { name: 'create', option: { action: this.create } },
-                { name: 'update', option: { action: this.update } },
-                { name: 'remove', option: { action: this.remove } }
+                { name: 'load', option: { action: this.props.load, url: "/role", method: "get" } },
+                { name: 'create', option: { action: this.create, url: "/role", method: "post" } },
+                { name: 'update', option: { action: this.update, url: "/role/{id}", method: "put" } },
+                { name: 'remove', option: { action: this.remove, url: "/role/{id}", method: "delete" } }
             ],
             action: [
-                { name: '设置权限', class: "fa fa-cog", option: { action: this.setPrivilege }, isSelect: true }, // isSelect是否需要选中数据
+                { name: '设置权限', class: "fa fa-cog", option: { action: this.setPrivilege, url: "/rolePrivilege/{roleId}", method: "put" }, isSelect: true }, // isSelect是否需要选中数据
             ],
             columns: [
                 { field: "id", title: 'id', width: 200, class: 'hide' },

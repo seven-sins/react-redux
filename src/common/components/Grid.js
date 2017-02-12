@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Grid.less';
 import Pager from './Pager';
+import { hasPrivilege } from '../common';
 
 class Grid extends Component {
     constructor(props, context) {
@@ -41,12 +42,15 @@ class Grid extends Component {
         return format;
     };
     initToolbar = (toolbar, action) => {
-        let toolbarContent = '';
+        let toolbarContent = [];
         if(toolbar){
             toolbarContent = toolbar.map( (item, index) => {
                 let name = item.name;
                 let className = item.class ? item.class : "";
                 let action = (item.option && item.option.action) ? item.option.action : null;
+                if(!hasPrivilege(item.option, myPrivilege)){
+                    return "";
+                }
                 switch(name){
                     case 'load':
                         this.reload = action;// load 不添加按钮
@@ -87,6 +91,9 @@ class Grid extends Component {
                 actionContent = action.map( (item, index) => {
                     let className = item.class ? item.class : "";
                     let action = (item.option && item.option.action) ? item.option.action : null;
+                    if(!hasPrivilege(item.option, myPrivilege)){
+                        return "";
+                    }
                     return (
                         <a key={ index } className='link-btn' onClick={ this.callMethod.bind(this, action, item.isSelect) }><i className={ className }> </i><span>{ item.name }</span></a>
                     )
