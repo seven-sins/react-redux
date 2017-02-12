@@ -71,12 +71,13 @@ const updateRolePrivilege = response => {
         rolePrivileges: response.rolePrivileges
     }
 };
-export const loadRolePrivilege = role => {
+export const loadRolePrivilege = (role, callback) => {
     return dispatch => {
         dispatch(updateRolePrivilege({ rolePrivileges: [] })); // 先清空store中的缓存
         http.request("/rolePrivilege/" + role.id, { method: 'GET' },
             data => {
                 dispatch(updateRolePrivilege({ rolePrivileges: data.data }));
+                if(callback) callback.call();
             });
     }
 };

@@ -17,8 +17,9 @@ class SetPrivilege extends Component {
     }
     componentDidMount = () => {
         let { role } = this.props;
-        this.props.loadPrivilege();
-        this.props.loadRolePrivilege(role);
+        this.props.loadRolePrivilege(role, () => {
+            this.props.loadPrivilege();
+        });
     };
     toggle = ev => {
         ev = ev || window.event;
