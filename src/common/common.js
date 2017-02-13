@@ -7,7 +7,7 @@ import React, { Component } from 'react';
  * http
  */
 const srvUrl = ""; // http://localhost:3001
-const localUrl = "http://www.lonecpp.com"; // http://127.0.0.1:3000
+const localUrl = "http://115.28.76.154"; //   http://127.0.0.1:3000
 /**
  * 从cookie中获取
  * @param key
@@ -106,11 +106,9 @@ export class Base extends Component {
  * @param privileges
  */
 export const hasPrivilege = (obj, privileges) => {
-    console.log(privileges)
     if(!obj.url || !obj.method || privileges.length == 0){
         return false;
     }
-    console.log(obj);
     for(let i=0; i<privileges.length; i++){
         if(obj.url == privileges[i].url && obj.method == privileges[i].method){
             return true;

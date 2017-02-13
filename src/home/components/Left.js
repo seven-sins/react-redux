@@ -24,7 +24,7 @@ class Left extends Component{
             return false;
         }
     };
-    handleClick = ev => {
+    toggle = ev => {
         ev = ev || window.event;
         ev.preventDefault();
         if(s(ev.currentTarget.parentNode).hasClass("menu-close")){
@@ -32,6 +32,12 @@ class Left extends Component{
         }else{
             s(ev.currentTarget.parentNode).addClass("menu-close");
         }
+    };
+    clickItem = ev => {
+        ev = ev || window.event;
+        ev.preventDefault();
+        s(ev.currentTarget).siblings().removeClass("active");
+        s(ev.currentTarget).addClass("active");
     };
     render = () =>{
         let menu = '';
@@ -41,16 +47,15 @@ class Left extends Component{
                 if(item.children && item.children.length > 0){
                     list = item.children.map( item => {
                         return(
-                            <li key={ item.id }>
-                                <i className='fa fa-file-text-o'> </i>
-                                <Link to={ item.url }>{ item.name }</Link>
+                            <li key={ item.id } onClick={ this.clickItem }>
+                                <Link activeClassName="active" to={ item.url }><i className='fa fa-file-text-o'> </i>{ item.name }</Link>
                             </li>
                         )
                     })
                 }
                 return (
                     <div className="menu-item">
-                        <div className="menu-title" onClick={ this.handleClick }>
+                        <div className="menu-title" onClick={ this.toggle }>
                             { item.name }
                             <i className="fa fa-caret-down title-down"> </i>
                             <i className="fa fa-caret-left title-left"> </i>

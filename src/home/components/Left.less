@@ -10,7 +10,7 @@
         }
         .menu-title{
           .title-left{
-            display:inline-block; transition:0.3s;
+            display:inline-block;
           }
           .title-down{
             display:none;
@@ -32,12 +32,16 @@
       &>ul{
         padding:3px 0 1px 0;
         li{
-          padding:0 0 0 25px; line-height:26px;cursor:pointer;
-          &:hover{
-            background:#e8e8e8;
-          }
-          .fa{
-            margin:0 5px;
+          line-height:26px;cursor:pointer;
+          a{
+            display:block;line-height:26px;transition: background 0.3s ease-in-out;padding:0 0 0 25px;
+            margin:0 0 1px 0;
+            .fa{
+              margin:0 5px;
+            }
+            &.active, &:hover{
+              background:#e8e8e8;
+            }
           }
         }
       }

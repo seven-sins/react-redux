@@ -2,6 +2,7 @@
         该项目不能独立运行
         因调用接口来自于同仓库下的springboot
 ####UI预览
+    封装的UI组件路径 /src/common/commponents， 包含Grid、DatePicker、DropDownList等
 Grid 1.
 ![image](https://github.com/seven-sins/react-redux/blob/master/tmp/grid.png)
 Grid 2.
