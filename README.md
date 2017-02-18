@@ -5,12 +5,16 @@
     封装的UI组件路径 /src/common/commponents， 包含Grid、DatePicker、DropDownList等
 Grid 1. <br>
 ![image](https://github.com/seven-sins/react-redux/blob/master/tmp/grid.png)
+<br>
 Grid 2. <br>
 ![image](https://github.com/seven-sins/react-redux/blob/master/tmp/grid1.png)
+<br>
 DatePicker. <br>
 ![image](https://github.com/seven-sins/react-redux/blob/master/tmp/date.png)
+<br>
 Validator. <br>
 ![image](https://github.com/seven-sins/react-redux/blob/master/tmp/validate.png)
+<br>
 ###待处理问题
     1. Grid组件编辑数据成功， Grid数据重置， Pager组件index显示错误
         暂时通用ref主动调用grid中的方法， 待优化
