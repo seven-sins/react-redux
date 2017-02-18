@@ -110,30 +110,38 @@ class GridTree extends Component {
         }
         return columnsDom;
     };
-    refactorData = (columns, data, key) => {
+    refactorData = (columns, data, key, isChild) => {
         key = key ? key * 13 : 100;
         let dom = [];
         for(let i=0; i<data.length; i++){
-            let item_i = data[i], index_i = i;
-            key = key + (index_i + 1) * 13;
+            let item_i = data[i];
+            key = key + (i + 1) * 13;
             let td = '';
+            let hasChildren = !!item_i['children'];
             td = columns.map( (item_j, index_j) => {
                 let field = item_j["field"];
                 let value = item_i[field];
                 let width = item_j.width ? ( (item_j.width + "").match(/%/g) ? item_j.width : item_j.width + 'px' ) : "auto";
                 let className = item_j.class ? item_j.class : '';
+                let icon = "";
+                if(item_j["icon"] && hasChildren){ // 当前列需要设置图标样式， 且有children属性
+                    icon = <i className="tree-icon"> </i>
+                }
+                if(item_j["icon"] && isChild){ // 当前列需要设置图标样式， 且当前行是children
+                    className += " is-child "
+                }
                 if(typeof item_j.template === 'function'){
                     return (
-                        <li className={ className } style={{ width: width }} key={ index_j }>{ item_j.template(item_i) }</li>
+                        <li className={ className } style={{ width: width }} key={ index_j }>{ icon }{ item_j.template(item_i) }</li>
                     )
                 }
                 return (
-                    <li className={ className } style={{ width: width }} key={ index_j }>{ value }</li>
+                    <li className={ className } style={{ width: width }} key={ index_j }>{ icon }{ value }</li>
                 )
             });
             dom.push(<ul onClick={ this.select.bind(this, item_i) } key={ key }>{ td }</ul>);
             if(item_i['children']){
-                let children = this.refactorData(columns, item_i['children'], key);
+                let children = this.refactorData(columns, item_i['children'], key, true);
                 dom = dom.concat(children);
             }
         }

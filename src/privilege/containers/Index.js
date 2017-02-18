@@ -44,11 +44,11 @@ class Index extends Base{
             ],
             columns: [
                 { field: "id", title: 'id', width: 200, class: 'hide' },
-                { field: "name", title: '名称', width: '20%', template: (row) => {
+                { field: "name", icon: true, title: '名称', width: '20%', template: (row) => {
                     if(row.type === 1){
                         return <span style={{ color: 'green' }}>{ row.name }</span>;
                     }else{
-                        return <span style={{ color: 'blue', padding: '0 0 0 13px' }}>{ row.name }</span>;
+                        return <span style={{ color: 'blue' }}>{ row.name }</span>;
                     }
                 } },
                 { field: "type", title: '类型', width: '10%', template: (row) => {

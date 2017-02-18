@@ -13,11 +13,19 @@
         display:inline-block;text-indent: 8px;border:1px solid @borderColor;text-align:left;border-right:none;
         overflow:hidden; text-overflow:ellipsis;border-top:none;height:26px;line-height:26px;
         transition: background 0.2s ease-in-out;
+        box-sizing: border-box;
+        &.is-child{
+          padding:0 0 0 16px;
+        }
         &:nth-last-child(1){
           border-right:1px solid @borderColor;
         }
         &.hide{
           display:none;
+        }
+        .tree-icon{
+          display:inline-block;width:16px;height:16px;background:url(../../assets/images/tree/folder.png)no-repeat;
+          position:relative;top:4px;margin:0 3px;
         }
       }
     }
