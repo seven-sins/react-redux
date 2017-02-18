@@ -35,7 +35,7 @@ class Index extends Base{
         this.props.remove(model);
     };
     setModule = model => {
-        let dialogParams = { width: 500, height: 366, title: "新建", dialog: this.dialog };
+        let dialogParams = { width: 500, height: 366, title: "设置", dialog: this.dialog };
         let menuCategoryParams = { menuCategory: model, dialog: this.dialog };
         this.dialog(   <Dialog { ...dialogParams }>
             <SetModule { ...menuCategoryParams }  />

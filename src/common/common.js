@@ -7,7 +7,7 @@ import React, { Component } from 'react';
  * http
  */
 const srvUrl = "http://localhost:3001"; //
-const localUrl = "http://127.0.0.1:3000"; //     http://115.28.76.154
+const localUrl = "http://127.0.0.1:3000"; //        http://115.28.76.154
 /**
  * 从cookie中获取
  * @param key
