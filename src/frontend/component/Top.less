@@ -1,0 +1,24 @@
+@topHeight: 41px;
+/**
+ * top
+ */
+.index-top{
+  background:url(../images/nav_bg.gif)repeat-x;
+  position:fixed;width:100%;height:@topHeight;
+  top:0;left:0;z-index:9;
+  border-bottom:2px solid #e15671;
+  .content{
+    width:1050px;height:@topHeight;margin:0 auto;position:relative;
+    .right{
+      position:absolute;top:0;right:18px;height:@topHeight;width:800px;
+      text-align:right;
+      span{
+        display:inline-block;height:@topHeight;line-height:@topHeight;padding:0 18px;color:#fff;
+        cursor: pointer;font-size:14px;
+        &.active, &:hover{
+          background:#e15671;
+        }
+      }
+    }
+  }
+}

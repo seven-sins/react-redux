@@ -1,14 +1,14 @@
 /**
  * Created by javaDev on 2017/2/4.
  */
-import React, { Component } from 'react';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Index from './Index';
 
-class App extends Component{
-
-    render = () => {
-        return (
-            <div className="main"> </div>
-        )
-    }
-}
-export default App;
+const render = () =>{
+    ReactDOM.render(
+        <Index />,
+        document.getElementById('app')
+    );
+};
+render();

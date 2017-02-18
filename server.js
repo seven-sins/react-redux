@@ -17,6 +17,9 @@ app.get("/main", function(req, res) {
 app.get("/login", function(req, res) {
     res.sendFile(__dirname + '/login.html')
 });
+app.get("/", function(req, res) {
+    res.sendFile(__dirname + '/index.html')
+});
 app.listen(port, function(error) {
     if (error) {
         console.error(error)
