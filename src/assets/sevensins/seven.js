@@ -1072,7 +1072,9 @@
             var self = this;
             var settings = {
                 dom: null, // 仅点击当前dom才触发
-                callback: null
+                callback: null,
+                maxX: null,
+                maxY: null
             };
             self.initialize(settings, args);
             for (var i = 0; i < this.elements.length; i++) {
@@ -1093,15 +1095,17 @@
                         var e = e || window.event;
                         var left = e.clientX - disX;
                         var top = e.clientY - disY;
+                        var maxX = settings.maxX ? (settings.maxX - _this.offsetWidth) : (self.getInner().width - _this.offsetWidth); // left最大边界
+                        var maxY = settings.maxY ? (settings.maxY - _this.offsetHeight) : (self.getInner().height - _this.offsetHeight); // top最大边界
                         if (left < 0) {
                             left = 0;
-                        } else if (left > self.getInner().width - _this.offsetWidth) {
-                            left = self.getInner().width - _this.offsetWidth;
+                        } else if (left > maxX) {
+                            left = maxX;
                         }
                         if (top < 0) {
                             top = 0;
-                        } else if (top > self.getInner().height - _this.offsetHeight) {
-                            top = self.getInner().height - _this.offsetHeight;
+                        } else if (top > maxY) {
+                            top = maxY;
                         }
                         _this.style.left = left + 'px';
                         _this.style.top = top + 'px';
@@ -1121,20 +1125,47 @@
 
             return self;
         },
-        dragEx: function () {
+        dragEx: function (args) {
             var self = this;
+            var settings = {
+                callback: null,
+                maxX: null,
+                maxY: null
+            };
+            self.initialize(settings, args);
 
             function startMove(obj, iSpeedX, iSpeedY) {
+                obj.countX = 0;
+                obj.countY = 0;
+                obj.prevX = 0;
+                obj.prevY = 0;
+                clearInterval(obj.timer);
                 obj.timer = setInterval(function () {
                     iSpeedY += 3;
                     var left = obj.offsetLeft + iSpeedX;
                     var top = obj.offsetTop + iSpeedY;
+                    if(obj.prevX == parseInt(left)){
+                        obj.countX++;
+                    }
+                    if(obj.prevY == parseInt(top)){
+                        obj.countY++;
+                    }
+                    obj.prevX = parseInt(left);
+                    obj.prevY = parseInt(top);
+                    if(obj.countX > 3 && obj.countY > 3){
+                        if(typeof settings.callback == 'function'){
+                            clearInterval(obj.timer);
+                            settings.callback.call();
+                        }
+                    }
+                    var maxX = settings.maxX ? (settings.maxX - obj.offsetWidth) : (self.getInner().width - obj.offsetWidth); // left最大边界
+                    var maxY = settings.maxY ? (settings.maxY - obj.offsetHeight) : (self.getInner().height - obj.offsetHeight); // top最大边界
                     if (left < 0) {
                         left = 0;
                         iSpeedX = -iSpeedX;
                         iSpeedX *= 0.75;
-                    } else if (left > self.getInner().width - obj.offsetWidth) {
-                        left = self.getInner().width - obj.offsetWidth;
+                    } else if (left > maxX) {
+                        left = maxX;
                         iSpeedX = -iSpeedX;
                         iSpeedX *= 0.75;
                     }
@@ -1142,8 +1173,8 @@
                         top = 0;
                         iSpeedY = -iSpeedY;
                         iSpeedY *= 0.75;
-                    } else if (top > self.getInner().height - obj.offsetHeight) {
-                        top = self.getInner().height - obj.offsetHeight;
+                    } else if (top > maxY) {
+                        top = maxY;
                         iSpeedY = -iSpeedY;
                         iSpeedY *= 0.75;
                         iSpeedX *= 0.75;
@@ -1176,16 +1207,17 @@
                         iSpeedY = e.clientY - prevY;
                         prevX = e.clientX;
                         prevY = e.clientY;
-
+                        var maxX = settings.maxX ? (settings.maxX - _this.offsetWidth) : (self.getInner().width - _this.offsetWidth); // left最大边界
+                        var maxY = settings.maxY ? (settings.maxY - _this.offsetHeight) : (self.getInner().height - _this.offsetHeight); // top最大边界
                         if (left < 0) {
                             left = 0;
-                        } else if (left > self.getInner().width - _this.offsetWidth) {
-                            left = self.getInner().width - _this.offsetWidth;
+                        } else if (left > maxX) {
+                            left = maxX;
                         }
                         if (top < 0) {
                             top = 0;
-                        } else if (top > self.getInner().height - _this.offsetHeight) {
-                            top = self.getInner().height - _this.offsetHeight;
+                        } else if (top > maxY) {
+                            top = maxY;
                         }
                         _this.style.left = left + 'px';
                         _this.style.top = top + 'px';

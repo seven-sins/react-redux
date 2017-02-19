@@ -1,16 +1,20 @@
 .index-head{
   width:1050px;margin:0 auto;height:199px;box-sizing: border-box;position:relative;
   .head-border{
-    width:320px;height:52px;line-height:46px;text-align:center;position:absolute;top:88px;left:353px;z-index:7;
+    width:320px;height:52px;line-height:46px;text-align:center;position:absolute;top:96px;left:353px;z-index:7;
     background:url(../images/bg1.png);padding:8px;cursor:pointer;
     border-radius: 8px;
     .head-text{
-      height:100%;width:100%;background:url(../images/nav_bg.gif);color:#fff;font-size:18px;
-      border-radius: 8px;cursor:pointer;
+      height:100%;width:100%;background:url(../images/nav_bg.gif);color:#fff;font-size:18px;line-height:52px;
+      border-radius: 8px;cursor:pointer;position:relative;transition: color 0.3s ease-in-out;text-shadow: 1px 1px 1px #ccc;
+      &:hover{
+        color:#e15671;
+      }
     }
   }
   .head-disk{
-    background:url(../images/disk_small.png) no-repeat;
+    background:url(../images/disk_small.png) no-repeat;text-align:center;
+    font-size:13px;color:#e15671;font-weight:bold;
     position:absolute;top:123px;left:283px;width:475px;height:101px;z-index:-1;
   }
   .head-image-1{

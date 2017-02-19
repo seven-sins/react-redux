@@ -19,11 +19,14 @@ class Head extends Component {
         let _this = this.refs.border;
         _this.top = _this.offsetTop;
         _this.left = _this.offsetLeft;
-        s(_this).drag({ callback: () => {
-            s(_this).animateEx({ position: { top: _this.top, left: _this.left }, duration: 666, easing: 'elasticOut', callback: () => {
+        let head = this.refs.head;
+        s(_this).dragEx({ maxX: head.offsetWidth, maxY: (head.offsetHeight), callback: () => { // 1050： 父元素的宽度
+            s(_this).animateEx({ position: { top: _this.top, left: _this.left }, duration: 777, easing: 'elasticOut', callback: () => {
                 _this.flag = false;
             } });
         }});
+
+        /*
         this.refs.text.onmouseenter = (ev) => {
             if(!_this.flag){
                 // 计算鼠标移入方向
@@ -38,21 +41,21 @@ class Head extends Component {
                 _this.flag = true;
                 _this.style.top = top + "px";
                 //_this.style.left = left + "px";
-                s(_this).animateEx({ position: { top: _this.top }, duration: 333, easing: 'elasticOut', callback: () => {
+                s(_this).animateEx({ position: { top: _this.top, left: _this.left }, duration: 777, easing: 'elasticOut', callback: () => {
                     _this.flag = false;
                 } });
             }
-        };
+        };*/
     };
     render = () => {
         return(
-            <div className="index-head">
+            <div className="index-head" ref="head">
                 <div className="head-border" ref="border">
                     <div className="head-text" ref="text">
                         C++是史上最好的语言
                     </div>
                 </div>
-                <div className="head-disk"></div>
+                <div className="head-disk">(*^__^*)</div>
                 <div className="head-image-1"></div>
                 <div className="head-image-2"></div>
                 <div className="head-image-3"></div>
