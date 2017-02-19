@@ -27,8 +27,14 @@ class Top extends Component {
                 }
             }
             let left = _this.offsetLeft; // 当前移入元素left值
-            s(box).width(s(_this).width()).show().animateEx({ position: { left: left }, duration: 666, easing: 'elasticOut', callback: () => {
+            let firstLeft = box.offsetLeft > left ? (left + 44) : (left - 44);
+            if(Math.abs(box.offsetLeft - left) <= 44){
+                firstLeft = left;
+            }
+            s(box).width(s(_this).width()).show().animate({ left: firstLeft, speed: 10, interval: 10, callback: () => {
+                s(box).animateEx({ position: { left: left }, duration: 666, easing: 'elasticOut', callback: () => {
 
+                }});
             }});
         }).bind("click", ev => {
             ev = ev || window.event;
@@ -45,10 +51,16 @@ class Top extends Component {
             }else{
                 let active = s(".index-top .active").eq(0);
                 let left = active.offset().left;
+                let firstLeft = box.offsetLeft > left ? (left + 44) : (left - 44);
+                if(Math.abs(box.offsetLeft - left) <= 44){
+                    firstLeft = left;
+                }
                 let width = active.width();
-                s(box).width(width).show().animateEx({ position: { left: left }, duration: 666, easing: 'elasticOut', callback: () => {
-                    s(box).hide();
-                    active.siblings("span").removeClass("move");
+                s(box).width(width).show().animate({ left: firstLeft, speed: 10, interval: 10, callback: () => {
+                    s(box).animateEx({ position: { left: left }, duration: 666, easing: 'elasticOut', callback: () => {
+                        s(box).hide();
+                        active.siblings("span").removeClass("move");
+                    }});
                 }});
             }
         })

@@ -1313,6 +1313,7 @@
                 }
             }
             //
+            clearInterval(obj.timer);
             obj.timer = setInterval(function () {
                 var changeTime = now();
                 var t = settings.duration - Math.max(0, startTime - changeTime + settings.duration);
