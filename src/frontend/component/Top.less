@@ -15,9 +15,15 @@
       span{
         display:inline-block;height:@topHeight;line-height:@topHeight;padding:0 18px;color:#fff;
         cursor: pointer;font-size:14px;
-        &.active, &:hover{
+        &.active{
           background:#e15671;
         }
+        &.move{
+          background:none;
+        }
+      }
+      .bg-box{
+        display:none;position:absolute;left:0;top:0;background:#e15671;height:@topHeight;z-index:-1;
       }
     }
   }

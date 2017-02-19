@@ -1071,7 +1071,8 @@
         drag: function (args) {
             var self = this;
             var settings = {
-                dom: null // 仅点击当前dom才触发
+                dom: null, // 仅点击当前dom才触发
+                callback: null
             };
             self.initialize(settings, args);
             for (var i = 0; i < this.elements.length; i++) {
@@ -1110,6 +1111,9 @@
                         document.onmouseup = null;
                         if (typeof _this.releaseCapture != 'undefined') {
                             _this.releaseCapture();
+                        }
+                        if(typeof settings.callback == 'function'){
+                            settings.callback.call(obj);
                         }
                     }
                 }
