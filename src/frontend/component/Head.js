@@ -55,6 +55,8 @@ class Head extends Component {
                         C++是史上最好的语言
                     </div>
                 </div>
+                <div className="head-cup"></div>
+                <div className="head-mac"></div>
                 <div className="head-disk">(*^__^*)</div>
                 <div className="head-image-1"></div>
                 <div className="head-image-2"></div>
