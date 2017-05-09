@@ -4,6 +4,7 @@ require.config({
     }
 });
 
-require(['jquery', 'common'], function($, common){
-    alert(common.isNull())
+require(['jquery', 'common', "test"], function($, common, test){
+    // alert(common.isNull())
+    alert(test.a);
 });
