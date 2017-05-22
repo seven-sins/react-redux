@@ -16,9 +16,6 @@ class Validator{
         email: /^\w+(\.|\-){0,1}\w+@\w+(\.\w+){1,2}$/,
         number: /^\d+(\.\d+)*$/
     };
-    constructor = () =>{
-
-    };
     /**
      * @param el 容器
      */

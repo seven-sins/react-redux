@@ -11,7 +11,7 @@ const updateData = (response) => {
     }
 };
 const get = (dispatch, filter) => {
-    http.request("/topicCategory" + http.convert(filter), { method: 'GET' },
+    http.request("/api/topicCategory" + http.convert(filter), { method: 'GET' },
         data => {
             dispatch(updateData({ data: data.data, total: data.total }));
         });
@@ -23,7 +23,7 @@ export const load = (filter) => {
 };
 export const remove = (topicCategory) => {
     return dispatch => {
-        http.request( "/topicCategory/" + topicCategory.id, { method: 'DELETE' },
+        http.request( "/api/topicCategory/" + topicCategory.id, { method: 'DELETE' },
             data => {
                 get(dispatch);
             });
@@ -31,7 +31,7 @@ export const remove = (topicCategory) => {
 };
 export const save = (topicCategory, callback) => {
     let method = topicCategory.id ? "PUT" : "POST";
-    let url = topicCategory.id ? "/topicCategory/" + topicCategory.id : "/topicCategory";
+    let url = topicCategory.id ? "/api/topicCategory/" + topicCategory.id : "/api/topicCategory";
 
     return (dispatch, getState) => {
         http.request(url, { body: JSON.stringify(topicCategory), method: method },

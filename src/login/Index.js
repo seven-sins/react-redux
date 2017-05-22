@@ -14,7 +14,7 @@ class Index extends Component{
         s.login({
             submit:function(user){
                 s.post(http.srvUrl + "/doLogin", JSON.stringify(user), function(res){
-                    if(res.code == 0){
+                    if(res.code === 200){
                         s.msg("登录成功");
                         s.cookie.add("token", res.token);
                         window.location.href = http.localUrl + "/main";

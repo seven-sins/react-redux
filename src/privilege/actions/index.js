@@ -11,7 +11,7 @@ const updateData = (response) => {
     }
 };
 const get = (dispatch, filter) => {
-    http.request("/privilege" + http.convert(filter), { method: 'GET' },
+    http.request("/api/privilege" + http.convert(filter), { method: 'GET' },
         data => {
             dispatch(updateData({ data: data.data, total: data.total }));
         });
@@ -23,7 +23,7 @@ export const load = (filter) => {
 };
 export const remove = (privilege) => {
     return dispatch => {
-        http.request( "/privilege/" + privilege.id, { method: 'DELETE' },
+        http.request( "/api/privilege/" + privilege.id, { method: 'DELETE' },
             data => {
                 get(dispatch);
             });
@@ -31,7 +31,7 @@ export const remove = (privilege) => {
 };
 export const save = (privilege, callback) => {
     let method = privilege.id ? "PUT" : "POST";
-    let url = privilege.id ? "/privilege/" + privilege.id : "/privilege";
+    let url = privilege.id ? "/api/privilege/" + privilege.id : "/api/privilege";
 
     return (dispatch, getState) => {
         http.request(url, { body: JSON.stringify(privilege), method: method },

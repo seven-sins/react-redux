@@ -45,13 +45,13 @@ class Index extends Base{
         let { data, total } = this.props;
         let grid = {
             toolbar: [
-                { name: 'load', option: { action: this.props.load, url: "/menuCategory", method: "get" } },
-                { name: 'create', option: { action: this.create, url: "/menuCategory", method: "post" } },
-                { name: 'update', option: { action: this.update, url: "/menuCategory/{id}", method: "put" } },
-                { name: 'remove', option: {  action: this.remove, url: "/menuCategory/{id}", method: "delete" } }
+                { name: 'load', option: { action: this.props.load, url: "/api/menuCategory", method: "get" } },
+                { name: 'create', option: { action: this.create, url: "/api/menuCategory", method: "post" } },
+                { name: 'update', option: { action: this.update, url: "/api/menuCategory/{id}", method: "put" } },
+                { name: 'remove', option: {  action: this.remove, url: "/api/menuCategory/{id}", method: "delete" } }
             ],
             action: [
-                { name: '设置模块', class: "fa fa-cog", option: { action: this.setModule, url: "/menuCategory/{id}/modules", method: "put" }, isSelect: true }, // isSelect是否需要选中数据
+                { name: '设置模块', class: "fa fa-cog", option: { action: this.setModule, url: "/api/menuCategory/{id}/modules", method: "put" }, isSelect: true }, // isSelect是否需要选中数据
             ],
             columns: [
                 { field: "id", title: 'id', width: 200, class: 'hide' },

@@ -11,7 +11,7 @@ const updateData = (response) => {
     }
 };
 const get = (dispatch, filter) => {
-    http.request("/user" + http.convert(filter), { method: 'GET' },
+    http.request("/api/user" + http.convert(filter), { method: 'GET' },
         data => {
             dispatch(updateData({ data: data.data, total: data.total }));
         });
@@ -23,7 +23,7 @@ export const load = (filter) => {
 };
 export const remove = (user) => {
     return dispatch => {
-        http.request("/user/" + user.id, { method: 'DELETE' },
+        http.request("/api/user/" + user.id, { method: 'DELETE' },
             data => {
                 get(dispatch);
             });
@@ -31,7 +31,7 @@ export const remove = (user) => {
 };
 export const save = (user, callback) => {
     let method = user.id ? "PUT" : "POST";
-    let url = user.id ? "/user/" + user.id : "/user";
+    let url = user.id ? "/api/user/" + user.id : "/api/user";
 
     return (dispatch, getState) => {
         http.request(url, { body: JSON.stringify(user), method: method },

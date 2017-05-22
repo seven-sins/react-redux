@@ -37,10 +37,10 @@ class Index extends Base{
         let { data, total } = this.props;
         let grid = {
             toolbar: [
-                { name: 'load', option: { action: this.props.load, url: '/user', method: 'get' } },
-                { name: 'create', option: { action: this.create, url: '/user', method: 'post' } },
-                { name: 'update', option: { action: this.update, url: '/user/{id}', method: 'put' } },
-                { name: 'remove', option: { action: this.remove, url: '/user/{id}', method: 'delete' } }
+                { name: 'load', option: { action: this.props.load, url: '/api/user', method: 'get' } },
+                { name: 'create', option: { action: this.create, url: '/api/user', method: 'post' } },
+                { name: 'update', option: { action: this.update, url: '/api/user/{id}', method: 'put' } },
+                { name: 'remove', option: { action: this.remove, url: '/api/user/{id}', method: 'delete' } }
             ],
             columns: [
                 { field: "id", title: 'id', width: 200, class: 'hide' },

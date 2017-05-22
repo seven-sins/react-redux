@@ -11,7 +11,7 @@ const updateData = response => {
     }
 };
 const get = (dispatch, filter) => {
-    http.request("/role" + http.convert(filter), { method: 'GET' },
+    http.request("/api/role" + http.convert(filter), { method: 'GET' },
         data => {
             dispatch(updateData({ data: data.data, total: data.total }));
         });
@@ -23,7 +23,7 @@ export const load = filter => {
 };
 export const remove = role => {
     return dispatch => {
-        http.request( "/role/" + role.id, { method: 'DELETE' },
+        http.request( "/api/role/" + role.id, { method: 'DELETE' },
             data => {
                 get(dispatch);
             });
@@ -31,7 +31,7 @@ export const remove = role => {
 };
 export const save = (role, callback) => {
     let method = role.id ? "PUT" : "POST";
-    let url = role.id ? "/role/" + role.id : "/role";
+    let url = role.id ? "/api/role/" + role.id : "/api/role";
 
     return (dispatch, getState) => {
         http.request(url, { body: JSON.stringify(role), method: method },
@@ -50,7 +50,7 @@ const updatePrivilege = response => {
 export const loadPrivilege = () => {
     return dispatch => {
         dispatch(updatePrivilege({ privileges: [] })); // 先清空store中的缓存
-        http.request("/privilege/all", { method: 'GET' },
+        http.request("/api/privilege/all", { method: 'GET' },
             data => {
                 dispatch(updatePrivilege({ privileges: data.data }));
             });
@@ -58,7 +58,7 @@ export const loadPrivilege = () => {
 };
 export const savePrivilege = (data, callback) => {
     return dispatch => {
-        http.request("/rolePrivilege/" + data.id, { method: 'PUT', body: JSON.stringify(data) },
+        http.request("/api/rolePrivilege/" + data.id, { method: 'PUT', body: JSON.stringify(data) },
             data => {
                 if(callback) callback.call();
             });
@@ -74,7 +74,7 @@ const updateRolePrivilege = response => {
 export const loadRolePrivilege = (role, callback) => {
     return dispatch => {
         dispatch(updateRolePrivilege({ rolePrivileges: [] })); // 先清空store中的缓存
-        http.request("/rolePrivilege/" + role.id, { method: 'GET' },
+        http.request("/api/rolePrivilege/" + role.id, { method: 'GET' },
             data => {
                 dispatch(updateRolePrivilege({ rolePrivileges: data.data }));
                 if(callback) callback.call();

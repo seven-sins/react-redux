@@ -45,13 +45,13 @@ class Index extends Base{
         let { data, total } = this.props;
         let grid = {
             toolbar: [
-                { name: 'load', option: { action: this.props.load, url: "/role", method: "get" } },
-                { name: 'create', option: { action: this.create, url: "/role", method: "post" } },
-                { name: 'update', option: { action: this.update, url: "/role/{id}", method: "put" } },
-                { name: 'remove', option: { action: this.remove, url: "/role/{id}", method: "delete" } }
+                { name: 'load', option: { action: this.props.load, url: "/api/role", method: "get" } },
+                { name: 'create', option: { action: this.create, url: "/api/role", method: "post" } },
+                { name: 'update', option: { action: this.update, url: "/api/role/{id}", method: "put" } },
+                { name: 'remove', option: { action: this.remove, url: "/api/role/{id}", method: "delete" } }
             ],
             action: [
-                { name: '设置权限', class: "fa fa-cog", option: { action: this.setPrivilege, url: "/rolePrivilege/{roleId}", method: "put" }, isSelect: true }, // isSelect是否需要选中数据
+                { name: '设置权限', class: "fa fa-cog", option: { action: this.setPrivilege, url: "/api/rolePrivilege/{roleId}", method: "put" }, isSelect: true }, // isSelect是否需要选中数据
             ],
             columns: [
                 { field: "id", title: 'id', width: 200, class: 'hide' },

@@ -17,10 +17,10 @@ const getToken = key => {
     key = key ? key : "token";
     if (document.cookie.length > 0) {
         let c_start = document.cookie.indexOf(key + "=");
-        if (c_start != -1) {
+        if (c_start !== -1) {
             c_start = c_start + key.length + 1;
             let c_end = document.cookie.indexOf(";", c_start);
-            if (c_end == -1) c_end = document.cookie.length;
+            if (c_end === -1) c_end = document.cookie.length;
             return unescape(document.cookie.substring(c_start, c_end));
         }
     }
@@ -51,13 +51,13 @@ export const http = {
         return params;
     },
     request: (url, data, success) => {
-        headers.token = getToken("token"); // 获取token添加到请求头
+        headers.Authorization = getToken("token"); // 获取token添加到请求头
         fetch(srvUrl + url, Object.assign({ headers: headers }, data) )
             .then( response =>  response.json() )
             .then(data => {
-                if(data.code == 0){
+                if(data.code === 200){
                     success.call(this, data);
-                }else if(data.code == 2){
+                }else if(data.code === 2){
                     if(data.message.length > 0){
                         let msg = "";
                         for(let i=0; i<data.message.length; i++){
@@ -65,7 +65,7 @@ export const http = {
                         }
                         s.alert(msg);
                     }
-                }else if(data.code == 6){
+                }else if(data.code === 6){
                     s.msg(data.message);
                     window.location.href = localUrl + '/login';
                 }else{

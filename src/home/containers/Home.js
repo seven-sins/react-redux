@@ -14,7 +14,7 @@ class Home extends Component{
         super(props, context);
     }
     inner = () => {
-        if (typeof window.innerWidth != 'undefined') {
+        if (typeof window.innerWidth !== 'undefined') {
             return {
                 width: window.innerWidth,
                 height: window.innerHeight
