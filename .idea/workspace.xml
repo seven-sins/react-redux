@@ -1,32 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="639ca109-2e16-4645-aafe-fe08b7355de4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/redis-latest/dump.rdb" afterPath="$PROJECT_DIR$/redis-latest/dump.rdb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/912ec66d7572ff821749319396470bde.svg" afterPath="$PROJECT_DIR$/dist/912ec66d7572ff821749319396470bde.svg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/index.js" afterPath="$PROJECT_DIR$/dist/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/login.js" afterPath="$PROJECT_DIR$/dist/login.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/main.js" afterPath="$PROJECT_DIR$/dist/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nginx-1.11.8/conf/nginx.conf" afterPath="$PROJECT_DIR$/nginx-1.11.8/conf/nginx.conf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/common.js" afterPath="$PROJECT_DIR$/src/common/common.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/common/components/Validator.js" afterPath="$PROJECT_DIR$/src/common/components/Validator.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/home/containers/Home.js" afterPath="$PROJECT_DIR$/src/home/containers/Home.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/login/Index.js" afterPath="$PROJECT_DIR$/src/login/Index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/menuCategory/actions/index.js" afterPath="$PROJECT_DIR$/src/menuCategory/actions/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/menuCategory/containers/Index.js" afterPath="$PROJECT_DIR$/src/menuCategory/containers/Index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/privilege/actions/index.js" afterPath="$PROJECT_DIR$/src/privilege/actions/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/privilege/containers/Index.js" afterPath="$PROJECT_DIR$/src/privilege/containers/Index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/privilege/containers/Privilege.js" afterPath="$PROJECT_DIR$/src/privilege/containers/Privilege.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/role/actions/index.js" afterPath="$PROJECT_DIR$/src/role/actions/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/role/containers/Index.js" afterPath="$PROJECT_DIR$/src/role/containers/Index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/topicCategory/actions/index.js" afterPath="$PROJECT_DIR$/src/topicCategory/actions/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/topicCategory/containers/Index.js" afterPath="$PROJECT_DIR$/src/topicCategory/containers/Index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/user/actions/index.js" afterPath="$PROJECT_DIR$/src/user/actions/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/user/containers/Index.js" afterPath="$PROJECT_DIR$/src/user/containers/Index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/user/containers/User.js" afterPath="$PROJECT_DIR$/src/user/containers/User.js" />
-    </list>
+    <list default="true" id="639ca109-2e16-4645-aafe-fe08b7355de4" name="Default" comment="" />
     <ignored path="react-redux.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -374,12 +349,12 @@
       <workItem from="1487394140100" duration="8439000" />
       <workItem from="1487408267344" duration="18413000" />
       <workItem from="1487476817379" duration="25928000" />
-      <workItem from="1495460490300" duration="3898000" />
+      <workItem from="1495460490300" duration="4498000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="346701000" />
+    <option name="totallyTimeSpent" value="347301000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1426" extended-state="6" />
