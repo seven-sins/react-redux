@@ -1,7 +1,9 @@
 #####
+
         该项目不能独立运行
         因调用接口来自于同仓库下的springboot
 #####UI预览
+
         封装的UI组件路径 /src/common/commponents， 包含Grid、DatePicker、DropDownList等
 Grid 1. <br>
 ![image](https://github.com/seven-sins/react-redux/blob/master/tmp/grid.png)
@@ -74,13 +76,15 @@ Validator. <br>
        };
        <Grid { ...grid } />
        
-#####3. Dialog       
+#####3. Dialog     
+
         let dialogParams = { width: 600, height: 430, title: "新建", dialog: this.dialog };
         <Dialog { ...dialogParams }>
             <div>content</div>
         </Dialog>
 
 #####4. Validator
+
         eg:
             <input type="text" data-rule="require:true, max:20, min:5, type:number" />
             require: 必填
@@ -89,6 +93,7 @@ Validator. <br>
             type: number 输入类型必须是number
             
 #####5. DatePicker
+
         eg:
             let params = { value: new Date() }
             <DatePicker { ...params } />
