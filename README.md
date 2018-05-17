@@ -17,6 +17,7 @@ Validator. <br>
 <br>
 
 ####待处理问题
+
     1. Grid组件编辑数据成功， Grid数据重置， Pager组件index显示错误
         暂时通用ref主动调用grid中的方法， 待优化
     2. 分页组件显示每页记录下拉列表事件未处理
@@ -24,6 +25,7 @@ Validator. <br>
 ####公共组件
 
 #####1. DropDownList
+
     eg:
         let param = { value: user.roleId, id: 'id', text: 'name', url: '/role', data: [], empty: false, manual: true, rule: "require: true", init: [{id: 0, text: '无'}]  };
         value: 默认值
@@ -43,6 +45,7 @@ Validator. <br>
         text:  this.refs.roleId.text()
 
 #####2. Grid
+
     eg:
        let grid = {
             toolbar: [
