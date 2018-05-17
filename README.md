@@ -1,7 +1,7 @@
-####
+#####
         该项目不能独立运行
         因调用接口来自于同仓库下的springboot
-####UI预览
+#####UI预览
         封装的UI组件路径 /src/common/commponents， 包含Grid、DatePicker、DropDownList等
 Grid 1. <br>
 ![image](https://github.com/seven-sins/react-redux/blob/master/tmp/grid.png)
@@ -16,14 +16,14 @@ Validator. <br>
 ![image](https://github.com/seven-sins/react-redux/blob/master/tmp/validate.png)
 <br>
 
-###待处理问题
+####待处理问题
     1. Grid组件编辑数据成功， Grid数据重置， Pager组件index显示错误
         暂时通用ref主动调用grid中的方法， 待优化
     2. 分页组件显示每页记录下拉列表事件未处理
     
-###公共组件
+####公共组件
 
-####1. DropDownList
+#####1. DropDownList
     eg:
         let param = { value: user.roleId, id: 'id', text: 'name', url: '/role', data: [], empty: false, manual: true, rule: "require: true", init: [{id: 0, text: '无'}]  };
         value: 默认值
@@ -42,7 +42,7 @@ Validator. <br>
         value: this.refs.roleId.value()
         text:  this.refs.roleId.text()
 
-####2. Grid
+#####2. Grid
     eg:
        let grid = {
             toolbar: [
@@ -71,13 +71,13 @@ Validator. <br>
        };
        <Grid { ...grid } />
        
-####3. Dialog       
+#####3. Dialog       
         let dialogParams = { width: 600, height: 430, title: "新建", dialog: this.dialog };
         <Dialog { ...dialogParams }>
             <div>content</div>
         </Dialog>
 
-####4. Validator
+#####4. Validator
         eg:
             <input type="text" data-rule="require:true, max:20, min:5, type:number" />
             require: 必填
@@ -85,7 +85,7 @@ Validator. <br>
             min: 最小输入长度
             type: number 输入类型必须是number
             
-####5. DatePicker
+#####5. DatePicker
         eg:
             let params = { value: new Date() }
             <DatePicker { ...params } />
